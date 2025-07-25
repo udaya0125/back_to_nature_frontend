@@ -1,0 +1,143 @@
+import { Helmet } from 'react-helmet'; // Add this import
+import everest from '../Images/everest.jpg';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import data from '../Data/Data.json';
+
+// Import all activity images
+import cyclingImg from '../Images/cycling.jpg';
+import ultralightImg from '../Images/ultralight.webp';
+import paraglidingImg from '../Images/paraglading.jpg';
+import kayakingImg from '../Images/kayaking.jpg';
+import raftingImg from '../Images/rafting.png';
+import balloonImg from '../Images/balloon.webp';
+import ziplineImg from '../Images/zipline.jpg';
+import bungeeImg from '../Images/jump.jpg';
+
+const ActivitiesPage = () => {
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  // Create a mapping of image names to imported images
+  const imageMap = {
+    'cycling.jpg': cyclingImg,
+    'ultralight.webp': ultralightImg,
+    'paraglading.jpg': paraglidingImg,
+    'kayaking.jpg': kayakingImg,
+    'rafting.png': raftingImg,
+    'balloon.webp': balloonImg,
+    'zipline.jpg': ziplineImg,
+    'jump.jpg': bungeeImg
+  };
+
+  useEffect(() => {
+    try {
+      // Filter activities with category "activity" and add image URLs
+      const activityData = data
+        .filter(item => item.category === "activity")
+        .map(activity => ({
+          ...activity,
+          imageUrl: imageMap[activity.images[0]] || everest // fallback to everest if image not found
+        }));
+      
+      setActivities(activityData);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error loading activity data:", err);
+      setLoading(false);
+    }
+  }, []);
+
+  const getImage = (filename) => {
+    return imageMap[filename] || everest; // fallback to everest.jpg if not found
+  };
+
+  const handleActivityClick = (slug) => {
+    navigate(`/activities/${slug}`);
+  };
+
+  // SEO Meta Description (optional: you can make this dynamic)
+  const pageDescription = "Explore thrilling adventure activities like paragliding, rafting, bungee jumping, and more. Plan your next adventure with us.";
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Adventure Activities | Discover Thrilling Experiences</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://backtonatureadventure.com/activities " />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Adventure Activities | Discover Thrilling Experiences" />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={everest} />
+        <meta property="og:url" content="https://backtonatureadventure.com/activities " />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Adventure Activities | Discover Thrilling Experiences" />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={everest} />
+      </Helmet>
+
+      {/* Hero Banner Section */}
+      <div className="relative bg-cover bg-center bg-no-repeat w-full h-[40vh] sm:h-[50vh] md:h-[70vh] flex items-center justify-center"
+        style={{ backgroundImage: `url(${everest})` }}>
+        <div className="absolute inset-0 bg-gray-900/60"></div>
+        <div className="relative z-10 text-center px-4">
+          <h2 className='uppercase text-3xl sm:text-4xl md:text-5xl font-semibold text-white'>Activities</h2>
+          <p className='text-yellow-400 mt-4 text-sm sm:text-md uppercase'>
+            <Link to="/"  onClick={() => window.scrollTo(0, 0)} className='uppercase text-white hover:text-blue-300'>Home</Link>
+            / Activities
+          </p>
+        </div>
+      </div>
+
+      {/* Activities Grid Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24">
+        {activities.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {activities.map((activity, index) => (
+              <Link
+                to={`/activities/${activity.slug}`}
+                onClick={() => window.scrollTo(0, 0)}
+                key={index}
+                className="relative group overflow-hidden transition-shadow duration-300"
+              >
+                <img
+                  src={getImage(activity.images[0])}
+                  alt={activity.title}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <div className="text-white">
+                    <h3 className="text-xl font-bold mb-1">{activity.title}</h3>
+                    <p className="text-sm line-clamp-2 mb-2">{activity.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <h3 className="text-2xl font-bold mb-4 text-gray-800">No Activities Found</h3>
+            <p className="text-gray-600">We couldn't find any adventure activities at the moment.</p>
+          </div>
+        )}
+      </section>
+    </>
+  );
+};
+
+export default ActivitiesPage;

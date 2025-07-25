@@ -1,0 +1,985 @@
+   [
+    {
+    "title": "North ABC Trek",
+    "slug": "north-abc-trek",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+    "description": "The North ABC Trek offers a scenic, less-crowded alternative to the classic Annapurna Base Camp route. Passing through lush forests, traditional villages, and stunning mountain landscapes, it leads to the base of Annapurna South for a peaceful and rewarding high-altitude adventure.",
+    "images": [
+        "../Images/north.jpg",
+        "../Images/bg1.jpg"
+    ],
+   "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Drive from Pokhara to Tatopani (5-6 hrs drive) and trek to Narchyang Village",
+        "description": "Begin the journey with a scenic drive from Pokhara to Tatopani, followed by a trek through terraced fields and traditional Magar settlements to Narchyang Village. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Narchyang village to Chhotepa (2370m) (7-8 Hrs walk)",
+        "description": "Ascent through rhododendron forests offering views of Dhaulagiri and Annapurna. Pass through small villages and spend the night in Chhotepa."
+      },
+      {
+        "day": "Day 3",
+        "title": "Trek from Chhotepa to Bhusket mela (3546m) (6-7Hrs walk)",
+        "description": "A more challenging day as the trail ascends into alpine meadows with panoramic mountain views. Proper acclimatization is important. Overnight in a basic lodge."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Bhusket mela to North Annapurna Base Camp (4068m) (7-8 hours walk)",
+        "description": "Reach the highlight of the trek — North Annapurna Base Camp. Enjoy breathtaking views of Annapurna South, Hiunchuli, and Machapuchare."
+      },
+      {
+        "day": "Day 5",
+        "title": "Excursion around North Annapurna Base Camp (4190m)",
+        "description": "Rest and acclimatization day with optional hikes to nearby viewpoints. Experience stunning sunrise and sunset over the Annapurna massif."
+      },
+      {
+        "day": "Day 6",
+        "title": "Trek back to Hum Khola (2890m) from North Annapurna Base Camp",
+        "description": "Descend through diverse landscapes back to Hum Khola. Easier walking and more comfortable altitude. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 7",
+        "title": "Trek back to Lower Narchyang from Hum Khola",
+        "description": "Final day of trekking through familiar trails and villages. Celebrate the completion of your trek with local interactions."
+      },
+      {
+        "day": "Day 8",
+        "title": "Drive back to Pokhara",
+        "description": "Return to Pokhara with scenic stops along the way. Check into a hotel and optionally enjoy a celebration dinner."
+      }
+    ]
+  },
+ {
+    "title": "Hidden Lake",
+    "slug": "hidden-lake",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+    "description": "The Hidden Lake Trek takes you to a secluded alpine lake nestled in the Annapurna region. This serene and lesser-known destination is surrounded by towering peaks and pristine wilderness, offering trekkers a tranquil escape into nature's untouched beauty.",
+   "images": [
+    "hiddenlake.jpg",
+    "hiddenlake.jpg"
+],
+   "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Drive from Pokhara to Tatopani (5-6 hrs drive) and trek to Narchyang Village",
+        "description": "Start the journey with a scenic drive to Tatopani, followed by a trek to Narchyang Village, passing through terraced fields and traditional settlements."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Narchyang village to Chhotepa (2370m) (7-8 Hrs walk)",
+        "description": "Trek through rhododendron forests with views of the Annapurna and Dhaulagiri ranges, reaching Chhotepa for an overnight stay."
+      },
+      {
+        "day": "Day 3",
+        "title": "Trek from Chhotepa to Bhusket mela (3546m) (6-7Hrs walk)",
+        "description": "Ascend into alpine terrain with panoramic views. Spend the night in Bhusket Mela while acclimatizing to the altitude."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Bhusket mela to Hidden Lake (approx. 4100m)",
+        "description": "Continue the trek to the secluded Hidden Lake, surrounded by snow-capped peaks and untouched wilderness. A perfect spot for reflection and photography."
+      },
+      {
+        "day": "Day 5",
+        "title": "Explore Hidden Lake and surrounding area",
+        "description": "Rest day with optional hikes to nearby viewpoints. Enjoy the serenity of the lake and the majestic mountain backdrop."
+      },
+      {
+        "day": "Day 6",
+        "title": "Trek back to Hum Khola (2890m) from Hidden Lake",
+        "description": "Descend through scenic trails to Hum Khola, passing through forests and streams. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 7",
+        "title": "Trek back to Lower Narchyang from Hum Khola",
+        "description": "Trek back through familiar paths to Lower Narchyang, engaging with local communities and celebrating the journey."
+      },
+      {
+        "day": "Day 8",
+        "title": "Drive back to Pokhara",
+        "description": "Return to Pokhara with photo stops and lunch en route. End the trek with a relaxing evening in Pokhara."
+      }
+    ]
+  },
+ {
+    "title": "Khumai Dada",
+    "slug": "khumai-dada",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+    "description": "The Khumai Dada Trek leads to the summit of Khumai Dada, a vantage point offering breathtaking panoramic views of the Annapurna and Dhaulagiri ranges. This trek combines cultural immersion with high-altitude adventure, passing through remote villages and diverse landscapes.",
+    "images": [
+        "khumai.jpg",
+        "khumai.jpg"
+    ],
+    "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Drive from Pokhara to Tatopani (5-6 hrs drive) and trek to Narchyang Village",
+        "description": "Start with a scenic drive to Tatopani followed by a trek to Narchyang Village, passing through Magar settlements and terraced fields."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Narchyang village to Chhotepa (2370m) (7-8 Hrs walk)",
+        "description": "Walk through rhododendron forests with views of Annapurna and Dhaulagiri, reaching Chhotepa for overnight stay."
+      },
+      {
+        "day": "Day 3",
+        "title": "Trek from Chhotepa to Bhusket mela (3546m) (6-7Hrs walk)",
+        "description": "Begin ascending into alpine terrain with panoramic mountain views. Overnight in Bhusket Mela."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Bhusket mela to Khumai Dada (approx. 3900m)",
+        "description": "Reach the summit of Khumai Dada for breathtaking 360° views of Annapurna and Dhaulagiri ranges. A memorable high-altitude experience."
+      },
+      {
+        "day": "Day 5",
+        "title": "Rest day at Khumai Dada with optional exploration",
+        "description": "Spend a rest day acclimatizing and exploring nearby viewpoints. Capture stunning sunrise and sunset views."
+      },
+      {
+        "day": "Day 6",
+        "title": "Trek back to Hum Khola (2890m) from Khumai Dada",
+        "description": "Descend through varied terrain to Hum Khola, enjoying the changing landscapes and easier altitude."
+      },
+      {
+        "day": "Day 7",
+        "title": "Trek back to Lower Narchyang from Hum Khola",
+        "description": "Final day of trekking through familiar trails and villages. Celebrate the journey with local interactions."
+      },
+      {
+        "day": "Day 8",
+        "title": "Drive back to Pokhara",
+        "description": "Return to Pokhara with scenic stops and photos. Check into a hotel and enjoy a relaxing evening."
+      }
+    ]
+  },
+ {
+    "title": "Kori Trek",
+    "slug": "kori-trek",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+    "description": "The Kori Trek explores the remote Kori Valley, a hidden gem in the Annapurna region. With its untouched trails, traditional mountain villages, and spectacular mountain vistas, this trek provides a unique and off-the-beaten-path experience for adventurous travelers.",
+    "images": [
+        "kori.jpg",
+        "kori.jpg"
+    ],
+    "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Drive from Pokhara to Tatopani (5-6 hrs drive) and trek to Narchyang Village",
+        "description": "Scenic drive to Tatopani followed by a trek to Narchyang Village through terraced fields and traditional settlements."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Narchyang village to Chhotepa (2370m) (7-8 Hrs walk)",
+        "description": "Trek through rhododendron forests with views of Annapurna and Dhaulagiri, reaching Chhotepa for overnight stay."
+      },
+      {
+        "day": "Day 3",
+        "title": "Trek from Chhotepa to Bhusket mela (3546m) (6-7Hrs walk)",
+        "description": "Ascend into alpine terrain with panoramic views. Overnight in Bhusket Mela while acclimatizing."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Bhusket mela to Kori Valley (approx. 3800m)",
+        "description": "Enter the untouched Kori Valley, known for its serene beauty and remote charm. Explore the valley and its surroundings."
+      },
+      {
+        "day": "Day 5",
+        "title": "Explore Kori Valley",
+        "description": "Rest and explore the hidden trails and local culture of Kori Valley. A peaceful and scenic experience."
+      },
+      {
+        "day": "Day 6",
+        "title": "Trek back to Hum Khola (2890m) from Kori Valley",
+        "description": "Descend through forests and rivers to Hum Khola. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 7",
+        "title": "Trek back to Lower Narchyang from Hum Khola",
+        "description": "Trek back through familiar trails and villages, enjoying the local culture and natural beauty."
+      },
+      {
+        "day": "Day 8",
+        "title": "Drive back to Pokhara",
+        "description": "Return to Pokhara with scenic stops and photos. End the trek with a relaxing evening in Pokhara."
+      }
+    ]
+  },
+ {
+    "title": "Ghorepani-Poonhills Trek",
+    "slug": "ghorepani-poonhills-trek",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+    "description": "The Ghorepani-Poonhills Trek is a classic route famous for its sunrise view over the Annapurna and Dhaulagiri ranges from the Poonhill viewpoint. Passing through rhododendron forests and charming villages, it offers a perfect blend of natural beauty and cultural experiences.",
+    "images": [
+        "poonhill.jpg",
+        "poonhill.jpg"
+    ],
+    "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Drive from Pokhara to Nayapul and trek to Tikhedhunga",
+        "description": "Begin with a drive to Nayapul and trek to Tikhedhunga through terraced fields and small villages."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Tikhedhunga to Ghorepani (2850m) (5-6 Hrs walk)",
+        "description": "Ascend steep stone steps through rhododendron forests to reach Ghorepani. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 3",
+        "title": "Early morning hike to Poonhill (3210m) and trek to Tadapani",
+        "description": "Watch the sunrise from Poonhill, then trek to Tadapani through beautiful trails and forests. Overnight stay."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Tadapani to Ghandruk (1940m)",
+        "description": "Descend through Gurung villages to Ghandruk, a culturally rich village with stunning mountain views."
+      },
+      {
+        "day": "Day 5",
+        "title": "Trek from Ghandruk to Kimche and drive back to Pokhara",
+        "description": "Final trek to Kimche followed by a drive back to Pokhara. End the trek with a relaxed evening."
+      }
+    ]
+  },
+ {
+    "title": "Everest Base Camp",
+    "slug": "everest-base-camp",
+    "category": "trekking",
+    "sub_category": "Everest region",
+   
+    "description": "The Everest Base Camp Trek is the ultimate Himalayan adventure, leading to the base of the world’s highest peak, Mount Everest (8,848m). This iconic journey takes you through vibrant Sherpa villages, ancient monasteries, and high-altitude landscapes with breathtaking views of the Khumbu region.",
+    "images": [
+        "everest.jpg",
+        "everest.jpg"
+    ],
+    "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Sagarmatha National Park Permit",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Kathmandu",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Kathmandu",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
+    "itinerary": [
+      {
+        "day": "Day 1",
+        "title": "Fly from Kathmandu to Lukla and trek to Phakding",
+        "description": "Scenic flight to Lukla followed by a short trek to Phakding. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 2",
+        "title": "Trek from Phakding to Namche Bazaar (3440m)",
+        "description": "Cross suspension bridges and ascend to Namche Bazaar, the gateway to Everest. Overnight in Namche."
+      },
+      {
+        "day": "Day 3",
+        "title": "Acclimatization day in Namche Bazaar",
+        "description": "Rest and acclimatize with a short hike to Everest View Hotel or Syangboche. Explore the town."
+      },
+      {
+        "day": "Day 4",
+        "title": "Trek from Namche to Tengboche (3860m)",
+        "description": "Pass through pine forests to Tengboche, home to the famous Tengboche Monastery. Overnight stay."
+      },
+      {
+        "day": "Day 5",
+        "title": "Trek from Tengboche to Dingboche (4410m)",
+        "description": "Ascend through alpine terrain to Dingboche. Acclimatize and enjoy views of Lhotse and Amadablam."
+      },
+      {
+        "day": "Day 6",
+        "title": "Trek from Dingboche to Lobuche (4910m)",
+        "description": "Cross the Khumbu Glacier to reach Lobuche. Rest and prepare for higher altitudes."
+      },
+      {
+        "day": "Day 7",
+        "title": "Trek from Lobuche to Everest Base Camp (5364m)",
+        "description": "Reach the iconic Everest Base Camp with views of the Khumbu Icefall. Overnight in a teahouse."
+      },
+      {
+        "day": "Day 8",
+        "title": "Trek back to Gorak Shep and fly back to Lukla",
+        "description": "Return to Gorak Shep and fly back to Lukla. Overnight in Lukla."
+      },
+      {
+        "day": "Day 9",
+        "title": "Fly from Lukla to Kathmandu",
+        "description": "Return to Kathmandu by flight. Celebrate the completion of your Everest adventure."
+      }
+    ]
+  },
+
+
+
+
+
+
+
+{
+    "title": "Cycling",
+    "slug": "cycling",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Experience the thrill of mountain biking through scenic trails around Pokhara. From smooth dirt paths to challenging downhill routes, this adventure offers a perfect blend of nature, culture, and adrenaline.",
+    "images": [
+        "cycling.jpg",
+        "cycling.jpg"
+    ],
+    "includes": [
+        "Bicycle rental",
+        "Helmet and safety gear",
+        "Licensed cycling guide",
+        "Transportation to trailhead",
+        "Lunch during the ride",
+        "Basic mechanical support",
+        "First aid kit"
+    ],
+    "excludes": [
+        "Personal insurance",
+        "Hotel accommodation",
+        "Personal expenses (snacks, beverages)",
+        "Tips for guide and support staff",
+        "Emergency evacuation costs"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival in Pokhara & Bike Setup",
+            "description": "Arrive in Pokhara and meet your guide. Get fitted with your bike and gear. Briefing on safety and route details. Overnight in Pokhara."
+        },
+        {
+            "day": "Day 2",
+            "title": "Begin Cycling Adventure – Pokhara to Kande",
+            "description": "Start from Pokhara and ride through terraced fields and local villages to Kande. Enjoy views of Machhapuchhre and Annapurna. Overnight in lodge."
+        },
+        {
+            "day": "Day 3",
+            "title": "Downhill Ride to Nayapul",
+            "description": "Thrilling downhill section through forests and rural settlements. Stop at viewpoints and cultural spots. End at Nayapul and transfer back to Pokhara."
+        },
+        {
+            "day": "Day 4",
+            "title": "Optional Free Day or Skill Session",
+            "description": "Choose between a relaxing day in Pokhara or an optional skill-building session with your guide. Celebration dinner in the evening."
+        }
+    ]
+},
+{
+    "title": "UltraLight Flight",
+    "slug": "ultraLight-fLight",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Soar above the majestic Himalayas in a two-seater ultralight aircraft. Glide over lakes, ridges, and snow-capped peaks with breathtaking panoramic views — a unique way to experience Nepal’s natural beauty.",
+    "images": [
+        "ultralight.webp",
+        "ultralight.webp"
+    ],
+    "includes": [
+        "Ultralight flight (15–20 minutes)",
+        "Pilot and fuel charges",
+        "Safety briefing",
+        "Helmet and harness",
+        "Photos and video recording (on request)",
+        "Ground transportation from hotel"
+    ],
+    "excludes": [
+        "Travel insurance",
+        "Hotel accommodation",
+        "Meals",
+        "Tips for pilot and crew",
+        "Additional flights or extended time"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Flight Preparation & Safety Briefing",
+            "description": "Arrive at the airfield early morning. Attend a short safety briefing and get equipped with gear. Weather check and final preparations."
+        },
+        {
+            "day": "Day 2",
+            "title": "Ultralight Flight Experience",
+            "description": "Take off and enjoy a serene flight over Phewa Lake and the Annapurna range. Capture stunning photos and unforgettable memories. Return to base after landing."
+        }
+    ]
+},
+{
+    "title": "Paragliding",
+    "slug": "paragliding",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Soar like a bird with tandem paragliding in Pokhara — one of the best paragliding destinations in the world. Take off from Sarangkot and glide over lush valleys and shimmering lakes with spectacular Himalayan views.",
+    "images": [
+        "paraglading.jpg",
+        "paraglading.jpg"
+    ],
+    "includes": [
+        "Tandem paragliding flight (20–30 mins)",
+        "Professional instructor",
+        "Harness and helmet",
+        "Safety briefing",
+        "Pickup/drop-off from Pokhara hotels",
+        "Photo/video package (optional)"
+    ],
+    "excludes": [
+        "Travel insurance",
+        "Accommodation",
+        "Personal expenses",
+        "Tips for pilot and team",
+        "Extra flights or upgrades"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Early Morning Flight Preparation",
+            "description": "Wake up early and head to Sarangkot. Briefing about takeoff, landing, and safety procedures. Final weather check before flight."
+        },
+        {
+            "day": "Day 2",
+            "title": "Tandem Paragliding Adventure",
+            "description": "Enjoy a thrilling flight from Sarangkot to Lakeside Pokhara. Land smoothly by Phewa Lake and celebrate the experience with a certificate."
+        }
+    ]
+},
+{
+    "title": "Kayaking",
+    "slug": "kayaking",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Explore the calm waters of Phewa Lake with a guided kayaking tour. Paddle past small islands, temples, and enjoy peaceful views of the Annapurna range reflected on the lake surface.",
+    "images": [
+        "kayaking.jpg",
+        "kayaking.jpg"
+    ],
+    "includes": [
+        "Kayak and paddle rental",
+        "Life jacket",
+        "Professional guide",
+        "Safety briefing",
+        "Drinking water",
+        "Hotel transfers"
+    ],
+    "excludes": [
+        "Insurance",
+        "Personal gear",
+        "Food beyond provided snacks",
+        "Tips for guide",
+        "Photography services"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Morning Kayaking on Phewa Lake",
+            "description": "Start early at the lake. Learn paddling basics and safety rules. Explore the lake, visit Tal Barahi Temple, and enjoy scenic views."
+        },
+        {
+            "day": "Day 2",
+            "title": "Free Time & Optional Sunset Cruise",
+            "description": "Relax in Pokhara or opt for a sunset boat cruise. Share stories and photos from your kayaking adventure."
+        }
+    ]
+},
+{
+    "title": "Rafting",
+    "slug": "rafting",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Challenge the rapids of the Seti River with an exciting white-water rafting adventure. Navigate through thrilling Class III–IV rapids surrounded by dramatic gorges and lush scenery.",
+    "images": [
+        "rafting.png",
+        "rafting.png"
+    ],
+    "includes": [
+        "Raft and paddles",
+        "Life jacket and helmet",
+        "Professional river guides",
+        "Safety equipment",
+        "Lunch and refreshments",
+        "Hotel transfers"
+    ],
+    "excludes": [
+        "Personal insurance",
+        "Accommodation",
+        "Personal expenses",
+        "Tips for rafting crew",
+        "Dry bag or camera protection"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Departure to River Start Point",
+            "description": "Early pickup from Pokhara. Drive to the river start point. Gear up and receive safety instructions before launching."
+        },
+        {
+            "day": "Day 2",
+            "title": "White Water Rafting – Full Day",
+            "description": "Navigate rapids like 'Witch’s Kitchen' and 'Pinball'. Enjoy calm stretches, cliff jumps, and lunch by the river. Finish at the end point and return to Pokhara."
+        }
+    ]
+},
+{
+    "title": "Hot Air Balloon",
+    "slug": "hot-air-balloon",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Float above the Himalayas in a hot air balloon and witness a magical sunrise over Annapurna and Machhapuchhre. A peaceful and unforgettable aerial journey over Pokhara Valley.",
+    "images": [
+        "balloon.webp",
+        "balloon.webp"
+    ],
+    "includes": [
+        "Hot air balloon ride (approx. 1 hour)",
+        "Champagne welcome drink",
+        "Certificate of flight",
+        "Ground crew support",
+        "Hotel pickup/drop-off"
+    ],
+    "excludes": [
+        "Travel insurance",
+        "Accommodation",
+        "Meals beyond included refreshments",
+        "Photography services",
+        "Gratuities"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Early Morning Balloon Flight",
+            "description": "Wake up before dawn and travel to the launch site. Watch the balloon inflate and ascend into the sky. Soar peacefully over mountains and valleys."
+        },
+        {
+            "day": "Day 2",
+            "title": "Celebration Breakfast",
+            "description": "After landing, enjoy a celebratory breakfast with champagne. Receive a flight certificate and transfer back to Pokhara."
+        }
+    ]
+},
+{
+    "title": "Zipline",
+    "slug": "zipline",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Experience high-speed ziplining across deep gorges and lush forests near Pokhara. One of the longest and fastest ziplines in Asia, offering breathtaking views and heart-pounding thrills.",
+    "images": [
+        "zipline.jpg",
+        "zipline.jpg"
+    ],
+    "includes": [
+        "Zipline equipment and safety gear",
+        "Professional instructors",
+        "Safety briefing",
+        "Helmet and harness",
+        "Hotel transfers",
+        "Drinks and light snacks"
+    ],
+    "excludes": [
+        "Personal insurance",
+        "Accommodation",
+        "Camera gear or photo packages",
+        "Tips for staff",
+        "Extra rides"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Zipline Orientation & Gear Up",
+            "description": "Arrive at the zipline station. Get geared up and attend a safety briefing. Walk to the first platform while enjoying scenic views."
+        },
+        {
+            "day": "Day 2",
+            "title": "Full Zipline Adventure",
+            "description": "Fly across multiple lines, including the longest stretch over a deep gorge. Celebrate with refreshments after completing the course."
+        }
+    ]
+},
+{
+    "title": "Bungee Jump",
+    "slug": "bungee-jump",
+    "category": "activity",
+    "sub_category": "Adventure Activities",
+    "description": "Leap from one of the highest bungee jumping sites in the world overlooking the Kali Gandaki Gorge. Feel the rush of freefall and enjoy unmatched Himalayan views.",
+    "images": [
+        "jump.jpg",
+        "jump.jpg"
+    ],
+    "includes": [
+        "Bungee jump experience",
+        "Safety equipment",
+        "Professional jump masters",
+        "Safety briefing",
+        "Hotel transfers",
+        "Snacks and drinks"
+    ],
+    "excludes": [
+        "Travel insurance",
+        "Accommodation",
+        "Camera or video coverage",
+        "Tips for staff",
+        "Extra jumps"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Journey to Jump Site & Briefing",
+            "description": "Travel to the bungee jump location. Receive a detailed safety briefing and prepare for the jump."
+        },
+        {
+            "day": "Day 2",
+            "title": "Bungee Jump Experience",
+            "description": "Stand on the edge, take the plunge, and feel the ultimate adrenaline rush. Celebrate with a certificate and return to Pokhara."
+        }
+    ]
+},
+
+
+
+
+
+
+ {
+    "title": "Bardia National Park (3N 4D)",
+    "slug": "bardia-national-park",
+    "category": "tour",
+    "description": "Explore the untouched wilderness of Bardia National Park on a 3-night, 4-day adventure. Spot rare wildlife like tigers, rhinos, and Gangetic dolphins in one of Nepal’s most remote and pristine national parks. Includes jungle safaris, bird watching, and cultural village visits.",
+    "images": [
+        "bardia1.jpg",
+        "bardia1.jpg"
+    ],
+    "includes": [
+        "Accommodation in jungle lodge",
+        "All meals during the tour",
+        "Licensed naturalist guide",
+        "Jeep safari and boat ride",
+        "Cultural village visit",
+        "National park entry fees",
+        "Basic first aid kit"
+    ],
+    "excludes": [
+        "Nepal visa fees",
+        "Travel insurance",
+        "Personal expenses (snacks, beverages)",
+        "Tips for guide and staff",
+        "Emergency evacuation costs",
+        "Hotel accommodation in Kathmandu or Pokhara"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival & Jungle Safari",
+            "description": "Fly to Nepalgunj and drive to Bardia National Park. Check into lodge, then go on an afternoon jungle safari. Overnight in the park."
+        },
+        {
+            "day": "Day 2",
+            "title": "Boat Ride & Bird Watching",
+            "description": "Morning boat ride on the Karnali River to spot dolphins and birds. Afternoon elephant safari into the jungle. Overnight in lodge."
+        },
+        {
+            "day": "Day 3",
+            "title": "Village Visit & Sunset Cruise",
+            "description": "Visit a Tharu village to learn about local culture and enjoy a sunset cruise on the river. Overnight in lodge."
+        },
+        {
+            "day": "Day 4",
+            "title": "Final Morning Safari & Departure",
+            "description": "Early morning wildlife drive, then return to Nepalgunj for flight back to Kathmandu or Pokhara."
+        }
+    ]
+},
+ {
+    "title": "Chitwan National Park (3N 4D)",
+    "slug": "chitwan-national-park",
+    "category": "tour",
+    "description": "Experience the rich biodiversity of Chitwan National Park, a UNESCO World Heritage Site. This 3-night tour includes elephant safaris, canoe rides, bird watching, and immersive Tharu cultural experiences.",
+    "images": [
+        "chitwan.jpg",
+        "chitwan.jpg"
+    ],
+    "includes": [
+        "Accommodation in resort/lodge",
+        "All meals during the tour",
+        "Licensed naturalist guide",
+        "Elephant safari and canoe ride",
+        "Cultural dance performance",
+        "National park entry fees",
+        "Wildlife conservation fee"
+    ],
+    "excludes": [
+        "Nepal visa fees",
+        "Travel insurance",
+        "Personal expenses (snacks, beverages)",
+        "Tips for guide and staff",
+        "Hotel accommodation in Kathmandu before tour",
+        "Emergency evacuation costs"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival & Orientation",
+            "description": "Arrive in Sauraha, check into lodge, and attend an orientation session. Evening cultural program. Overnight in lodge."
+        },
+        {
+            "day": "Day 2",
+            "title": "Elephant Safari & Bird Watching",
+            "description": "Morning elephant safari into the jungle. Afternoon bird watching and visit to a crocodile breeding center. Overnight in lodge."
+        },
+        {
+            "day": "Day 3",
+            "title": "Canoe Ride & Village Tour",
+            "description": "Morning canoe ride on Rapti River, followed by a visit to a local Tharu village. Evening free for relaxation. Overnight in lodge."
+        },
+        {
+            "day": "Day 4",
+            "title": "Final Morning Activity & Departure",
+            "description": "Optional early bird walk or jungle hike. Depart to Kathmandu or Pokhara by bus or flight."
+        }
+    ]
+},
+ {
+    "title": "Bardia National Park (2N 3D)",
+    "slug": "bardia-national-park",
+    "category": "tour",
+    "description": "Enjoy a short but immersive jungle adventure in Bardia National Park. Ideal for travelers with limited time, this 2-night trip includes wildlife safaris, river boating, and a glimpse into Tharu culture.",
+    "images": [
+        "bardia2.png",
+        "bardia2.png"
+    ],
+    "includes": [
+        "Accommodation in jungle lodge",
+        "All meals during the tour",
+        "Licensed naturalist guide",
+        "Jeep safari and boat ride",
+        "Cultural village visit",
+        "National park entry fees",
+        "Basic first aid kit"
+    ],
+    "excludes": [
+        "Nepal visa fees",
+        "Travel insurance",
+        "Personal expenses (snacks, beverages)",
+        "Tips for guide and staff",
+        "Hotel accommodation in Kathmandu or Pokhara",
+        "Emergency evacuation costs"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival & Afternoon Safari",
+            "description": "Fly to Nepalgunj and drive to Bardia. Check in and go on an afternoon jeep safari. Overnight in lodge."
+        },
+        {
+            "day": "Day 2",
+            "title": "River Cruise & Village Tour",
+            "description": "Morning boat ride on the Karnali River, followed by a visit to a Tharu village. Evening campfire. Overnight in lodge."
+        },
+        {
+            "day": "Day 3",
+            "title": "Final Morning Safari & Departure",
+            "description": "Early morning wildlife drive, then return to Nepalgunj for flight back to Kathmandu or Pokhara."
+        }
+    ]
+},
+ {
+    "title": "Chitwan National Park (2N 3D)",
+    "slug": "chitwan-national-park",
+    "category": "tour",
+    "description": "Experience the magic of Chitwan in just 2 nights. Ideal for a quick jungle escape, this trip includes elephant safaris, canoe rides, and cultural immersion with the Tharu people.",
+    "images": [
+        "chitwan.jpeg",
+        "chitwan.jpeg"
+    ],
+    "includes": [
+        "Accommodation in resort/lodge",
+        "All meals during the tour",
+        "Licensed naturalist guide",
+        "Elephant safari and canoe ride",
+        "Cultural dance performance",
+        "National park entry fees"
+    ],
+    "excludes": [
+        "Nepal visa fees",
+        "Travel insurance",
+        "Personal expenses (snacks, beverages)",
+        "Tips for guide and staff",
+        "Hotel accommodation in Kathmandu before tour",
+        "Emergency evacuation costs"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival & Cultural Evening",
+            "description": "Arrive in Sauraha, check into lodge, and enjoy a cultural dance performance in the evening. Overnight in lodge."
+        },
+        {
+            "day": "Day 2",
+            "title": "Elephant Safari & Canoe Ride",
+            "description": "Morning elephant safari followed by a canoe ride on the Rapti River. Overnight in lodge."
+        },
+        {
+            "day": "Day 3",
+            "title": "Morning Jungle Walk & Departure",
+            "description": "Optional early jungle walk, then depart to Kathmandu or Pokhara by bus or flight."
+        }
+    ]
+},
+ {
+    "title": "Pokhara Tour Package",
+    "slug": "pokhara-tour-package",
+    "category": "tour",
+    "description": "Discover the beauty of Pokhara, the gateway to the Himalayas. This 3-day tour includes visits to lakes, temples, viewpoints, and nearby adventure activities, all wrapped in a scenic and cultural experience.",
+    "images": [
+        "pokhara.jpg",
+        "pokhara.jpg"
+    ],
+    "includes": [
+        "Accommodation in Pokhara hotel",
+        "All breakfasts and 2 dinners",
+        "Sightseeing with private vehicle",
+        "Boat ride on Fewa Lake",
+        "Visit to Sarangkot viewpoint",
+        "Entry fees to attractions",
+        "English-speaking guide"
+    ],
+    "excludes": [
+        "Nepal visa fees",
+        "Travel insurance",
+        "Adventure activity costs (paragliding, rafting, etc.)",
+        "Lunches and personal expenses",
+        "Tips for guide and driver",
+        "Hotel accommodation outside Pokhara"
+    ],
+    "itinerary": [
+        {
+            "day": "Day 1",
+            "title": "Arrival & Lake Tour",
+            "description": "Arrive in Pokhara, check into hotel. Afternoon boat ride on Fewa Lake and visit to Tal Barahi Temple. Overnight in Pokhara."
+        },
+        {
+            "day": "Day 2",
+            "title": "Sarangkot Sunrise & City Tour",
+            "description": "Early morning drive to Sarangkot for sunrise view. Return for breakfast, then city tour including Devi’s Fall and Gupteshwor Cave. Overnight in Pokhara."
+        },
+        {
+            "day": "Day 3",
+            "title": "Free Morning & Departure",
+            "description": "Relax or explore the lakeside. Transfer to airport or bus station for departure."
+        }
+    ]
+}
+
+
+    ]
+
+    

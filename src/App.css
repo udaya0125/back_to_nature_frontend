@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+h2, p, a {
+    font-family: "lora", sans-serif;
+
+}
+h1{
+    font-family: "cormorant garamond", sans-serif;
+
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:white ;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #01304a;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #033854;
+  }
+
+  
+  html {
+    scroll-behavior: smooth;
+}

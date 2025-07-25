@@ -1,0 +1,4 @@
+.text-stroke {
+    -webkit-text-stroke: 1px black; /* Adjust stroke width and color */
+    color: transparent; /* Make fill transparent to only show stroke */
+}
