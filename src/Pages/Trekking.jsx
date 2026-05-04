@@ -1,3 +1,4 @@
+import BookNowPopup from '../Components/BookNowPopup';
 import bg5 from '../Images/bg1.jpg';
 import zone from '../Images/zone.png';
 import hourglass from '../Images/hourglass.png';
@@ -8,23 +9,39 @@ import trekData from '../Data/Data.json';
 import hiddenlake from '../Images/hiddenlake.jpg';
 import khumai from '../Images/khumai.jpg';
 import kori from '../Images/kori.jpg';
+import mardi from '../Images/mardihimal.jpg';
+import mardi1 from '../Images/mardihimal1.jpg';
 import poonhill from '../Images/poonhill.jpg';
 import everest from '../Images/everest.jpg';
+import abc1 from '../Images/abc.jpg';
+import abc2 from '../Images/abc2.jpg';
+import abc3 from '../Images/abc3.jpg';
+import abc4 from '../Images/abc4.jpg';
+import abc5 from '../Images/abc5.jpg';
+import abc6 from '../Images/abc1.jpg';
 
 // Create an image mapping object for static imports
 const imageMap = {
   'north.jpg': north,
+  'abc.jpg': abc1,
+  'abc2.jpg': abc2,
+  'abc3.jpg': abc3,
+  'abc4.jpg': abc4,
+  'abc5.jpg': abc5, 
+  'abc1.jpg': abc6,
+  'mardihimal.jpg': mardi,
+  'mardihimal1.jpg': mardi1,
   'bg1.jpg': bg5,
   'hiddenlake.jpg': hiddenlake,
   'khumai.jpg': khumai,
   'kori.jpg': kori,
   'poonhill.jpg': poonhill,
   'everest.jpg': everest,
-  // Add other images as needed
 };
 
 const Trekking = () => {
   const [activeDay, setActiveDay] = useState(null);
+  const [isBookingPopupOpen, setIsBookingPopupOpen] = useState(false);
   const { slug } = useParams();
   
   const trek = trekData.find(item => item.slug === slug);
@@ -33,13 +50,23 @@ const Trekking = () => {
     return <div className="text-center py-20 text-xl">Trek not found</div>;
   }
 
-  // Function to get image by filename
-  const getImage = (filename) => {
+  // Function to get image by filename - extract just the filename from path
+  const getImage = (imagePath) => {
+    // Extract filename from path (e.g., "../Images/abc.jpg" -> "abc.jpg")
+    const filename = imagePath.split('/').pop();
     return imageMap[filename] || north; // fallback to north.jpg if not found
   };
 
   const toggleDay = (day) => {
     setActiveDay(activeDay === day ? null : day);
+  };
+
+  const openBookingPopup = () => {
+    setIsBookingPopupOpen(true);
+  };
+
+  const closeBookingPopup = () => {
+    setIsBookingPopupOpen(false);
   };
 
   return (
@@ -50,7 +77,7 @@ const Trekking = () => {
           alt={trek.title}
           className="w-full h-[50vh] md:h-[80vh] object-cover"
         />
-      
+        <div className="absolute inset-0 bg-gray-900/60 h-[50vh] md:h-[80vh] "></div>
 
         <div className="max-w-7xl mx-auto py-8 md:py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-6">
@@ -173,7 +200,10 @@ const Trekking = () => {
                     </ul>
                   </div>
 
-                  <button className="w-full border border-gray-700 py-2 px-4 bg-[#00304a] text-white font-medium rounded cursor-pointer hover:bg-[#004060] transition text-sm md:text-base">
+                  <button 
+                    onClick={openBookingPopup}
+                    className="w-full border border-gray-700 py-2 px-4 bg-[#00304a] text-white font-medium rounded cursor-pointer hover:bg-[#004060] transition text-sm md:text-base"
+                  >
                     Book Now
                   </button>
                 </div>
@@ -182,8 +212,90 @@ const Trekking = () => {
           </div>
         </div>
       </div>
+
+      {/* Booking Popup */}
+      <BookNowPopup
+        packageName={trek.title}
+        isOpen={isBookingPopupOpen}
+        onClose={closeBookingPopup}
+      />
     </>
   );
 };
 
 export default Trekking;
+
+
+// hiddenlake
+//    {
+//     "title": "Hidden Lake",
+//     "slug": "hidden-lake",
+//     "category": "trekking",
+//     "sub_category": "Annapurna Region",
+//     "description": "The Hidden Lake Trek takes you to a secluded alpine lake nestled in the Annapurna region. This serene and lesser-known destination is surrounded by towering peaks and pristine wilderness, offering trekkers a tranquil escape into nature's untouched beauty.",
+//    "images": [
+
+//     "hiddenlake.jpg"
+// ],
+//    "includes": [
+//       "Accommodation during trek",
+//       "All meals during trek",
+//       "Licensed trekking guide",
+//       "Porter service (1 porter per 2 trekkers)",
+//       "Annapurna Conservation Area Permit (ACAP)",
+//       "Trekker's Information Management System (TIMS) card",
+//       "Transportation to/from Pokhara",
+//       "Basic first aid kit"
+//     ],
+//     "excludes": [
+//       "Nepal visa fees",
+//       "Travel insurance",
+//       "Personal expenses (snacks, beverages, wifi, etc.)",
+//       "Hotel accommodation in Pokhara",
+//       "Tips for guide and porters",
+//       "Equipment rental",
+//       "Emergency evacuation costs"
+//     ],
+//     "itinerary": [
+//       {
+//         "day": "Day 1",
+//         "title": "Drive from Pokhara to Tatopani (5-6 hrs drive) and trek to Narchyang Village",
+//         "description": "Start the journey with a scenic drive to Tatopani, followed by a trek to Narchyang Village, passing through terraced fields and traditional settlements."
+//       },
+//       {
+//         "day": "Day 2",
+//         "title": "Trek from Narchyang village to Chhotepa (2370m) (7-8 Hrs walk)",
+//         "description": "Trek through rhododendron forests with views of the Annapurna and Dhaulagiri ranges, reaching Chhotepa for an overnight stay."
+//       },
+//       {
+//         "day": "Day 3",
+//         "title": "Trek from Chhotepa to Bhusket mela (3546m) (6-7Hrs walk)",
+//         "description": "Ascend into alpine terrain with panoramic views. Spend the night in Bhusket Mela while acclimatizing to the altitude."
+//       },
+//       {
+//         "day": "Day 4",
+//         "title": "Trek from Bhusket mela to Hidden Lake (approx. 4100m)",
+//         "description": "Continue the trek to the secluded Hidden Lake, surrounded by snow-capped peaks and untouched wilderness. A perfect spot for reflection and photography."
+//       },
+//       {
+//         "day": "Day 5",
+//         "title": "Explore Hidden Lake and surrounding area",
+//         "description": "Rest day with optional hikes to nearby viewpoints. Enjoy the serenity of the lake and the majestic mountain backdrop."
+//       },
+//       {
+//         "day": "Day 6",
+//         "title": "Trek back to Hum Khola (2890m) from Hidden Lake",
+//         "description": "Descend through scenic trails to Hum Khola, passing through forests and streams. Overnight in a teahouse."
+//       },
+//       {
+//         "day": "Day 7",
+//         "title": "Trek back to Lower Narchyang from Hum Khola",
+//         "description": "Trek back through familiar paths to Lower Narchyang, engaging with local communities and celebrating the journey."
+//       },
+//       {
+//         "day": "Day 8",
+//         "title": "Drive back to Pokhara",
+//         "description": "Return to Pokhara with photo stops and lunch en route. End the trek with a relaxing evening in Pokhara."
+//       }
+//     ]
+//   },

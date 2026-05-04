@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'; // Import Helmet
-import everest from '../Images/everest.jpg';
+import everest from '../Images/everest2.jpg';
 import { Link } from 'react-router-dom';
 import slider2 from '../Images/slider2.png';
 
@@ -67,19 +67,19 @@ const Contact = () => {
             <div className="flex justify-center items-center gap-8 mt-12 flex-wrap">
               <div className="mt-4 flex flex-col items-center">
                 <h2 className='text-2xl font-bold'>Location</h2>
-                <p className='mt-2'>Lakeside, Pokhara, Nepal</p>
+                <p className='mt-2'>Between 18th 19th street number lakeside 06</p>
               </div>
               <div className="border-r-2 border-gray-400 h-12 hidden md:block"></div>
               
               <div className="mt-4 flex flex-col items-center">
                 <h2 className='text-2xl font-bold'>Email address</h2>
-                <p className='mt-2'>info@backtoadventure.com</p>
+                <p className='mt-2'>backtonatureadventure@gmail.com</p>
               </div>
               <div className="border-r-2 border-gray-400 h-12 hidden md:block"></div>
               
               <div className="mt-4 flex flex-col items-center">
                 <h2 className='text-2xl font-bold'>Phone number</h2>
-                <p className='mt-2'>+977 061 453931</p>
+                <p className='mt-2'>+977  9840097901</p>
               </div>
             </div>
 

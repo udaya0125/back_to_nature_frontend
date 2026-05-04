@@ -1,5 +1,5 @@
 import React from 'react';
-import bg2 from '../Images/bg2.png';
+import bg2 from '../Images/mountainbg.png';
 import north from '../Images/north.jpg';
 import { Link } from 'react-router-dom';
 import everest from '../Images/everest.jpg';

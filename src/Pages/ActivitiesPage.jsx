@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'; // Add this import
-import everest from '../Images/everest.jpg';
+import everest from '../Images/everest2.jpg';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import data from '../Data/Data.json';
@@ -8,11 +8,17 @@ import data from '../Data/Data.json';
 import cyclingImg from '../Images/cycling.jpg';
 import ultralightImg from '../Images/ultralight.webp';
 import paraglidingImg from '../Images/paraglading.jpg';
+import paraglidingImg2 from '../Images/paraglading2.jpg';
 import kayakingImg from '../Images/kayaking.jpg';
+import kayaking1 from '../Images/kayaking1.jpg';
+import kayaking2 from '../Images/kayaking2.jpg';
+import kayaking3 from '../Images/kayaking3.jpg';
+import kayaking4 from '../Images/kayaking4.jpg';
 import raftingImg from '../Images/rafting.png';
-import balloonImg from '../Images/balloon.webp';
+import balloonImg from '../Images/ballon.webp';
 import ziplineImg from '../Images/zipline.jpg';
 import bungeeImg from '../Images/jump.jpg';
+import bird from '../Images/bird.jpeg';
 
 const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
@@ -24,11 +30,17 @@ const ActivitiesPage = () => {
     'cycling.jpg': cyclingImg,
     'ultralight.webp': ultralightImg,
     'paraglading.jpg': paraglidingImg,
+    'paraglading2.jpg': paraglidingImg2,
+    'kayaking1.jpg': kayaking1,
+    'kayaking2.jpg': kayaking2,
+    'kayaking3.jpg': kayaking3,
+    'kayaking4.jpg': kayaking4,
     'kayaking.jpg': kayakingImg,
     'rafting.png': raftingImg,
-    'balloon.webp': balloonImg,
+    'ballon.webp': balloonImg,
     'zipline.jpg': ziplineImg,
-    'jump.jpg': bungeeImg
+    'jump.jpg': bungeeImg,
+    'bird.jpeg': bird
   };
 
   useEffect(() => {

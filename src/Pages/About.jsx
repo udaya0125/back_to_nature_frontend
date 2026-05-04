@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'; // Import react-helmet
-import everest from '../Images/everest.jpg';
+import everest from '../Images/everest2.jpg';
 import { Link } from 'react-router-dom';
 import slider2 from '../Images/slider2.png';
 import about from '../Images/about.jpg';

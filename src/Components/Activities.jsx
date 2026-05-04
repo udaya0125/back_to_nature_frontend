@@ -7,6 +7,7 @@ import paraglading from '../Images/paraglading.jpg'
 import rafting from '../Images/rafting.png'
 import ultralight from '../Images/ultralight.webp'
 import zipline from '../Images/zipline.jpg'
+import brid from '../Images/bird.jpeg'
 import { Link } from 'react-router-dom'
 
 const Activities = () => {
@@ -49,6 +50,12 @@ const Activities = () => {
       name: "Zip Line Adventure",
       image: zipline,
       description: "Zip through the treetops and enjoy an exhilarating high-speed adventure."
+    },
+     {
+      id: 7,
+      name: "Bird Watching",
+      image: brid,
+      description: "Immerse yourself in nature with a peaceful bird watching experience. Explore forests, wetlands, and reserves to spot colorful and rare bird species in their natural habitat."
     }
   ]
 
@@ -75,7 +82,7 @@ const Activities = () => {
   }
 
   return (
-    <div className="bg-center bg-cover min-h-screen" style={{backgroundImage: `url(${bg})`}}>
+    <div className="bg-center bg-cover " style={{backgroundImage: `url(${bg})`}}>
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 sm:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           
@@ -83,7 +90,7 @@ const Activities = () => {
           <div className="col-span-1 lg:col-span-1">
             <div className="flex justify-start items-center gap-4 mb-12 lg:mb-24 text-black">
               <MapPin size={20}/>
-              <h1 className='uppercase text-sm sm:text-base'>Activity Location</h1>
+              <h2 className='uppercase text-sm sm:text-base' style={{fontFamily:"'Cormorant Garamond', serif"}}>Activity Location</h2>
             </div>
             
             <h2 className='text-3xl sm:text-4xl lg:text-6xl font-semibold mb-6 lg:mb-12 max-w-xl text-black'>
@@ -134,7 +141,7 @@ const Activities = () => {
                       </p>
                       
                       <Link to="/activity"
-                      onClick={() => window.scrollTo(0, 0)} className="bg-white cursor-pointer text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium hover:bg-gray-100 transition-colors duration-300 text-sm sm:text-base mb-4">
+                      onClick={() => window.scrollTo(0, 0)} className="bg-white cursor-pointer text-black px-4 sm:px-4 py-2 rounded-full text-sm hover:bg-gray-100 transition-colors duration-300  sm:text-xs mb-4">
                         View Details
                       </Link>
                     </div>

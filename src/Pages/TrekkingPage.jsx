@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet'; // Import Helmet
-import everest from '../Images/everest.jpg';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+// Import all images
+import everest from '../Images/everest2.jpg';
 import hiddenlake from '../Images/hiddenlake.jpg';
 import khumai from '../Images/khumai.jpg';
 import kori from '../Images/kori.jpg';
 import poonhill from '../Images/poonhill.jpg';
 import bg5 from '../Images/bg1.jpg';
 import north from '../Images/north.jpg';
+import mardi1 from '../Images/mardihimal1.jpg';
+import mardi from '../Images/mardihimal.jpg';
+import abc1 from '../Images/abc.jpg';
+import abc2 from '../Images/abc2.jpg';
+import abc3 from '../Images/abc3.jpg';
+import abc4 from '../Images/abc4.jpg';
+import abc5 from '../Images/abc5.jpg';
+import abc6 from '../Images/abc1.jpg';
+
 import data from '../Data/Data.json';
 
 const TrekkingPage = () => {
@@ -15,33 +26,81 @@ const TrekkingPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Corrected image mapping with unique assignments
   const imageMap = {
+    // Everest
+    'everest2.jpg': everest,
+    'everest.jpg': everest,
+    
+    // North
     'north.jpg': north,
+    
+    // ABC Trek - each gets unique image
+    'abc.jpg': abc1,
+    'abc1.jpg': abc6,  // Using abc6 for abc1.jpg filename
+    'abc2.jpg': abc2,
+    'abc3.jpg': abc3,
+    'abc4.jpg': abc4,
+    'abc5.jpg': abc5,
+    
+    // Mardi Himal
+    'mardihimal.jpg': mardi,
+    'mardihimal1.jpg': mardi1,
+    
+    // Other treks
     'bg1.jpg': bg5,
     'hiddenlake.jpg': hiddenlake,
     'khumai.jpg': khumai,
     'kori.jpg': kori,
     'poonhill.jpg': poonhill,
-    'everest.jpg': everest,
   };
 
   const getImage = (filename) => {
-    return imageMap[filename] || north; // fallback
+    // Clean the filename in case there are path components
+    const cleanFilename = filename.split('/').pop();
+    
+    if (imageMap[cleanFilename]) {
+      return imageMap[cleanFilename];
+    }
+    
+    // Fallback images based on trek type
+    if (cleanFilename.includes('everest')) return everest;
+    if (cleanFilename.includes('abc')) return abc1;
+    if (cleanFilename.includes('mardi')) return mardi;
+    if (cleanFilename.includes('poonhill')) return poonhill;
+    
+    console.warn(`Image not found for: ${cleanFilename}, using default`);
+    return north; // default fallback
+  };
+
+  // Debug function to check what's happening
+  const debugImageLoading = (trek) => {
+    console.log('Trek:', trek.title);
+    console.log('Image filenames:', trek.images);
+    trek.images.forEach((img, index) => {
+      const cleanImg = img.split('/').pop();
+      console.log(`Image ${index}: ${img} -> ${cleanImg} -> exists: ${!!imageMap[cleanImg]}`);
+    });
   };
 
   // Load trek data from local JSON
-useEffect(() => {
-  try {
-    // Assume 'data' is already available (e.g., imported or in scope)
-    const trekkingData = data.filter(item => item.category === "trekking");
-
-    setTreks(trekkingData);
-    setLoading(false);
-  } catch (err) {
-    console.error("Error loading trekking data:", err);
-    setLoading(false);
-  }
-}, []);
+  useEffect(() => {
+    try {
+      const trekkingData = data.filter(item => item.category === "trekking");
+      
+      // Debug: Check image mapping for each trek
+      trekkingData.forEach(trek => {
+        debugImageLoading(trek);
+      });
+      
+      setTreks(trekkingData);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error loading trekking data:", err);
+      setError(err.message);
+      setLoading(false);
+    }
+  }, []);
 
   if (loading) {
     return (
@@ -65,11 +124,11 @@ useEffect(() => {
 
   // SEO Meta Description
   const pageDescription = "Explore the best trekking destinations including Everest Base Camp, Annapurna, Hidden Lake, and more. Plan your Himalayan adventure now.";
-  const pageUrl = "https://backtonatureadventure.com/trekking ";
+  const pageUrl = "https://backtonatureadventure.com/trekking";
 
   // Structured Data (Schema.org for rich snippets)
   const schemaData = {
-    "@context": "https://schema.org ",
+    "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Trekking Adventures in Nepal",
     "description": pageDescription,
@@ -77,7 +136,7 @@ useEffect(() => {
     "itemListElement": treks.map((trek, index) => ({
       "@type": "ListItem",
       "position": index + 1,
-      "url": `https://backtonatureadventure.com/trekkings/ ${trek.slug}`,
+      "url": `https://backtonatureadventure.com/trekkings/${trek.slug}`,
       "name": trek.title,
       "description": trek.description
     }))
@@ -126,25 +185,51 @@ useEffect(() => {
       </div>
 
       {/* Trekking Grid Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24">
+      <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-20 py-12 sm:py-24">
         {treks.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
             {treks.map((trek, index) => (
               <Link 
                 to={`/trekkings/${trek.slug}`}
                 onClick={() => window.scrollTo(0, 0)}
-                key={index}
-                className="relative group overflow-hidden transition-shadow duration-300"
+                key={trek.id || index}
+                className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300"
               >
-                <img
-                  src={getImage(trek.images[0])}
-                  alt={trek.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={getImage(trek.images[0])}
+                    alt={trek.title}
+                    className="w-full h-[450px] sm:h-[500px] lg:h-[550px] xl:h-[600px] object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      console.error(`Failed to load image for ${trek.title}:`, trek.images[0]);
+                      e.target.src = north; // Fallback if image fails to load
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </div>
+                
+                <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
                   <div className="text-white">
-                    <h3 className="text-xl font-bold mb-1">{trek.title}</h3>
-                    <p className="text-sm line-clamp-2 mb-2">{trek.description}</p>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 transition-colors duration-300">
+                      {trek.title}
+                    </h3>
+                    <p className="text-base sm:text-lg text-white line-clamp-2 mb-6">
+                      {trek.description}
+                    </p>
+                    
+                    {/* Pricing Section */}
+                    <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/20">
+                      <div className="flex flex-col">
+                        <span className="text-sm text-white uppercase tracking-wide">Starting from</span>
+                        <span className="text-3xl sm:text-4xl font-bold mt-1">
+                          ${trek.price}
+                        </span>
+                        <span className="text-sm text-white mt-1">per person</span>
+                      </div>
+                      <div className="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold text-base transition-colors duration-300">
+                        View Details
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>

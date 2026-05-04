@@ -13,6 +13,8 @@ import Contact from './Pages/Contact'
 import TrekkingPage from './Pages/TrekkingPage'
 import ActivitiesPage from './Pages/ActivitiesPage'
 import TourPage from './Pages/TourPage'
+// import BookNow from './Components/BookNow'
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <Route path="/trekking" element={<TrekkingPage/>} />
         <Route path="/activity" element={<ActivitiesPage/>} />
         <Route path="/tours" element={<TourPage/>} />
+        {/* <Route path="/booknow" element={<BookNow />} /> */}
      
         
       </Routes>

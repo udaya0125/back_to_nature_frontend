@@ -1,6 +1,6 @@
 import React from 'react';
-import chitwan from '../Images/chitwan.jpg';
-import bardia1 from '../Images/bardia1.jpg';
+import chitwan2 from '../Images/chitwan2.png';
+
 import bardia2 from '../Images/bardia2.png';
 import pokhara from '../Images/pokhara.jpg';
 import { Link } from 'react-router-dom';
@@ -9,30 +9,20 @@ const packages = [
   {
     name: 'Chitwan National Park',
     duration: '4 Days / 3 Nights',
-    image: chitwan,
+    image: chitwan2,
     link: '/tours/chitwan-national-park',
   },
-  {
-    name: 'Chitwan National Park',
-    duration: '3 Days / 2 Nights',
-    image: chitwan,
-    link: '/tours/chitwan-national-park',
-  },
+
   {
     name: 'Bardia National Park',
     duration: '3 Days / 2 Nights',
-    image: bardia1,
-    link: '/tours/bardia-national-park',
-  },
-  {
-    name: 'Bardia National Park',
-    duration: '4 Days / 3 Nights',
     image: bardia2,
     link: '/tours/bardia-national-park',
   },
+  
   {
     name: 'Pokhara Tour Packages',
-    duration: '6 Days / 5 Nights',
+    duration: '3 Days / 2 Nights',
     image: pokhara,
     link: '/tours/pokhara-tour-package',
   },
@@ -90,7 +80,7 @@ const Packages = () => {
                 alt={pkg.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute  inset-0 bg-gradient-to-t from-black/70 to-transparent p-3 border border-yellow-300 flex flex-col justify-end">
+              <div className="absolute  inset-0 bg-gradient-to-t from-black/70 to-transparent p-3  flex flex-col justify-end">
                 <div className="transition-all duration-300 transform group-hover:-translate-y-6 px-6 py-2 border border-white w-fit  ">
                   <h3 className="text-base sm:text-lg font-semibold text-white">
                     {pkg.name}

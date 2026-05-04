@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 // Import local images used in tours
 import bardia1 from '../Images/bardia1.jpg';
 import bardia2 from '../Images/bardia2.png'; // Fix extension
-import chitwan from '../Images/chitwan.jpg';
-import chitwan1 from '../Images/chitwan.jpeg';
+import chitwan from '../Images/chitwan1.png';
+import chitwan2 from '../Images/chitwan.png';
 import pokhara from '../Images/pokhara.jpg';
-import everest from '../Images/everest.jpg';
+import everest from '../Images/everest2.jpg';
+import motercycle1 from '../Images/motercycle1.jpg';
+import motercycle2 from '../Images/motercycle2.jpg';
+
 
 // Import JSON data directly
 import tourData from '../Data/Data.json';
@@ -22,9 +25,11 @@ const TourPage = () => {
   const imageMap = {
     'bardia1.jpg': bardia1,
     'bardia2.png': bardia2,
-    'chitwan.jpg': chitwan,
-    'chitwan.jpeg': chitwan1,
-    'pokhara.jpg': pokhara
+    'chitwan1.png': chitwan,
+    'chitwan2.png': chitwan2,
+    'pokhara.jpg': pokhara,
+    'motercycle1.jpg': motercycle1,
+    'motercycle2.jpg': motercycle2,
   };
 
   const getImage = (filename) => {
