@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   BadgeCheck,
-  Landmark,
   Mail,
   MapPin,
   PhoneCall,
@@ -63,7 +62,11 @@ const WesternUnion = () => {
           <div className="relative flex h-full flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
             <div className="space-y-5 text-center sm:text-left">
               <span className="inline-flex w-fit items-center gap-2 self-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#facc15] backdrop-blur-sm sm:self-start">
-                <Landmark size={16} />
+                <img
+                  src="/images/logosmall.svg"
+                  alt="Back to Nature logo"
+                  className="h-4 w-4 object-cover"
+                />
                 Western Union Support
               </span>
 
@@ -117,8 +120,9 @@ const WesternUnion = () => {
               A polished, traveler-friendly way to handle your booking deposit.
             </h3>
             <p className="mx-auto max-w-2xl text-base leading-8 text-slate-600 lg:mx-0">
-              This section is designed to reassure guests, explain the process clearly,
-              and keep payment communication aligned with the premium feel of the site.
+              Our payment guidance is presented with clarity and professionalism,
+              helping travelers complete their booking confidently while maintaining
+              the refined standard of our brand.
             </p>
           </div>
 
@@ -160,38 +164,6 @@ const WesternUnion = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2">
-            <Link
-              to="/contact"
-              onClick={() => window.scrollTo(0, 0)}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ca8a04] px-6 py-3 text-center font-semibold text-white transition duration-300 hover:bg-[#b77902]"
-            >
-              Contact For Payment Details
-              <ArrowRight size={18} />
-            </Link>
-
-            <a
-              href="mailto:backtonatureadventure@gmail.com"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-center font-semibold text-[#00304a] transition duration-300 hover:border-[#00304a] hover:bg-white"
-            >
-              <Mail size={18} />
-              backtonatureadventure@gmail.com
-            </a>
-          </div>
-
-          <div className="flex flex-col gap-3 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center justify-center gap-3 text-center sm:justify-start sm:text-left">
-              <PhoneCall size={18} className="text-[#00304a]" />
-              <span>Need help right away? Call or WhatsApp us at +977 9840097901.</span>
-            </div>
-            <a
-              href="tel:+9779840097901"
-              className="text-center font-semibold text-[#00304a] transition-colors duration-300 hover:text-[#ca8a04]"
-            >
-              Call Now
-            </a>
           </div>
         </div>
       </div>

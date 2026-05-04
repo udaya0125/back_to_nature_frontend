@@ -364,6 +364,12 @@ const Footer = () => {
                   <a
                     className="hover:text-[#ca8a04] transition-colors duration-200 text-sm md:text-base"
                     target="_blank"
+                    href="https://www.tiktok.com/@back.to.nature.ad?_t=ZS-8uNGghB9vJC&_r=1">
+                    <FaTiktok size={25} />
+                  </a>
+                  <a
+                    className="hover:text-[#ca8a04] transition-colors duration-200 text-sm md:text-base"
+                    target="_blank"
                     href="https://www.instagram.com/backtonatureadventure/">
                     <FaInstagram size={25} />
                   </a>
