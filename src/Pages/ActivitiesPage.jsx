@@ -61,6 +61,19 @@ const ActivitiesPage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await axios.get("https://booking.wheelmasterdriving.com.au/api/ourgallery");
+        const data = response.data;
+        setActivities(data);
+      } catch (error) {
+        console.error("fetching error", error);
+      }
+    };
+    fetchActivities();
+  }, []);
+
   const getImage = (filename) => {
     return imageMap[filename] || everest; // fallback to everest.jpg if not found
   };
