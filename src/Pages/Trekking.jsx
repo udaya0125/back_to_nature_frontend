@@ -242,114 +242,139 @@ const Trekking = () => {
                 </div>
               </div> */}
               {/* Gallery */}
-<div className="mt-6 md:mt-8">
-  <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">Gallery</h2>
-  <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Each image tells a unique story</p>
-  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-    {trek.images.map((image, index) => (
-      <img
-        key={index}
-        src={getImage(image)}
-        alt={`Gallery ${index + 1}`}
-        className="w-full h-28 sm:h-32 md:h-40 object-cover rounded"
-      />
-    ))}
-  </div>
-</div>
+              <div className="mt-6 md:mt-8">
+                <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
+                  Gallery
+                </h2>
+                <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">
+                  Each image tells a unique story
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+                  {trek.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={getImage(image)}
+                      alt={`Gallery ${index + 1}`}
+                      className="w-full h-28 sm:h-32 md:h-40 object-cover rounded"
+                    />
+                  ))}
+                </div>
+              </div>
 
-{/* FAQ - Lo Manthang Tour Only */}
-{slug === 'lo-manthang-tour' && (
-  <div className="mt-8 md:mt-12">
-    <h2 className="text-xl md:text-2xl font-medium mb-4 md:mb-6">Frequently Asked Questions</h2>
-    <div className="space-y-4">
+              {/* FAQ - Lo Manthang Tour Only */}
+              {slug === "lo-manthang-tour" && (
+                <div className="mt-8 md:mt-12">
+                  <h2 className="text-xl md:text-2xl font-medium mb-4 md:mb-6">
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-4">
+                    {[
+                      {
+                        q: "How many days are needed for Lo Manthang trip?",
+                        a: "A complete Pokhara to Lo Manthang jeep trip takes 7 to 8 days, including travel, acclimatization, and return.",
+                      },
+                      {
+                        q: "Is Pokhara to Lo Manthang road difficult?",
+                        a: "Yes. The route includes off-road mountain tracks, river crossings, and high-altitude desert roads. A 4WD jeep is required.",
+                      },
+                      {
+                        q: "What is the altitude of Lo Manthang?",
+                        a: "Lo Manthang is located at 3,840 meters above sea level, making it one of the highest settlements in Nepal.",
+                      },
+                      {
+                        q: "Is altitude sickness a risk in Upper Mustang?",
+                        a: "Yes. Since the route crosses above 3,000m quickly, mild altitude sickness can occur. Proper acclimatization is recommended.",
+                      },
+                      {
+                        q: "What is the best time to visit Lo Manthang?",
+                        answer: (
+                          <ul className="list-disc pl-5 space-y-1 text-gray-600 text-sm md:text-base">
+                            <li>✔ March–June (best for Tiji Festival)</li>
+                            <li>
+                              ✔ September–November (clear skies & best views)
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        q: "How much does the trip cost?",
+                        answer: (
+                          <div className="text-gray-600 text-sm md:text-base">
+                            <p className="mb-2">Cost depends on:</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                              <li>Jeep (shared/private)</li>
+                              <li>Guide service</li>
+                              <li>Restricted Area Permit</li>
+                            </ul>
+                            <p className="mt-2">
+                              Upper Mustang is a restricted area, so permits are
+                              mandatory.
+                            </p>
+                          </div>
+                        ),
+                      },
+                      {
+                        q: "Why visit Lo Manthang?",
+                        answer: (
+                          <div className="text-gray-600 text-sm md:text-base">
+                            <p className="mb-2">Lo Manthang offers:</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                              <li>Ancient Tibetan kingdom culture</li>
+                              <li>Walled medieval city</li>
+                              <li>Unique desert Himalaya landscape</li>
+                              <li>Spiritual monasteries and caves</li>
+                            </ul>
+                          </div>
+                        ),
+                      },
+                    ].map((faq, index) => (
+                      <div
+                        key={index}
+                        className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <button
+                          className="w-full flex justify-between items-center p-4 md:p-5 text-left focus:outline-none"
+                          onClick={() =>
+                            setActiveDay(
+                              activeDay === `faq-${index}`
+                                ? null
+                                : `faq-${index}`,
+                            )
+                          }>
+                          <span className="font-medium text-gray-800 text-sm md:text-base pr-4">
+                            {faq.q}
+                          </span>
+                          <svg
+                            className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 flex-shrink-0 transform transition-transform ${
+                              activeDay === `faq-${index}` ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </button>
 
-      {[
-        {
-          q: "How many days are needed for Lo Manthang trip?",
-          a: "A complete Pokhara to Lo Manthang jeep trip takes 7 to 8 days, including travel, acclimatization, and return."
-        },
-        {
-          q: "Is Pokhara to Lo Manthang road difficult?",
-          a: "Yes. The route includes off-road mountain tracks, river crossings, and high-altitude desert roads. A 4WD jeep is required."
-        },
-        {
-          q: "What is the altitude of Lo Manthang?",
-          a: "Lo Manthang is located at 3,840 meters above sea level, making it one of the highest settlements in Nepal."
-        },
-        {
-          q: "Is altitude sickness a risk in Upper Mustang?",
-          a: "Yes. Since the route crosses above 3,000m quickly, mild altitude sickness can occur. Proper acclimatization is recommended."
-        },
-        {
-          q: "What is the best time to visit Lo Manthang?",
-          answer: (
-            <ul className="list-disc pl-5 space-y-1 text-gray-600 text-sm md:text-base">
-              <li>✔ March–June (best for Tiji Festival)</li>
-              <li>✔ September–November (clear skies & best views)</li>
-            </ul>
-          )
-        },
-        {
-          q: "How much does the trip cost?",
-          answer: (
-            <div className="text-gray-600 text-sm md:text-base">
-              <p className="mb-2">Cost depends on:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Jeep (shared/private)</li>
-                <li>Guide service</li>
-                <li>Restricted Area Permit</li>
-              </ul>
-              <p className="mt-2">Upper Mustang is a restricted area, so permits are mandatory.</p>
-            </div>
-          )
-        },
-        {
-          q: "Why visit Lo Manthang?",
-          answer: (
-            <div className="text-gray-600 text-sm md:text-base">
-              <p className="mb-2">Lo Manthang offers:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Ancient Tibetan kingdom culture</li>
-                <li>Walled medieval city</li>
-                <li>Unique desert Himalaya landscape</li>
-                <li>Spiritual monasteries and caves</li>
-              </ul>
-            </div>
-          )
-        }
-      ].map((faq, index) => (
-        <div key={index} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-          <button
-            className="w-full flex justify-between items-center p-4 md:p-5 text-left focus:outline-none"
-            onClick={() => setActiveDay(activeDay === `faq-${index}` ? null : `faq-${index}`)}
-          >
-            <span className="font-medium text-gray-800 text-sm md:text-base pr-4">{faq.q}</span>
-            <svg
-              className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 flex-shrink-0 transform transition-transform ${
-                activeDay === `faq-${index}` ? 'rotate-180' : ''
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {activeDay === `faq-${index}` && (
-            <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
-              {faq.answer ? faq.answer : (
-                <p className="text-gray-600 text-sm md:text-base">{faq.a}</p>
+                        {activeDay === `faq-${index}` && (
+                          <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
+                            {faq.answer ? (
+                              faq.answer
+                            ) : (
+                              <p className="text-gray-600 text-sm md:text-base">
+                                {faq.a}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
-            </div>
-          )}
-        </div>
-      ))}
-
-    </div>
-  </div>
-)}
-
             </div>
 
             {/* Right Column: Sticky Include/Exclude Section */}
