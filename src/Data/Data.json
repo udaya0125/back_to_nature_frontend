@@ -274,6 +274,84 @@
     ]
   },
 
+  {
+  "title": "LO MANTHANG TOUR",
+  "slug": "lo-manthang-tour",
+  "category": "trekking",
+  "sub_category": "Annapurna Region",
+  "description": "The journey from Pokhara to Lo Manthang is one of the most spectacular overland adventures in Nepal. Located in Upper Mustang, this ancient walled city sits in a high-altitude desert surrounded by Himalayan cliffs, Tibetan culture, and centuries-old monasteries.",
+  "images": [
+    "lomanthang.jpeg",
+    "lomanthang1.jpg",
+    "lomanthang2.jpg"
+  ],
+  "price": 455,
+  "includes": [
+    "Accommodation during trek",
+    "All meals during trek",
+    "Licensed trekking guide",
+    "Porter service (1 porter per 2 trekkers)",
+    "Annapurna Conservation Area Permit (ACAP)",
+    "Trekkers' Information Management System (TIMS) card",
+    "Transportation to/from Pokhara",
+    "Basic first aid kit"
+  ],
+  "excludes": [
+    "Nepal visa fees",
+    "Travel insurance",
+    "Personal expenses (snacks, beverages, WiFi, etc.)",
+    "Hotel accommodation in Pokhara",
+    "Tips for guide and porters",
+    "Equipment rental",
+    "Emergency evacuation costs"
+  ],
+  "itinerary": [
+    {
+      "day": "Day 1",
+      "title": "Pokhara (822m) → Jomsom (2,743m) → Kagbeni (2,804m)",
+      "description": "The journey begins with a scenic drive through river valleys and mountain roads. Stay overnight at Kagbeni (2,804m), the gateway to Upper Mustang."
+    },
+    {
+      "day": "Day 2",
+      "title": "Kagbeni (2,804m) → Samar (3,620m)",
+      "description": "You enter the restricted Upper Mustang region, where landscapes turn into a dry Himalayan desert. Overnight stay in Samar (3,620m)."
+    },
+    {
+      "day": "Day 3",
+      "title": "Samar → Ghami (3,520m)",
+      "description": "Drive through deep canyons, red cliffs, and ancient Buddhist monuments. Stay overnight at Ghami (3,520m)."
+    },
+    {
+      "day": "Day 4",
+      "title": "Ghami → Tsarang (3,560m)",
+      "description": "Explore mani walls, monasteries, and traditional Mustang villages. Overnight stay in Tsarang (3,560m)."
+    },
+    {
+      "day": "Day 5",
+      "title": "Tsarang → Lo Manthang (3,840m)",
+      "description": "Arrive at the ancient walled city of Lo Manthang. Explore the Royal Palace, Namgyal Monastery, optional Chhoser caves, and experience Tibetan culture and lifestyle."
+    },
+    {
+      "day": "Day 6",
+      "title": "Lo Manthang Exploration (3,840m)",
+      "description": "Spend the day exploring Lo Manthang, visiting nearby monasteries, villages, and cultural landmarks while enjoying the unique Himalayan desert landscape."
+    },
+    {
+      "day": "Day 7",
+      "title": "Return Journey Begins",
+      "description": "Drive back via Ghami or Samar for a gradual descent and enjoy the changing landscapes along the way."
+    },
+    {
+      "day": "Day 8",
+      "title": "Return to Pokhara",
+      "description": "Final descent through Jomsom and Kagbeni before returning to Pokhara."
+    }
+  ]
+},
+
+
+  
+
   
 
 

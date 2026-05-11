@@ -18,6 +18,9 @@ import abc3 from '../Images/abc3.jpg';
 import abc4 from '../Images/abc4.jpg';
 import abc5 from '../Images/abc5.jpg';
 import abc6 from '../Images/abc1.jpg';
+import lomanthang from '../Images/lomanthang.jpeg';
+import lomanthang1 from '../Images/lomanthang1.jpg';
+import lomanthang2 from '../Images/lomanthang2.jpg';
 
 import data from '../Data/Data.json';
 
@@ -46,7 +49,13 @@ const TrekkingPage = () => {
     // Mardi Himal
     'mardihimal.jpg': mardi,
     'mardihimal1.jpg': mardi1,
-    
+
+    // Lo Manthang
+
+    'lomanthang.jpeg': lomanthang,
+    'lomanthang1.jpg': lomanthang1,
+    'lomanthang2.jpg': lomanthang2,
+
     // Other treks
     'bg1.jpg': bg5,
     'hiddenlake.jpg': hiddenlake,
