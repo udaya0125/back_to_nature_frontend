@@ -268,26 +268,6 @@ const Trekking = () => {
                   </div>
                 ))}
               </div>
-
-              {/* Gallery */}
-              {/* <div className="mt-6 md:mt-8">
-                <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
-                  Gallery
-                </h2>
-                <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">
-                  Each image tells a unique story
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-                  {trek.images.map((image, index) => (
-                    <img
-                      key={index}
-                      src={getImage(image)}
-                      alt={`Gallery ${index + 1}`}
-                      className="w-full h-28 sm:h-32 md:h-40 object-cover rounded"
-                    />
-                  ))}
-                </div>
-              </div> */}
               {/* Gallery */}
               <div className="mt-6 md:mt-8">
                 <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
