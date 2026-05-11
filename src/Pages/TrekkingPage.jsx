@@ -251,7 +251,7 @@ const TrekkingPage = () => {
                         </span>
                         <span className="text-sm text-white mt-1">per person</span>
                       </div> */}
-                      {trek.title !== "Lo Manthang Tour" && (
+                      {trek.title !== "Lo Manthang Trek" && (
                         <div className="flex flex-col">
                           <span className="text-sm text-white uppercase tracking-wide">
                             Starting from

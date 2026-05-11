@@ -134,8 +134,8 @@ const Trekking = () => {
                 {trek.description}
               </p>
 
-              {/* Lo Manthang Tour Extra Info */}
-              {slug === "lo-manthang-tour" && (
+              {/* Lo Manthang Treak Extra Info */}
+              {slug === "lo-manthang-Trek" && (
                 <div className="mt-4 md:mt-6 space-y-6 text-sm md:text-base text-gray-800">
                   <div>
                     <p className="font-semibold mb-2">
