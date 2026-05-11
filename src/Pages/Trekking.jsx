@@ -136,101 +136,94 @@ const Trekking = () => {
 
               {/* Lo Manthang Treak Extra Info */}
               {slug === "lo-manthang-trek" && (
-  <div className="mt-4 md:mt-6 space-y-6 text-sm md:text-base text-gray-800">
-    
-    <div>
-      <p className="font-semibold mb-2">
-        Why Choose the Lo Manthang Trek?
-      </p>
-      <ul className="list-disc pl-5 space-y-1 text-gray-600">
-        <li>Explore the hidden kingdom of Upper Mustang</li>
-        <li>Experience authentic Tibetan Buddhist culture</li>
-        <li>Visit ancient monasteries and caves</li>
-        <li>
-          Trek through unique desert-like Himalayan landscapes
-        </li>
-        <li>
-          Less crowded compared to Everest and Annapurna regions
-        </li>
-        <li>
-          Suitable during monsoon season due to dry climate
-        </li>
-      </ul>
-    </div>
+                <div className="mt-4 md:mt-6 space-y-6 text-sm md:text-base text-gray-800">
+                  <div>
+                    <p className="font-semibold mb-2">
+                      Why Choose the Lo Manthang Trek?
+                    </p>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                      <li>Explore the hidden kingdom of Upper Mustang</li>
+                      <li>Experience authentic Tibetan Buddhist culture</li>
+                      <li>Visit ancient monasteries and caves</li>
+                      <li>
+                        Trek through unique desert-like Himalayan landscapes
+                      </li>
+                      <li>
+                        Less crowded compared to Everest and Annapurna regions
+                      </li>
+                      <li>Suitable during monsoon season due to dry climate</li>
+                    </ul>
+                  </div>
 
-    <div>
-      <p className="font-semibold mb-2">Major Highlights</p>
-      <ul className="list-disc pl-5 space-y-1 text-gray-600">
-        <li>Scenic journey from Pokhara to Jomsom</li>
-        <li>Trek through the Kali Gandaki Valley</li>
-        <li>Visit ancient villages and monasteries</li>
-        <li>Explore the walled city of Lo Manthang</li>
-        <li>
-          Stunning views of Nilgiri, Dhaulagiri, and Annapurna ranges
-        </li>
-        <li>
-          Unique Tibetan-influenced culture and lifestyle
-        </li>
-        <li>
-          Discover mysterious sky caves and historical sites
-        </li>
-      </ul>
-    </div>
+                  <div>
+                    <p className="font-semibold mb-2">Major Highlights</p>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                      <li>Scenic journey from Pokhara to Jomsom</li>
+                      <li>Trek through the Kali Gandaki Valley</li>
+                      <li>Visit ancient villages and monasteries</li>
+                      <li>Explore the walled city of Lo Manthang</li>
+                      <li>
+                        Stunning views of Nilgiri, Dhaulagiri, and Annapurna
+                        ranges
+                      </li>
+                      <li>Unique Tibetan-influenced culture and lifestyle</li>
+                      <li>
+                        Discover mysterious sky caves and historical sites
+                      </li>
+                    </ul>
+                  </div>
 
-    <div>
-      <p className="font-semibold mb-2">
-        Best Time for Lo Manthang Trek
-      </p>
+                  <div>
+                    <p className="font-semibold mb-2">
+                      Best Time for Lo Manthang Trek
+                    </p>
 
-      <p className="text-gray-600 mb-2">
-        The best seasons for the Lo Manthang Trek are:
-      </p>
+                    <p className="text-gray-600 mb-2">
+                      The best seasons for the Lo Manthang Trek are:
+                    </p>
 
-      <ul className="list-disc pl-5 space-y-1 text-gray-600">
-        <li>Spring (March to May)</li>
-        <li>Autumn (September to November)</li>
-        <li>
-          Monsoon (June to August) – Mustang remains dry and
-          perfect for trekking
-        </li>
-      </ul>
-    </div>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                      <li>Spring (March to May)</li>
+                      <li>Autumn (September to November)</li>
+                      <li>
+                        Monsoon (June to August) – Mustang remains dry and
+                        perfect for trekking
+                      </li>
+                    </ul>
+                  </div>
 
-    <div>
-      <p className="font-semibold mb-2">
-        Lo Manthang Trek Permit Information
-      </p>
+                  <div>
+                    <p className="font-semibold mb-2">
+                      Lo Manthang Trek Permit Information
+                    </p>
 
-      <p className="text-gray-600 mb-2">
-        Upper Mustang is a restricted area in Nepal. Trekkers
-        require:
-      </p>
+                    <p className="text-gray-600 mb-2">
+                      Upper Mustang is a restricted area in Nepal. Trekkers
+                      require:
+                    </p>
 
-      <ul className="list-disc pl-5 space-y-1 text-gray-600">
-        <li>Restricted Area Permit (RAP)</li>
-        <li>Annapurna Conservation Area Permit (ACAP)</li>
-      </ul>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                      <li>Restricted Area Permit (RAP)</li>
+                      <li>Annapurna Conservation Area Permit (ACAP)</li>
+                    </ul>
 
-      <p className="text-gray-600 mt-3">
-        Travelers must trek through a registered trekking agency
-        with a licensed guide.
-      </p>
-    </div>
+                    <p className="text-gray-600 mt-3">
+                      Travelers must trek through a registered trekking agency
+                      with a licensed guide.
+                    </p>
+                  </div>
 
-    <div>
-      <p className="font-semibold mb-2">
-        Typical Trek Duration
-      </p>
+                  <div>
+                    <p className="font-semibold mb-2">Typical Trek Duration</p>
 
-      <p className="text-gray-600">
-        The standard Lo Manthang Trek from Pokhara takes around
-        12 to 16 days depending on itinerary and transportation
-        options.
-      </p>
-    </div>
-
-  </div>
-)}
+                    <p className="text-gray-600">
+                      The standard Lo Manthang Trek from Pokhara takes around 12
+                      to 16 days depending on itinerary and transportation
+                      options.
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Itinerary Accordion */}
               <div className="space-y-2">
