@@ -280,28 +280,37 @@
     "sub_category": "Annapurna Region",
    "description": "The Lo Manthang Trek from Pokhara is one of Nepal’s most unique Himalayan adventures, taking travelers into the hidden kingdom of Upper Mustang. Located in the rain-shadow region of the Annapurna Himalayas, this trek offers dramatic desert landscapes, ancient Tibetan culture, Buddhist monasteries, mysterious sky caves, and the historic walled city of Lo Manthang.\n\nStarting from Pokhara, the journey typically begins with a scenic drive or flight to Jomsom, followed by trekking through traditional villages such as Kagbeni, Chele, Syangboche, Ghami, and Tsarang. The main highlight of the trek is exploring the ancient kingdom of Lo Manthang, famous for its royal palace, centuries-old monasteries, and well-preserved Tibetan heritage.\n\nThis trek is ideal for travelers seeking cultural exploration, off-the-beaten-path adventures, and breathtaking Himalayan scenery.",
     "images": [
-        "../Images/north.jpg"
+    "lomanthang.jpeg",
+    "lomanthang1.jpg",
+    "lomanthang2.jpg"
     ],
     "price": 650,
-   "includes": [
-      "Accommodation during trek",
-      "All meals during trek",
-      "Licensed trekking guide",
-      "Porter service (1 porter per 2 trekkers)",
-      "Annapurna Conservation Area Permit (ACAP)",
-      "Trekker's Information Management System (TIMS) card",
-      "Transportation to/from Pokhara",
-      "Basic first aid kit"
-    ],
-    "excludes": [
-      "Nepal visa fees",
-      "Travel insurance",
-      "Personal expenses (snacks, beverages, wifi, etc.)",
-      "Hotel accommodation in Pokhara",
-      "Tips for guide and porters",
-      "Equipment rental",
-      "Emergency evacuation costs"
-    ],
+    "includes": [
+  "Airport and hotel transfers as per itinerary",
+  "Tourist bus or private transportation from Pokhara to Jomsom and return",
+  "Upper Mustang Restricted Area Permit",
+  "Annapurna Conservation Area Permit (ACAP)",
+  "Licensed English-speaking trekking guide",
+  "Porter service (if included in package)",
+  "Accommodation in tea houses/lodges during the trek",
+  "Three meals a day during trekking (Breakfast, Lunch, Dinner)",
+  "Guide and porter insurance, salary, food, and accommodation",
+  "Basic first aid kit",
+  "Government taxes and service charges"
+],
+"excludes": [
+  "International and domestic airfare",
+  "Nepal visa fees",
+  "Travel insurance and emergency evacuation",
+  "Personal trekking equipment and clothing",
+  "Hot showers, Wi-Fi, charging fees, and laundry services",
+  "Extra drinks, snacks, and alcoholic beverages",
+  "Tips for guide and porter",
+  "Personal expenses",
+  "Meals in Pokhara before and after the trek",
+  "Costs caused by natural disasters, flight delays, strikes, or unforeseen situations",
+  "Any services not mentioned in the “Cost Includes” section"
+],
   "itinerary": [
     {
       "day": "Day 1",
