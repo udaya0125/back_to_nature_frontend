@@ -289,9 +289,9 @@ const Trekking = () => {
                         q: "What is the best time to visit Lo Manthang?",
                         answer: (
                           <ul className="list-disc pl-5 space-y-1 text-gray-600 text-sm md:text-base">
-                            <li>✔ March–June (best for Tiji Festival)</li>
+                            <li>March–June (best for Tiji Festival)</li>
                             <li>
-                              ✔ September–November (clear skies & best views)
+                              September–November (clear skies & best views)
                             </li>
                           </ul>
                         ),

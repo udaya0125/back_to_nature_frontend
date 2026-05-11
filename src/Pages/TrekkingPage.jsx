@@ -84,13 +84,13 @@ const TrekkingPage = () => {
 
   // Debug function to check what's happening
   const debugImageLoading = (trek) => {
-    console.log("Trek:", trek.title);
-    console.log("Image filenames:", trek.images);
+    // console.log("Trek:", trek.title);
+    // console.log("Image filenames:", trek.images);
     trek.images.forEach((img, index) => {
       const cleanImg = img.split("/").pop();
-      console.log(
-        `Image ${index}: ${img} -> ${cleanImg} -> exists: ${!!imageMap[cleanImg]}`,
-      );
+      // console.log(
+      //   `Image ${index}: ${img} -> ${cleanImg} -> exists: ${!!imageMap[cleanImg]}`,
+      // );
     });
   };
 
