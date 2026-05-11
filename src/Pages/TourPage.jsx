@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import bardia1 from '../Images/bardia1.jpg';
 import bardia2 from '../Images/bardia2.png'; // Fix extension
 import chitwan from '../Images/chitwan1.png';
+import lomanthang from "../Images/lomanthang.jpeg";
+import lomanthang1 from "../Images/lomanthang1.jpg";
+import lomanthang2 from "../Images/lomanthang2.jpg";
 import chitwan2 from '../Images/chitwan.png';
 import pokhara from '../Images/pokhara.jpg';
 import everest from '../Images/everest2.jpg';
@@ -30,6 +33,9 @@ const TourPage = () => {
     'pokhara.jpg': pokhara,
     'motercycle1.jpg': motercycle1,
     'motercycle2.jpg': motercycle2,
+    'lomanthang.jpeg': lomanthang,
+    'lomanthang1.jpg': lomanthang1,
+    'lomanthang2.jpg': lomanthang2,
   };
 
   const getImage = (filename) => {

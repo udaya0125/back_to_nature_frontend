@@ -273,81 +273,109 @@
       }
     ]
   },
-
-  {
-  "title": "Lo Manthang Trek",
-  "slug": "lo-manthang-trek",
-  "category": "trekking",
-  "sub_category": "Annapurna Region",
-  "description": "The journey from Pokhara to Lo Manthang is one of the most spectacular overland adventures in Nepal. Located in Upper Mustang, this ancient walled city sits in a high-altitude desert surrounded by Himalayan cliffs, Tibetan culture, and centuries-old monasteries.",
-  "images": [
-    "lomanthang.jpeg",
-    "lomanthang1.jpg",
-    "lomanthang2.jpg"
-  ],
-  "price": 455,
-  "includes": [
-    "Accommodation during trek",
-    "All meals during trek",
-    "Licensed trekking guide",
-    "Porter service (1 porter per 2 trekkers)",
-    "Annapurna Conservation Area Permit (ACAP)",
-    "Trekkers' Information Management System (TIMS) card",
-    "Transportation to/from Pokhara",
-    "Basic first aid kit"
-  ],
-  "excludes": [
-    "Nepal visa fees",
-    "Travel insurance",
-    "Personal expenses (snacks, beverages, WiFi, etc.)",
-    "Hotel accommodation in Pokhara",
-    "Tips for guide and porters",
-    "Equipment rental",
-    "Emergency evacuation costs"
-  ],
+      {
+    "title": "Lo Manthang Trek",
+    "slug": "lo-manthang-trek",
+    "category": "trekking",
+    "sub_category": "Annapurna Region",
+   "description": "The Lo Manthang Trek from Pokhara is one of Nepal’s most unique Himalayan adventures, taking travelers into the hidden kingdom of Upper Mustang. Located in the rain-shadow region of the Annapurna Himalayas, this trek offers dramatic desert landscapes, ancient Tibetan culture, Buddhist monasteries, mysterious sky caves, and the historic walled city of Lo Manthang.\n\nStarting from Pokhara, the journey typically begins with a scenic drive or flight to Jomsom, followed by trekking through traditional villages such as Kagbeni, Chele, Syangboche, Ghami, and Tsarang. The main highlight of the trek is exploring the ancient kingdom of Lo Manthang, famous for its royal palace, centuries-old monasteries, and well-preserved Tibetan heritage.\n\nThis trek is ideal for travelers seeking cultural exploration, off-the-beaten-path adventures, and breathtaking Himalayan scenery.",
+    "images": [
+        "../Images/north.jpg"
+    ],
+    "price": 650,
+   "includes": [
+      "Accommodation during trek",
+      "All meals during trek",
+      "Licensed trekking guide",
+      "Porter service (1 porter per 2 trekkers)",
+      "Annapurna Conservation Area Permit (ACAP)",
+      "Trekker's Information Management System (TIMS) card",
+      "Transportation to/from Pokhara",
+      "Basic first aid kit"
+    ],
+    "excludes": [
+      "Nepal visa fees",
+      "Travel insurance",
+      "Personal expenses (snacks, beverages, wifi, etc.)",
+      "Hotel accommodation in Pokhara",
+      "Tips for guide and porters",
+      "Equipment rental",
+      "Emergency evacuation costs"
+    ],
   "itinerary": [
     {
       "day": "Day 1",
-      "title": "Pokhara (822m) → Jomsom (2,743m) → Kagbeni (2,804m)",
-      "description": "The journey begins with a scenic drive through river valleys and mountain roads. Stay overnight at Kagbeni (2,804m), the gateway to Upper Mustang."
+      "title": "Drive from Pokhara to Jomsom",
+      "description": "Start your journey from Pokhara with a scenic jeep drive to Jomsom via Beni, Tatopani, and Kagbeni. Enjoy stunning views of the Annapurna and Dhaulagiri ranges.\n\nDuration: 8–10 Hours\nOvernight: Jomsom"
     },
     {
       "day": "Day 2",
-      "title": "Kagbeni (2,804m) → Samar (3,620m)",
-      "description": "You enter the restricted Upper Mustang region, where landscapes turn into a dry Himalayan desert. Overnight stay in Samar (3,620m)."
+      "title": "Trek from Jomsom to Kagbeni",
+      "description": "Begin trekking along the Kali Gandaki River valley toward the ancient village of Kagbeni, the gateway to Upper Mustang.\n\nWalking Hours: 3–4 Hours\nAltitude: 2,810m\nOvernight: Kagbeni"
     },
     {
       "day": "Day 3",
-      "title": "Samar → Ghami (3,520m)",
-      "description": "Drive through deep canyons, red cliffs, and ancient Buddhist monuments. Stay overnight at Ghami (3,520m)."
+      "title": "Trek from Kagbeni to Chele",
+      "description": "Enter the restricted Upper Mustang region and trek through dramatic desert landscapes and Tibetan-style villages.\n\nWalking Hours: 5–6 Hours\nAltitude: 3,050m\nOvernight: Chele"
     },
     {
       "day": "Day 4",
-      "title": "Ghami → Tsarang (3,560m)",
-      "description": "Explore mani walls, monasteries, and traditional Mustang villages. Overnight stay in Tsarang (3,560m)."
+      "title": "Trek from Chele to Syangboche",
+      "description": "Cross high passes and enjoy panoramic mountain views while walking through traditional Mustang settlements.\n\nWalking Hours: 6–7 Hours\nAltitude: 3,800m\nOvernight: Syangboche"
     },
     {
       "day": "Day 5",
-      "title": "Tsarang → Lo Manthang (3,840m)",
-      "description": "Arrive at the ancient walled city of Lo Manthang. Explore the Royal Palace, Namgyal Monastery, optional Chhoser caves, and experience Tibetan culture and lifestyle."
+      "title": "Trek from Syangboche to Ghami",
+      "description": "Pass ancient mani walls, chortens, and colorful prayer flags along the route.\n\nWalking Hours: 5–6 Hours\nAltitude: 3,520m\nOvernight: Ghami"
     },
     {
       "day": "Day 6",
-      "title": "Lo Manthang Exploration (3,840m)",
-      "description": "Spend the day exploring Lo Manthang, visiting nearby monasteries, villages, and cultural landmarks while enjoying the unique Himalayan desert landscape."
+      "title": "Trek from Ghami to Tsarang",
+      "description": "Explore beautiful valleys and historic monasteries before reaching the traditional village of Tsarang.\n\nWalking Hours: 5–6 Hours\nAltitude: 3,560m\nOvernight: Tsarang"
     },
     {
       "day": "Day 7",
-      "title": "Return Journey Begins",
-      "description": "Drive back via Ghami or Samar for a gradual descent and enjoy the changing landscapes along the way."
+      "title": "Trek from Tsarang to Lo Manthang",
+      "description": "Trek to the legendary walled kingdom of Lo Manthang, the cultural heart of Upper Mustang.\n\nWalking Hours: 4–5 Hours\nAltitude: 3,840m\nOvernight: Lo Manthang"
     },
     {
       "day": "Day 8",
-      "title": "Return to Pokhara",
-      "description": "Final descent through Jomsom and Kagbeni before returning to Pokhara."
+      "title": "Explore Lo Manthang",
+      "description": "Spend a full day exploring ancient monasteries, royal palaces, sky caves, and Tibetan Buddhist culture.\n\nHighlights:\n- Jampa Monastery\n- Thubchen Monastery\n- Royal Palace\n- Chhoser Cave\n\nOvernight: Lo Manthang"
+    },
+    {
+      "day": "Day 9",
+      "title": "Trek from Lo Manthang to Dhakmar",
+      "description": "Begin the return journey through unique red cliff landscapes and ancient trade routes.\n\nWalking Hours: 6–7 Hours\nAltitude: 3,820m\nOvernight: Dhakmar"
+    },
+    {
+      "day": "Day 10",
+      "title": "Trek from Dhakmar to Ghiling",
+      "description": "Cross scenic passes and enjoy incredible views of Mustang’s dry Himalayan terrain.\n\nWalking Hours: 5–6 Hours\nAltitude: 3,570m\nOvernight: Ghiling"
+    },
+    {
+      "day": "Day 11",
+      "title": "Trek from Ghiling to Chhuksang",
+      "description": "Descend gradually through remote villages and dramatic canyons.\n\nWalking Hours: 6–7 Hours\nAltitude: 2,980m\nOvernight: Chhuksang"
+    },
+    {
+      "day": "Day 12",
+      "title": "Trek from Chhuksang to Jomsom",
+      "description": "Return to Jomsom following the Kali Gandaki Valley.\n\nWalking Hours: 6–7 Hours\nOvernight: Jomsom"
+    },
+    {
+      "day": "Day 13",
+      "title": "Drive from Jomsom to Pokhara",
+      "description": "Take a scenic jeep drive back to Pokhara.\n\nDuration: 8–10 Hours\nOvernight: Pokhara"
+    },
+    {
+      "day": "Day 14",
+      "title": "Final Departure",
+      "description": "Transfer to airport or continue your Nepal adventure.\n\nTrek Highlights:\n- Explore the hidden kingdom of Upper Mustang\n- Visit the ancient walled city of Lo Manthang\n- Experience Tibetan Buddhist culture\n- Scenic Himalayan desert landscapes\n- Ancient monasteries, caves, and traditional villages\n- Stunning mountain views of Annapurna and Dhaulagiri ranges"
     }
   ]
-},
+  },
+  
 
 
   
@@ -1106,5 +1134,86 @@
 "description": "Early morning ride to the sacred pilgrimage site of Muktinath Temple (3,800m), revered by both Hindus and Buddhists. After exploring the temple complex and enjoying panoramic views of the Annapurna and Dhaulagiri ranges, return to Jomsom and fly or ride back to Pokhara (flight option subject to availability and extra cost if not included). Tour concludes in Pokhara."
 }
 ]
+},
+  {
+  "title": "Lo Manthang Tour (7N 8D)",
+  "slug": "lo-manthang-tour",
+  "category": "tour",
+  "description": "The journey from Pokhara to Lo Manthang is one of the most spectacular overland adventures in Nepal. Located in Upper Mustang, this ancient walled city sits in a high-altitude desert surrounded by Himalayan cliffs, Tibetan culture, and centuries-old monasteries.",
+  "images": [
+    "lomanthang.jpeg",
+    "lomanthang1.jpg",
+    "lomanthang2.jpg"
+  ],
+  "price": 455,
+ "includes": [
+  "Airport and hotel transfers as per itinerary",
+  "Tourist bus or private transportation from Pokhara to Jomsom and return",
+  "Upper Mustang Restricted Area Permit",
+  "Annapurna Conservation Area Permit (ACAP)",
+  "Licensed English-speaking trekking guide",
+  "Porter service (if included in package)",
+  "Accommodation in tea houses/lodges during the trek",
+  "Three meals a day during trekking (Breakfast, Lunch, Dinner)",
+  "Guide and porter insurance, salary, food, and accommodation",
+  "Basic first aid kit",
+  "Government taxes and service charges"
+],
+"excludes": [
+  "International and domestic airfare",
+  "Nepal visa fees",
+  "Travel insurance and emergency evacuation",
+  "Personal trekking equipment and clothing",
+  "Hot showers, Wi-Fi, charging fees, and laundry services",
+  "Extra drinks, snacks, and alcoholic beverages",
+  "Tips for guide and porter",
+  "Personal expenses",
+  "Meals in Pokhara before and after the trek",
+  "Costs caused by natural disasters, flight delays, strikes, or unforeseen situations",
+  "Any services not mentioned in the “Cost Includes” section"
+],
+  "itinerary": [
+    {
+      "day": "Day 1",
+      "title": "Pokhara (822m) → Jomsom (2,743m) → Kagbeni (2,804m)",
+      "description": "The journey begins with a scenic drive through river valleys and mountain roads. Stay overnight at Kagbeni (2,804m), the gateway to Upper Mustang."
+    },
+    {
+      "day": "Day 2",
+      "title": "Kagbeni (2,804m) → Samar (3,620m)",
+      "description": "You enter the restricted Upper Mustang region, where landscapes turn into a dry Himalayan desert. Overnight stay in Samar (3,620m)."
+    },
+    {
+      "day": "Day 3",
+      "title": "Samar → Ghami (3,520m)",
+      "description": "Drive through deep canyons, red cliffs, and ancient Buddhist monuments. Stay overnight at Ghami (3,520m)."
+    },
+    {
+      "day": "Day 4",
+      "title": "Ghami → Tsarang (3,560m)",
+      "description": "Explore mani walls, monasteries, and traditional Mustang villages. Overnight stay in Tsarang (3,560m)."
+    },
+    {
+      "day": "Day 5",
+      "title": "Tsarang → Lo Manthang (3,840m)",
+      "description": "Arrive at the ancient walled city of Lo Manthang. Explore the Royal Palace, Namgyal Monastery, optional Chhoser caves, and experience Tibetan culture and lifestyle."
+    },
+    {
+      "day": "Day 6",
+      "title": "Lo Manthang Exploration (3,840m)",
+      "description": "Spend the day exploring Lo Manthang, visiting nearby monasteries, villages, and cultural landmarks while enjoying the unique Himalayan desert landscape."
+    },
+    {
+      "day": "Day 7",
+      "title": "Return Journey Begins",
+      "description": "Drive back via Ghami or Samar for a gradual descent and enjoy the changing landscapes along the way."
+    },
+    {
+      "day": "Day 8",
+      "title": "Return to Pokhara",
+      "description": "Final descent through Jomsom and Kagbeni before returning to Pokhara."
+    }
+  ]
 }
+
     ]

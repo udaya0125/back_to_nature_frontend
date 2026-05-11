@@ -244,14 +244,14 @@ const TrekkingPage = () => {
 
                     {/* Pricing Section */}
                     <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/20">
-                      {/* <div className="flex flex-col">
+                      <div className="flex flex-col">
                         <span className="text-sm text-white uppercase tracking-wide">Starting from</span>
                         <span className="text-3xl sm:text-4xl font-bold mt-1">
                           ${trek.price}
                         </span>
                         <span className="text-sm text-white mt-1">per person</span>
-                      </div> */}
-                      {trek.title !== "Lo Manthang Trek" && (
+                      </div>
+                      {/* {trek.title !== "Lo Manthang Trek" && (
                         <div className="flex flex-col">
                           <span className="text-sm text-white uppercase tracking-wide">
                             Starting from
@@ -263,7 +263,7 @@ const TrekkingPage = () => {
                             per person
                           </span>
                         </div>
-                      )}
+                      )} */}
                       <div className="ml-auto bg-white text-gray-900 px-6 py-3 rounded-full font-semibold text-base transition-colors duration-300">
                         View Details
                       </div>
