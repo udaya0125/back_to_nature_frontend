@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../Images/logo.png';
 import data from '../Data/Data.json'; // Import once
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const location = useLocation();
 
   // Scroll effect for navbar background
   useEffect(() => {
@@ -61,6 +62,32 @@ const Navbar = () => {
       }, {})
     );
 
+  const isActivePath = (path) => location.pathname === path;
+  const isSectionActive = (paths) => paths.some((path) => location.pathname.startsWith(path));
+
+  const navLinkClass = (isActive) =>
+    `transition ${isActive ? 'text-blue-300' : 'text-white hover:text-blue-300'}`;
+
+  const mobileNavLinkClass = (isActive) =>
+    `block py-2 px-4 rounded-lg transition ${
+      isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+    }`;
+
+  const mobileDropdownButtonClass = (isActive) =>
+    `w-full text-left py-2 px-4 rounded-lg transition flex justify-between items-center ${
+      isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+    }`;
+
+  const desktopDropdownLinkClass = (isActive) =>
+    `block px-4 py-2 transition ${
+      isActive ? 'text-blue-300 bg-blue-50' : 'text-gray-700 hover:bg-blue-50'
+    }`;
+
+  const mobileDropdownLinkClass = (isActive) =>
+    `block px-4 py-1.5 text-sm rounded transition ${
+      isActive ? 'text-blue-300 bg-white/10' : 'text-white/70 hover:bg-white/10'
+    }`;
+
   return (
     <>
       {/* Desktop & Base Navbar */}
@@ -97,7 +124,7 @@ const Navbar = () => {
                   <Link
                     to="/"
                     onClick={() => window.scrollTo(0, 0)}
-                    className="hover:text-blue-300 transition text-white"
+                    className={navLinkClass(isActivePath('/'))}
                   >
                     Home
                   </Link>
@@ -106,7 +133,7 @@ const Navbar = () => {
                   <Link
                     to="/about"
                     onClick={() => window.scrollTo(0, 0)}
-                    className="hover:text-blue-300 transition text-white"
+                    className={navLinkClass(isActivePath('/about'))}
                   >
                     About Us
                   </Link>
@@ -119,7 +146,11 @@ const Navbar = () => {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="flex items-center hover:text-blue-300 text-white transition"
+                    className={`flex items-center transition ${
+                      isSectionActive(['/trekking', '/trekkings'])
+                        ? 'text-blue-300'
+                        : 'text-white hover:text-blue-300'
+                    }`}
                     aria-expanded={activeDropdown === 'trekkings'}
                   >
                     <Link to="/trekking" onClick={() => window.scrollTo(0, 0)} className="block">
@@ -151,7 +182,9 @@ const Navbar = () => {
                               <Link
                                 key={trek.id}
                                 to={`/trekkings/${trek.slug}`}
-                                className="block px-4 py-2 text-gray-700 hover:bg-blue-50"
+                                className={desktopDropdownLinkClass(
+                                  isActivePath(`/trekkings/${trek.slug}`)
+                                )}
                                 onClick={() => {
                                   setIsMenuOpen(false);
                                   setActiveDropdown(null);
@@ -175,7 +208,11 @@ const Navbar = () => {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="flex items-center hover:text-blue-300 text-white transition"
+                    className={`flex items-center transition ${
+                      isSectionActive(['/activity', '/activities'])
+                        ? 'text-blue-300'
+                        : 'text-white hover:text-blue-300'
+                    }`}
                     aria-expanded={activeDropdown === 'activities'}
                   >
                     <Link to="/activity" onClick={() => window.scrollTo(0, 0)} className="block">
@@ -208,7 +245,9 @@ const Navbar = () => {
                                 <Link
                                   key={activity.id}
                                   to={`/activities/${activity.slug}`}
-                                  className="block px-4 py-2 text-gray-700 hover:bg-blue-50"
+                                  className={desktopDropdownLinkClass(
+                                    isActivePath(`/activities/${activity.slug}`)
+                                  )}
                                   onClick={() => {
                                     setIsMenuOpen(false);
                                     setActiveDropdown(null);
@@ -233,7 +272,9 @@ const Navbar = () => {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="flex items-center hover:text-blue-300 text-white transition"
+                    className={`flex items-center transition ${
+                      isSectionActive(['/tours']) ? 'text-blue-300' : 'text-white hover:text-blue-300'
+                    }`}
                     aria-expanded={activeDropdown === 'tours'}
                   >
                     <Link to="/tours" onClick={() => window.scrollTo(0, 0)} className="block">
@@ -265,7 +306,9 @@ const Navbar = () => {
                               <Link
                                 key={tour.id}
                                 to={`/tours/${tour.slug}`}
-                                className="block px-4 py-2 text-gray-700 hover:bg-blue-50"
+                                className={desktopDropdownLinkClass(
+                                  isActivePath(`/tours/${tour.slug}`)
+                                )}
                                 onClick={() => {
                                   setIsMenuOpen(false);
                                   setActiveDropdown(null);
@@ -286,7 +329,7 @@ const Navbar = () => {
                   <Link
                     to="/contact"
                     onClick={() => window.scrollTo(0, 0)}
-                    className="hover:text-blue-300 transition text-white"
+                    className={navLinkClass(isActivePath('/contact'))}
                   >
                     Contact Us
                   </Link>
@@ -389,7 +432,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/"
-                className="block py-2 px-4 text-white hover:bg-white/10 rounded-lg transition"
+                className={mobileNavLinkClass(isActivePath('/'))}
                 onClick={() => {
                   setIsMenuOpen(false);
                   setActiveDropdown(null);
@@ -402,7 +445,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/about"
-                className="block py-2 px-4 text-white hover:bg-white/10 rounded-lg transition"
+                className={mobileNavLinkClass(isActivePath('/about'))}
                 onClick={() => {
                   setIsMenuOpen(false);
                   setActiveDropdown(null);
@@ -417,7 +460,7 @@ const Navbar = () => {
             <li>
               <button
                 type="button"
-                className="w-full text-left py-2 px-4 text-white hover:bg-white/10 rounded-lg transition flex justify-between items-center"
+                className={mobileDropdownButtonClass(isSectionActive(['/trekking', '/trekkings']))}
                 onClick={() => toggleDropdown('mobile-trekkings')}
               >
                 <span>Trekkings</span>
@@ -448,7 +491,9 @@ const Navbar = () => {
                         <Link
                           key={trek.id}
                           to={`/trekkings/${trek.slug}`}
-                          className="block px-4 py-1.5 text-white/70 text-sm hover:bg-white/10 rounded"
+                          className={mobileDropdownLinkClass(
+                            isActivePath(`/trekkings/${trek.slug}`)
+                          )}
                           onClick={() => {
                             setIsMenuOpen(false);
                             setActiveDropdown(null);
@@ -468,7 +513,7 @@ const Navbar = () => {
             <li>
               <button
                 type="button"
-                className="w-full text-left py-2 px-4 text-white hover:bg-white/10 rounded-lg transition flex justify-between items-center"
+                className={mobileDropdownButtonClass(isSectionActive(['/activity', '/activities']))}
                 onClick={() => toggleDropdown('mobile-activities')}
               >
                 <span>Activities</span>
@@ -499,7 +544,9 @@ const Navbar = () => {
                         <Link
                           key={activity.id}
                           to={`/activities/${activity.slug}`}
-                          className="block px-4 py-1.5 text-white/70 text-sm hover:bg-white/10 rounded"
+                          className={mobileDropdownLinkClass(
+                            isActivePath(`/activities/${activity.slug}`)
+                          )}
                           onClick={() => {
                             setIsMenuOpen(false);
                             setActiveDropdown(null);
@@ -519,7 +566,7 @@ const Navbar = () => {
             <li>
               <button
                 type="button"
-                className="w-full text-left py-2 px-4 text-white hover:bg-white/10 rounded-lg transition flex justify-between items-center"
+                className={mobileDropdownButtonClass(isSectionActive(['/tours']))}
                 onClick={() => toggleDropdown('mobile-tours')}
               >
                 <span>Tours</span>
@@ -550,7 +597,9 @@ const Navbar = () => {
                         <Link
                           key={tour.id}
                           to={`/tours/${tour.slug}`}
-                          className="block px-4 py-1.5 text-white/70 text-sm hover:bg-white/10 rounded"
+                          className={mobileDropdownLinkClass(
+                            isActivePath(`/tours/${tour.slug}`)
+                          )}
                           onClick={() => {
                             setIsMenuOpen(false);
                             setActiveDropdown(null);
@@ -569,7 +618,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className="block py-2 px-4 text-white hover:bg-white/10 rounded-lg transition"
+                className={mobileNavLinkClass(isActivePath('/contact'))}
                 onClick={() => {
                   setIsMenuOpen(false);
                   setActiveDropdown(null);
