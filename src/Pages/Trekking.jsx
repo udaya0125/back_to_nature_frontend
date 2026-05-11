@@ -4,7 +4,7 @@ import zone from "../Images/zone.png";
 import hourglass from "../Images/hourglass.png";
 import north from "../Images/north.jpg";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import trekData from "../Data/Data.json";
 import hiddenlake from "../Images/hiddenlake.jpg";
 import khumai from "../Images/khumai.jpg";
@@ -22,6 +22,8 @@ import abc3 from "../Images/abc3.jpg";
 import abc4 from "../Images/abc4.jpg";
 import abc5 from "../Images/abc5.jpg";
 import abc6 from "../Images/abc1.jpg";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 // Create an image mapping object for static imports
 const imageMap = {
@@ -51,6 +53,29 @@ const Trekking = () => {
   const { slug } = useParams();
 
   const trek = trekData.find((item) => item.slug === slug);
+
+  useEffect(() => {
+    Fancybox.bind('[data-fancybox="gallery"]', {
+      Toolbar: {
+        display: {
+          left: ["infobar"],
+          middle: [],
+          right: ["slideshow", "fullscreen", "download", "close"],
+        },
+      },
+      Images: {
+        zoom: true,
+      },
+      animated: true,
+      showClass: "f-fadeIn",
+      hideClass: "f-fadeOut",
+    });
+
+    return () => {
+      Fancybox.unbind('[data-fancybox="gallery"]');
+      Fancybox.close();
+    };
+  }, [trek]); // re-bind when trek changes
 
   if (!trek) {
     return <div className="text-center py-20 text-xl">Trek not found</div>;
@@ -269,7 +294,7 @@ const Trekking = () => {
                 ))}
               </div>
               {/* Gallery */}
-              <div className="mt-6 md:mt-8">
+              {/* <div className="mt-6 md:mt-8">
                 <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
                   Gallery
                 </h2>
@@ -286,130 +311,152 @@ const Trekking = () => {
                     />
                   ))}
                 </div>
+              </div> */}
+              {/* Gallery */}
+              <div className="mt-6 md:mt-8">
+                <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
+                  Gallery
+                </h2>
+                <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">
+                  Each image tells a unique story
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+                  {trek.images.map((image, index) => (
+                    <a
+                      key={index}
+                      href={getImage(image)}
+                      data-fancybox="gallery"
+                      data-caption={`${trek.title} - Image ${index + 1}`}
+                      className="block overflow-hidden rounded cursor-zoom-in group">
+                      <img
+                        src={getImage(image)}
+                        alt={`Gallery ${index + 1}`}
+                        className="w-full h-28 sm:h-32 md:h-40 object-cover rounded transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </a>
+                  ))}
+                </div>
               </div>
 
               {/* FAQ - Lo Manthang Trek Only */}
               {slug === "lo-manthang-trek" && (
-  <div className="mt-8 md:mt-12">
-    <h2 className="text-xl md:text-2xl font-medium mb-4 md:mb-6">
-      Frequently Asked Questions
-    </h2>
+                <div className="mt-8 md:mt-12">
+                  <h2 className="text-xl md:text-2xl font-medium mb-4 md:mb-6">
+                    Frequently Asked Questions
+                  </h2>
 
-    <div className="space-y-4">
-      {[
-        {
-          q: "How difficult is the Lo Manthang Trek?",
-          a: "The trek is considered moderate. Basic fitness and some trekking experience are helpful.",
-        },
-        {
-          q: "Do I need a guide for Upper Mustang?",
-          a: "Yes. A licensed guide is mandatory because Upper Mustang is a restricted region.",
-        },
-        {
-          q: "Can beginners do the Lo Manthang Trek?",
-          a: "Yes, beginners with good physical fitness can complete the trek comfortably.",
-        },
-        {
-          q: "What is the altitude of Lo Manthang?",
-          a: "Lo Manthang is located at approximately 3,840 meters above sea level.",
-        },
-        {
-          q: "Is Upper Mustang open during monsoon?",
-          a: "Yes. Upper Mustang is one of the best trekking destinations during monsoon because it lies in a rain-shadow area.",
-        },
-        {
-          q: "How much does the Lo Manthang Trek cost?",
-          a: "The cost varies depending on itinerary, transport, accommodation, permits, and group size.",
-        },
-        {
-          q: "What are the accommodation facilities like?",
-          a: "Tea houses and lodges are available along the trekking route with basic but comfortable facilities.",
-        },
-        {
-          q: "What can I see in Lo Manthang?",
-          answer: (
-            <div className="text-gray-600 text-sm md:text-base">
-              <p className="mb-2">Travelers can explore:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Ancient monasteries</li>
-                <li>Royal palaces</li>
-                <li>Historic caves</li>
-                <li>Tibetan culture and traditions</li>
-                <li>Stunning Himalayan landscapes</li>
-              </ul>
-            </div>
-          ),
-        },
-        {
-          q: "How do I reach Lo Manthang from Pokhara?",
-          a: "Most trekkers travel from Pokhara to Jomsom by flight or jeep before starting the trek.",
-        },
-        {
-          q: "Why is Upper Mustang famous?",
-          answer: (
-            <div className="text-gray-600 text-sm md:text-base">
-              <p className="mb-2">Upper Mustang is famous for:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Ancient Tibetan culture</li>
-                <li>Hidden kingdom history</li>
-                <li>Dramatic desert landscapes</li>
-                <li>The walled city of Lo Manthang</li>
-              </ul>
-            </div>
-          ),
-        },
-      ].map((faq, index) => (
-        <div
-          key={index}
-          className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-          
-          <button
-            className="w-full flex justify-between items-center p-4 md:p-5 text-left focus:outline-none"
-            onClick={() =>
-              setActiveDay(
-                activeDay === `faq-${index}`
-                  ? null
-                  : `faq-${index}`
-              )
-            }>
-            
-            <span className="font-medium text-gray-800 text-sm md:text-base pr-4">
-              {faq.q}
-            </span>
+                  <div className="space-y-4">
+                    {[
+                      {
+                        q: "How difficult is the Lo Manthang Trek?",
+                        a: "The trek is considered moderate. Basic fitness and some trekking experience are helpful.",
+                      },
+                      {
+                        q: "Do I need a guide for Upper Mustang?",
+                        a: "Yes. A licensed guide is mandatory because Upper Mustang is a restricted region.",
+                      },
+                      {
+                        q: "Can beginners do the Lo Manthang Trek?",
+                        a: "Yes, beginners with good physical fitness can complete the trek comfortably.",
+                      },
+                      {
+                        q: "What is the altitude of Lo Manthang?",
+                        a: "Lo Manthang is located at approximately 3,840 meters above sea level.",
+                      },
+                      {
+                        q: "Is Upper Mustang open during monsoon?",
+                        a: "Yes. Upper Mustang is one of the best trekking destinations during monsoon because it lies in a rain-shadow area.",
+                      },
+                      {
+                        q: "How much does the Lo Manthang Trek cost?",
+                        a: "The cost varies depending on itinerary, transport, accommodation, permits, and group size.",
+                      },
+                      {
+                        q: "What are the accommodation facilities like?",
+                        a: "Tea houses and lodges are available along the trekking route with basic but comfortable facilities.",
+                      },
+                      {
+                        q: "What can I see in Lo Manthang?",
+                        answer: (
+                          <div className="text-gray-600 text-sm md:text-base">
+                            <p className="mb-2">Travelers can explore:</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                              <li>Ancient monasteries</li>
+                              <li>Royal palaces</li>
+                              <li>Historic caves</li>
+                              <li>Tibetan culture and traditions</li>
+                              <li>Stunning Himalayan landscapes</li>
+                            </ul>
+                          </div>
+                        ),
+                      },
+                      {
+                        q: "How do I reach Lo Manthang from Pokhara?",
+                        a: "Most trekkers travel from Pokhara to Jomsom by flight or jeep before starting the trek.",
+                      },
+                      {
+                        q: "Why is Upper Mustang famous?",
+                        answer: (
+                          <div className="text-gray-600 text-sm md:text-base">
+                            <p className="mb-2">Upper Mustang is famous for:</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                              <li>Ancient Tibetan culture</li>
+                              <li>Hidden kingdom history</li>
+                              <li>Dramatic desert landscapes</li>
+                              <li>The walled city of Lo Manthang</li>
+                            </ul>
+                          </div>
+                        ),
+                      },
+                    ].map((faq, index) => (
+                      <div
+                        key={index}
+                        className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <button
+                          className="w-full flex justify-between items-center p-4 md:p-5 text-left focus:outline-none"
+                          onClick={() =>
+                            setActiveDay(
+                              activeDay === `faq-${index}`
+                                ? null
+                                : `faq-${index}`,
+                            )
+                          }>
+                          <span className="font-medium text-gray-800 text-sm md:text-base pr-4">
+                            {faq.q}
+                          </span>
 
-            <svg
-              className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 flex-shrink-0 transform transition-transform duration-300 ${
-                activeDay === `faq-${index}` ? "rotate-180" : ""
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+                          <svg
+                            className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 flex-shrink-0 transform transition-transform duration-300 ${
+                              activeDay === `faq-${index}` ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </button>
 
-          {activeDay === `faq-${index}` && (
-            <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
-              {faq.answer ? (
-                faq.answer
-              ) : (
-                <p className="text-gray-600 text-sm md:text-base">
-                  {faq.a}
-                </p>
+                        {activeDay === `faq-${index}` && (
+                          <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
+                            {faq.answer ? (
+                              faq.answer
+                            ) : (
+                              <p className="text-gray-600 text-sm md:text-base">
+                                {faq.a}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
             </div>
 
             {/* Right Column: Sticky Include/Exclude Section */}

@@ -20,6 +20,8 @@ import zipline from '../Images/zipline.jpg';
 import jump from '../Images/jump.jpg';
 import bird from '../Images/bird.jpeg';
 import north from '../Images/north.jpg'; // Added fallback import
+import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 const BookNowPopup = ({ 
   packageName = "Tour Package", 
@@ -227,6 +229,29 @@ const Activities = () => {
     setActiveDay(activeDay === day ? null : day);
   };
 
+  useEffect(() => {
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    Toolbar: {
+      display: {
+        left: ['infobar'],
+        middle: [],
+        right: ['slideshow', 'fullscreen', 'download', 'close'],
+      },
+    },
+    Images: {
+      zoom: true,
+    },
+    animated: true,
+    showClass: 'f-fadeIn',
+    hideClass: 'f-fadeOut',
+  });
+
+  return () => {
+    Fancybox.unbind('[data-fancybox="gallery"]');
+    Fancybox.close();
+  };
+}, [activity]); // re-bind when activity changes
+
   const imageMap = {
     'ballon.webp': balloon,
     'paraglading.jpg': paraglading,
@@ -345,7 +370,7 @@ const Activities = () => {
               </div>
       
               {/* Gallery */}
-              <div className="mt-6 md:mt-8">
+              {/* <div className="mt-6 md:mt-8">
                 <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">Gallery</h2>
                 <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Each image tells a unique story</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
@@ -358,7 +383,29 @@ const Activities = () => {
                     />
                   ))}
                 </div>
-              </div>
+              </div> */}
+              {/* Gallery */}
+<div className="mt-6 md:mt-8">
+  <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">Gallery</h2>
+  <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Each image tells a unique story</p>
+  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+    {activity.images.map((image, index) => (
+      <a
+        key={index}
+        href={getImage(image)}
+        data-fancybox="gallery"
+        data-caption={`${activity.title} - Image ${index + 1}`}
+        className="block overflow-hidden rounded cursor-zoom-in group"
+      >
+        <img
+          src={getImage(image)}
+          alt={`Gallery ${index + 1}`}
+          className="w-full h-28 sm:h-32 md:h-40 object-cover rounded transition-transform duration-300 group-hover:scale-105"
+        />
+      </a>
+    ))}
+  </div>
+</div>
             </div>
       
             {/* Right Column: Sticky Include/Exclude Section */}
