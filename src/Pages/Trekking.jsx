@@ -135,7 +135,7 @@ const Trekking = () => {
               </p>
 
               {/* Lo Manthang Treak Extra Info */}
-              {slug === "lo-manthang-Trek" && (
+              {slug === "lo-manthang-trek" && (
                 <div className="mt-4 md:mt-6 space-y-6 text-sm md:text-base text-gray-800">
                   <div>
                     <p className="font-semibold mb-2">
@@ -261,8 +261,8 @@ const Trekking = () => {
                 </div>
               </div>
 
-              {/* FAQ - Lo Manthang Tour Only */}
-              {slug === "lo-manthang-tour" && (
+              {/* FAQ - Lo Manthang Trek Only */}
+              {slug === "lo-manthang-trek" && (
                 <div className="mt-8 md:mt-12">
                   <h2 className="text-xl md:text-2xl font-medium mb-4 md:mb-6">
                     Frequently Asked Questions
