@@ -191,21 +191,6 @@ import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import parse from 'html-react-parser';
 
-// Helper function to clean HTML for description
-const cleanHtml = (html) => {
-  if (!html) return '';
-  // Remove HTML tags for plain text description
-  return html.replace(/<[^>]*>/g, '');
-};
-
-// Helper function to parse HTML list items
-const parseListItems = (html) => {
-  if (!html) return [];
-  const clean = html.replace(/<p>|<\/p>/g, '');
-  const items = clean.split(',').map((item) => item.trim().replace(/["]/g, ''));
-  return items.filter((item) => item);
-};
-
 // BookNowPopup Component
 const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -214,7 +199,6 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
     people: "",
   });
 
-  // WhatsApp number (include country code without + or spaces)
   const WHATSAPP_NUMBER = "9840097901";
 
   const handleSubmit = () => {
@@ -223,46 +207,25 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
       return;
     }
 
-    // Create a more compatible WhatsApp message
     const message = `New Tour Booking Request\n\nPackage: ${packageName}\nName: ${formData.name}\nDate: ${formData.date}\nNumber of People: ${formData.people}\n\nPlease confirm availability.`;
-
-    // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
-
-    // Create URLs for both web and app
     const webUrl = `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
     const appUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
-
-    // Try to detect if user is on mobile
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-      // For mobile devices, use api.whatsapp.com which works better with the app
       window.open(appUrl, "_blank");
     } else {
-      // For desktop, use web.whatsapp.com but provide fallback
       const whatsappWindow = window.open(webUrl, "_blank");
-
-      // Fallback: if the web version doesn't work, offer the app version
       setTimeout(() => {
-        if (
-          !whatsappWindow ||
-          whatsappWindow.closed ||
-          typeof whatsappWindow.closed == "undefined"
-        ) {
-          // If popup was blocked or closed, offer alternative
-          if (
-            confirm(
-              "WhatsApp Web not opened. Would you like to try opening in WhatsApp app instead?",
-            )
-          ) {
+        if (!whatsappWindow || whatsappWindow.closed || typeof whatsappWindow.closed == "undefined") {
+          if (confirm("WhatsApp Web not opened. Would you like to try opening in WhatsApp app instead?")) {
             window.open(appUrl, "_blank");
           }
         }
       }, 1000);
     }
 
-    // Reset form and close popup
     setFormData({ name: "", date: "", people: "" });
     onClose();
   };
@@ -274,14 +237,12 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
     });
   };
 
-  // Close popup when clicking outside
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  // Close popup on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
@@ -307,7 +268,6 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
       className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center p-4 z-50"
       onClick={handleBackdropClick}>
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full relative max-h-[90vh] overflow-y-auto">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10 bg-white rounded-full p-1"
@@ -315,15 +275,11 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
           <X size={20} />
         </button>
 
-        {/* Popup Content */}
         <div className="p-6">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
-            Book Your Tour
-          </h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-2">Book Your Tour</h3>
           <p className="text-[#00304a] font-semibold mb-6">{packageName}</p>
 
           <div className="space-y-4">
-            {/* Name Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <User size={16} className="inline mr-2" />
@@ -340,7 +296,6 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
               />
             </div>
 
-            {/* Date Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Calendar size={16} className="inline mr-2" />
@@ -357,7 +312,6 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
               />
             </div>
 
-            {/* Number of People Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Users size={16} className="inline mr-2" />
@@ -376,19 +330,16 @@ const BookNowPopup = ({ packageName = "Tour Package", isOpen, onClose }) => {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               onClick={handleSubmit}
               className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 mt-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
               Send to WhatsApp
             </button>
 
-            {/* Additional Info */}
             <p className="text-xs text-gray-500 text-center mt-4">
               You'll be redirected to WhatsApp to complete your booking
             </p>
 
-            {/* WhatsApp Help Text */}
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-4">
               <p className="text-xs text-yellow-800">
                 <strong>Note:</strong> If the message doesn't appear when
@@ -420,11 +371,7 @@ const Tours = () => {
         setLoading(true);
         const response = await axios.get(`http://127.0.0.1:8000/api/tours/${slug}`);
         const tourData = response.data.data;
-        
-        // Parse includes and excludes from HTML
-        const includes = parseListItems(tourData.includes);
-        const excludes = parseListItems(tourData.excludes);
-        
+
         // Parse itineraries
         let itineraries = [];
         if (tourData.itineraries && tourData.itineraries.length > 0) {
@@ -435,17 +382,16 @@ const Tours = () => {
             description: item.description, // Keep HTML for rendering
           }));
         }
-        
+
         // Get images
         const images = tourData.images
           ? tourData.images.map((img) => img.image)
           : [];
-        
+
         // Fetch FAQs for this tour
         try {
           const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
           const allFaqs = faqResponse.data.data;
-          // Filter FAQs for this tour (assuming tour_id or category_id mapping)
           const tourFaqs = allFaqs.filter(
             (faq) => faq.tour_id === tourData.id || faq.category_id === tourData.category_id
           );
@@ -454,11 +400,12 @@ const Tours = () => {
           console.error("Error loading FAQs:", faqErr);
           setFaqs([]);
         }
-        
+
         setTour({
           ...tourData,
-          includes,
-          excludes,
+          // Keep includes/excludes as raw HTML for rich text rendering
+          includes: tourData.includes || '',
+          excludes: tourData.excludes || '',
           itineraries,
           images,
           description: tourData.description, // Keep HTML for rendering
@@ -480,12 +427,10 @@ const Tours = () => {
   // Helper to get full image URL from API response
   const getImageUrl = (imageData) => {
     if (!imageData) return bg5;
-    
-    // If imageData is an object with image property (API format)
+
     if (typeof imageData === 'object' && imageData.image) {
       return `http://127.0.0.1:8000/storage/${imageData.image}`;
     }
-    // If imageData is a string (could be a filename or full path)
     if (typeof imageData === 'string') {
       if (imageData.startsWith('http')) return imageData;
       if (imageData.startsWith('/storage')) return `http://127.0.0.1:8000${imageData}`;
@@ -580,11 +525,10 @@ const Tours = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-24">
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
-              {/* Description - Using dangerouslySetInnerHTML for HTML content */}
-              <div 
-                className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: tour.description }}
-              />
+              {/* Description - parsed from rich text HTML */}
+              <div className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none">
+                {parse(tour.description || '')}
+              </div>
 
               {/* Itinerary Accordion */}
               <div className="space-y-2">
@@ -620,10 +564,9 @@ const Tours = () => {
                     </button>
 
                     {activeDay === item.id && (
-                      <div 
-                        className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      />
+                      <div className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none">
+                        {parse(item.description || '')}
+                      </div>
                     )}
                   </div>
                 ))}
@@ -699,10 +642,9 @@ const Tours = () => {
 
                         {activeDay === `faq-${index}` && (
                           <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
-                            <div
-                              className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none"
-                              dangerouslySetInnerHTML={{ __html: faq.answer }}
-                            />
+                            <div className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none">
+                              {parse(faq.answer || '')}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -722,34 +664,25 @@ const Tours = () => {
                   To help you plan your trip, we have put together a list of
                   what's included and what's not included in your tour package.
                 </p>
+
                 <div className="mb-4 md:mb-6">
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                    Included
-                  </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {tour.includes && tour.includes.length > 0 ? (
-                      tour.includes.map((item, index) => (
-                        <li key={`included-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific inclusions listed</li>
-                    )}
-                  </ul>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Included</h3>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {tour.includes
+                      ? parse(tour.includes)
+                      : <p>No specific inclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <div className="mb-4 md:mb-6">
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                    Excluded
-                  </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {tour.excludes && tour.excludes.length > 0 ? (
-                      tour.excludes.map((item, index) => (
-                        <li key={`excluded-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific exclusions listed</li>
-                    )}
-                  </ul>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Excluded</h3>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {tour.excludes
+                      ? parse(tour.excludes)
+                      : <p>No specific exclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <button

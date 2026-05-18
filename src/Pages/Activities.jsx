@@ -469,6 +469,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
+import parse from 'html-react-parser';
 
 const BookNowPopup = ({ 
   packageName = "Activity Package", 
@@ -638,13 +639,7 @@ const BookNowPopup = ({
   );
 };
 
-// Helper function to parse HTML list items
-const parseListItems = (html) => {
-  if (!html) return [];
-  const clean = html.replace(/<p>|<\/p>/g, '');
-  const items = clean.split(',').map((item) => item.trim().replace(/["]/g, ''));
-  return items.filter((item) => item);
-};
+
 
 const Activities = () => {
   const [activeDay, setActiveDay] = useState(null);
@@ -663,9 +658,9 @@ const Activities = () => {
         const response = await axios.get(`http://127.0.0.1:8000/api/activities/${slug}`);
         const activityData = response.data.data;
         
-        // Parse includes and excludes from HTML
-        const includes = parseListItems(activityData.includes);
-        const excludes = parseListItems(activityData.excludes);
+        // Keep includes and excludes as raw HTML for rich text rendering
+        const includes = activityData.includes || '';
+        const excludes = activityData.excludes || '';
         
         // Parse itineraries
         let itineraries = [];
@@ -843,11 +838,10 @@ const Activities = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-24">
             {/* Left Column: Info & Itinerary */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
-              {/* Description - Using dangerouslySetInnerHTML for HTML content */}
-              <div 
-                className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: activity.description }}
-              />
+              {/* Description - parsed from rich text HTML */}
+              <div className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none">
+                {parse(activity.description || '')}
+              </div>
 
               {/* Itinerary Accordion */}
               <div className="space-y-2">
@@ -883,10 +877,9 @@ const Activities = () => {
                     </button>
 
                     {activeDay === item.id && (
-                      <div 
-                        className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      />
+                      <div className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none">
+                        {parse(item.description || '')}
+                      </div>
                     )}
                   </div>
                 ))}
@@ -966,10 +959,9 @@ const Activities = () => {
 
                         {activeDay === `faq-${index}` && (
                           <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
-                            <div
-                              className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none"
-                              dangerouslySetInnerHTML={{ __html: faq.answer }}
-                            />
+                            <div className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none">
+                              {parse(faq.answer || '')}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -993,30 +985,24 @@ const Activities = () => {
                   <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
                     Included
                   </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {activity.includes && activity.includes.length > 0 ? (
-                      activity.includes.map((item, index) => (
-                        <li key={`included-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific inclusions listed</li>
-                    )}
-                  </ul>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {activity.includes
+                      ? parse(activity.includes)
+                      : <p>No specific inclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <div className="mb-4 md:mb-6">
                   <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
                     Excluded
                   </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {activity.excludes && activity.excludes.length > 0 ? (
-                      activity.excludes.map((item, index) => (
-                        <li key={`excluded-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific exclusions listed</li>
-                    )}
-                  </ul>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {activity.excludes
+                      ? parse(activity.excludes)
+                      : <p>No specific exclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <button

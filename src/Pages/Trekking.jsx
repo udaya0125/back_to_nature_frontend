@@ -527,6 +527,7 @@ import hourglass from "../Images/hourglass.png";
 import bg5 from "../Images/bg5.jpg";
 import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
+import parse from 'html-react-parser';
 
 // BookNowPopup Component (same as in Tours)
 const BookNowPopup = ({ packageName = "Trek Package", isOpen, onClose }) => {
@@ -683,14 +684,6 @@ const BookNowPopup = ({ packageName = "Trek Package", isOpen, onClose }) => {
   );
 };
 
-// Helper function to parse HTML list items
-const parseListItems = (html) => {
-  if (!html) return [];
-  const clean = html.replace(/<p>|<\/p>/g, '');
-  const items = clean.split(',').map((item) => item.trim().replace(/["]/g, ''));
-  return items.filter((item) => item);
-};
-
 // Main Trekking Component
 const Trekking = () => {
   const [activeDay, setActiveDay] = useState(null);
@@ -708,11 +701,7 @@ const Trekking = () => {
         setLoading(true);
         const response = await axios.get(`http://127.0.0.1:8000/api/trekkings/${slug}`);
         const trekData = response.data.data;
-        
-        // Parse includes and excludes from HTML
-        const includes = parseListItems(trekData.includes);
-        const excludes = parseListItems(trekData.excludes);
-        
+
         // Parse itineraries
         let itineraries = [];
         if (trekData.itineraries && trekData.itineraries.length > 0) {
@@ -723,17 +712,16 @@ const Trekking = () => {
             description: item.description, // Keep HTML for rendering
           }));
         }
-        
+
         // Get images
         const images = trekData.images
           ? trekData.images.map((img) => img.image)
           : [];
-        
+
         // Fetch FAQs for this trek
         try {
           const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
           const allFaqs = faqResponse.data.data;
-          // Filter FAQs for this trek (assuming trekking_id mapping)
           const trekFaqs = allFaqs.filter(
             (faq) => faq.trekking_id === trekData.id
           );
@@ -742,11 +730,12 @@ const Trekking = () => {
           console.error("Error loading FAQs:", faqErr);
           setFaqs([]);
         }
-        
+
         setTrek({
           ...trekData,
-          includes,
-          excludes,
+          // Keep includes/excludes as raw HTML for rich text rendering
+          includes: trekData.includes || '',
+          excludes: trekData.excludes || '',
           itineraries,
           images,
           description: trekData.description, // Keep HTML for rendering
@@ -768,12 +757,10 @@ const Trekking = () => {
   // Helper to get full image URL from API response
   const getImageUrl = (imageData) => {
     if (!imageData) return bg5;
-    
-    // If imageData is an object with image property (API format)
+
     if (typeof imageData === 'object' && imageData.image) {
       return `http://127.0.0.1:8000/storage/${imageData.image}`;
     }
-    // If imageData is a string
     if (typeof imageData === 'string') {
       if (imageData.startsWith('http')) return imageData;
       if (imageData.startsWith('/storage')) return `http://127.0.0.1:8000${imageData}`;
@@ -868,11 +855,10 @@ const Trekking = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-24">
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
-              {/* Description - Using dangerouslySetInnerHTML for HTML content */}
-              <div 
-                className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: trek.description }}
-              />
+              {/* Description - parsed from rich text HTML */}
+              <div className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none">
+                {parse(trek.description || '')}
+              </div>
 
               {/* Lo Manthang Trek Extra Info (if needed) */}
               {slug === "lo-manthang-trek" && (
@@ -963,10 +949,9 @@ const Trekking = () => {
                     </button>
 
                     {activeDay === item.id && (
-                      <div 
-                        className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      />
+                      <div className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none">
+                        {parse(item.description || '')}
+                      </div>
                     )}
                   </div>
                 ))}
@@ -1042,10 +1027,9 @@ const Trekking = () => {
 
                         {activeDay === `faq-${index}` && (
                           <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
-                            <div
-                              className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none"
-                              dangerouslySetInnerHTML={{ __html: faq.answer }}
-                            />
+                            <div className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none">
+                              {parse(faq.answer || '')}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -1065,34 +1049,25 @@ const Trekking = () => {
                   To help you plan your trip, we have put together a list of
                   what's included and what's not included in your trek package.
                 </p>
+
                 <div className="mb-4 md:mb-6">
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                    Included
-                  </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {trek.includes && trek.includes.length > 0 ? (
-                      trek.includes.map((item, index) => (
-                        <li key={`included-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific inclusions listed</li>
-                    )}
-                  </ul>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Included</h3>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {trek.includes
+                      ? parse(trek.includes)
+                      : <p>No specific inclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <div className="mb-4 md:mb-6">
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                    Excluded
-                  </h3>
-                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                    {trek.excludes && trek.excludes.length > 0 ? (
-                      trek.excludes.map((item, index) => (
-                        <li key={`excluded-${index}`}>{item}</li>
-                      ))
-                    ) : (
-                      <li>No specific exclusions listed</li>
-                    )}
-                  </ul>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Excluded</h3>
+                  <div className="text-gray-500 text-sm md:text-base prose prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1">
+                    {trek.excludes
+                      ? parse(trek.excludes)
+                      : <p>No specific exclusions listed</p>
+                    }
+                  </div>
                 </div>
 
                 <button
