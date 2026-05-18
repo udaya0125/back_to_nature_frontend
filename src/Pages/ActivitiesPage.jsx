@@ -176,117 +176,45 @@
 
 // export default ActivitiesPage;
 
+
+
 import { Helmet } from "react-helmet";
 import everest from "../Images/everest2.jpg";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-
-// Import all activity images
-import cyclingImg from "../Images/cycling.jpg";
-import ultralightImg from "../Images/ultralight.webp";
-import paraglidingImg from "../Images/paraglading.jpg";
-import paraglidingImg2 from "../Images/paraglading2.jpg";
-import kayakingImg from "../Images/kayaking.jpg";
-import kayaking1 from "../Images/kayaking1.jpg";
-import kayaking2 from "../Images/kayaking2.jpg";
-import kayaking3 from "../Images/kayaking3.jpg";
-import kayaking4 from "../Images/kayaking4.jpg";
-import raftingImg from "../Images/rafting.png";
-import balloonImg from "../Images/ballon.webp";
-import ziplineImg from "../Images/zipline.jpg";
-import bungeeImg from "../Images/jump.jpg";
-import bird from "../Images/bird.jpeg";
 
 const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
-  // Create a mapping of image names to imported images
-  const imageMap = {
-    "cycling.jpg": cyclingImg,
-    "ultralight.webp": ultralightImg,
-    "paraglading.jpg": paraglidingImg,
-    "paraglading2.jpg": paraglidingImg2,
-    "kayaking1.jpg": kayaking1,
-    "kayaking2.jpg": kayaking2,
-    "kayaking3.jpg": kayaking3,
-    "kayaking4.jpg": kayaking4,
-    "kayaking.jpg": kayakingImg,
-    "rafting.png": raftingImg,
-    "ballon.webp": balloonImg,
-    "zipline.jpg": ziplineImg,
-    "jump.jpg": bungeeImg,
-    "bird.jpeg": bird,
-  };
-
-  // const getImage = (imagePath) => {
-  //   if (!imagePath) return everest;
-  //   // Extract filename from path (e.g., "activities/filename.jpg" -> "filename.jpg")
-  //   const filename = imagePath.split('/').pop();
-  //   return imageMap[filename] || everest;
-  // };
-
-  const getImage = (imagePath) => {
-    if (!imagePath) return everest;
-    // If it's already a full URL or starts with http, return as is
-    if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
-      return imagePath;
+  // Helper to get full image URL from backend storage
+  const getImageUrl = (imageData) => {
+    // API returns a plain string path like "activities/filename.jpg"
+    if (typeof imageData === "string") {
+      return `http://127.0.0.1:8000/storage/${imageData}`;
     }
-    // If it's a path from API, construct full URL (adjust base URL as needed)
-    if (imagePath.startsWith("activities/")) {
-      return `http://127.0.0.1:8000/storage/${imagePath}`;
+    // Legacy object format fallback
+    if (imageData?.image) {
+      return `http://127.0.0.1:8000/storage/${imageData.image}`;
     }
     return everest;
   };
 
-  // Parse HTML content safely
-  const parseHtmlContent = (htmlString) => {
-    if (!htmlString) return "";
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlString;
-    return tempDiv.textContent || tempDiv.innerText || "";
-  };
-
+  // Fetch activities from API
   useEffect(() => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/activities",
-        );
+        const response = await axios.get("http://127.0.0.1:8000/api/activities");
         const activitiesData = response.data.data;
-
-        // Transform API data to match expected structure
-        // const transformedActivities = activitiesData.map(activity => ({
-        //   id: activity.id,
-        //   title: activity.title,
-        //   slug: activity.slug,
-        //   description: parseHtmlContent(activity.description),
-        //   images: activity.images ? activity.images.map(img => img.image) : [],
-        //   imageUrl: activity.images && activity.images.length > 0
-        //     ? getImage(activity.images[0].image)
-        //     : everest
-        // }));
-        const transformedActivities = activitiesData.map((activity) => ({
-          id: activity.id,
-          title: activity.title,
-          slug: activity.slug,
-          description: parseHtmlContent(activity.description),
-          images: activity.images
-            ? activity.images.map((img) => img.image)
-            : [],
-          imageUrl:
-            activity.images && activity.images.length > 0
-              ? getImage(activity.images[0].image)
-              : everest,
-        }));
-
-        setActivities(transformedActivities);
-        setLoading(false);
+        setActivities(activitiesData);
+        setError(null);
       } catch (err) {
         console.error("Error loading activity data:", err);
+        setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -296,20 +224,25 @@ const ActivitiesPage = () => {
 
   console.log("Loaded activities:", activities);
 
-  const handleActivityClick = (slug) => {
-    navigate(`/activities/${slug}`);
-  };
-
-  const pageDescription =
-    "Explore thrilling adventure activities like paragliding, rafting, bungee jumping, and more. Plan your next adventure with us.";
-
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
+
+  if (error) {
+    return (
+      <div className="text-center py-12 text-red-500">
+        <p>Error loading activity data: {error}</p>
+        <p>Please try again later.</p>
+      </div>
+    );
+  }
+
+  const pageDescription =
+    "Explore thrilling adventure activities like paragliding, rafting, bungee jumping, and more. Plan your next adventure with us.";
 
   return (
     <>
@@ -321,7 +254,6 @@ const ActivitiesPage = () => {
           rel="canonical"
           href="https://backtonatureadventure.com/activities"
         />
-
         <meta
           property="og:title"
           content="Adventure Activities | Discover Thrilling Experiences"
@@ -333,7 +265,6 @@ const ActivitiesPage = () => {
           content="https://backtonatureadventure.com/activities"
         />
         <meta property="og:type" content="website" />
-
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -346,7 +277,8 @@ const ActivitiesPage = () => {
       {/* Hero Banner Section */}
       <div
         className="relative bg-cover bg-center bg-no-repeat w-full h-[40vh] sm:h-[50vh] md:h-[70vh] flex items-center justify-center"
-        style={{ backgroundImage: `url(${everest})` }}>
+        style={{ backgroundImage: `url(${everest})` }}
+      >
         <div className="absolute inset-0 bg-gray-900/60"></div>
         <div className="relative z-10 text-center px-4">
           <h2 className="uppercase text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
@@ -356,7 +288,8 @@ const ActivitiesPage = () => {
             <Link
               to="/"
               onClick={() => window.scrollTo(0, 0)}
-              className="uppercase text-white hover:text-blue-300">
+              className="uppercase text-white hover:text-blue-300"
+            >
               Home
             </Link>
             / Activities
@@ -373,9 +306,10 @@ const ActivitiesPage = () => {
                 to={`/activities/${activity.slug}`}
                 onClick={() => window.scrollTo(0, 0)}
                 key={activity.id}
-                className="relative group overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                className="relative group overflow-hidden rounded-lg shadow-lg"
+              >
                 <img
-                  src={activity.imageUrl}
+                  src={activity.image ? getImageUrl(activity.image) : everest}
                   alt={activity.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -383,7 +317,7 @@ const ActivitiesPage = () => {
                   <div className="text-white">
                     <h3 className="text-xl font-bold mb-1">{activity.title}</h3>
                     <p className="text-sm line-clamp-2 mb-2">
-                      {activity.description}
+                      {activity.description?.replace(/<[^>]*>/g, "").substring(0, 100)}...
                     </p>
                   </div>
                 </div>

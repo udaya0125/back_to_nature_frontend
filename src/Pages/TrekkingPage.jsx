@@ -310,7 +310,6 @@
 
 // export default TrekkingPage;
 
-
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -340,39 +339,51 @@ const TrekkingPage = () => {
   const [error, setError] = useState(null);
 
   // Function to get image URL from API or fallback to local images
-  const getImageUrl = (imageObject) => {
-    if (!imageObject || !imageObject.image) return north;
-    
-    // If the image path starts with 'trekkings/', it's from the API
-    if (imageObject.image.startsWith('trekkings/')) {
-      // Return the full API URL (adjust the base URL as needed)
-      return `http://127.0.0.1:8000/storage/${imageObject.image}`;
+  // const getImageUrl = (imageObject) => {
+  //   if (!imageObject || !imageObject.image) return north;
+
+  //   // If the image path starts with 'trekkings/', it's from the API
+  //   if (imageObject.image.startsWith('trekkings/')) {
+  //     // Return the full API URL (adjust the base URL as needed)
+  //     return `http://127.0.0.1:8000/storage/${imageObject.image}`;
+  //   }
+
+  //   // For local images, try to map them
+  //   const filename = imageObject.image.split("/").pop();
+  //   const localImageMap = {
+  //     "everest2.jpg": everest,
+  //     "everest.jpg": everest,
+  //     "north.jpg": north,
+  //     "abc.jpg": abc1,
+  //     "abc1.jpg": abc6,
+  //     "abc2.jpg": abc2,
+  //     "abc3.jpg": abc3,
+  //     "abc4.jpg": abc4,
+  //     "abc5.jpg": abc5,
+  //     "mardihimal.jpg": mardi,
+  //     "mardihimal1.jpg": mardi1,
+  //     "bg1.jpg": bg5,
+  //     "hiddenlake.jpg": hiddenlake,
+  //     "khumai.jpg": khumai,
+  //     "kori.jpg": kori,
+  //     "poonhill.jpg": poonhill,
+  //     "lomanthang.jpeg": lomanthang,
+  //     "lomanthang1.jpg": lomanthang1,
+  //     "lomanthang2.jpg": lomanthang2,
+  //   };
+
+  //   return localImageMap[filename] || north;
+  // };
+
+  const getImageUrl = (trek) => {
+    if (!trek || !trek.image) return north;
+    if (trek.image.startsWith("trekkings/")) {
+      return `http://127.0.0.1:8000/storage/${trek.image}`;
     }
-    
-    // For local images, try to map them
-    const filename = imageObject.image.split("/").pop();
+    const filename = trek.image.split("/").pop();
     const localImageMap = {
-      "everest2.jpg": everest,
-      "everest.jpg": everest,
-      "north.jpg": north,
-      "abc.jpg": abc1,
-      "abc1.jpg": abc6,
-      "abc2.jpg": abc2,
-      "abc3.jpg": abc3,
-      "abc4.jpg": abc4,
-      "abc5.jpg": abc5,
-      "mardihimal.jpg": mardi,
-      "mardihimal1.jpg": mardi1,
-      "bg1.jpg": bg5,
-      "hiddenlake.jpg": hiddenlake,
-      "khumai.jpg": khumai,
-      "kori.jpg": kori,
-      "poonhill.jpg": poonhill,
-      "lomanthang.jpeg": lomanthang,
-      "lomanthang1.jpg": lomanthang1,
-      "lomanthang2.jpg": lomanthang2,
+      /* same as before */
     };
-    
     return localImageMap[filename] || north;
   };
 
@@ -391,7 +402,7 @@ const TrekkingPage = () => {
         setLoading(false);
       }
     };
-    
+
     fetchTreks();
   }, []);
 
@@ -510,13 +521,13 @@ const TrekkingPage = () => {
                 className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
                 <div className="relative overflow-hidden">
                   <img
-                    src={getImageUrl(trek.images?.[0])}
+                    src={getImageUrl(trek)}
                     alt={trek.title}
                     className="w-full h-[450px] sm:h-[500px] lg:h-[550px] xl:h-[600px] object-cover transition-transform duration-500 group-hover:scale-110"
                     onError={(e) => {
                       console.error(
                         `Failed to load image for ${trek.title}:`,
-                        trek.images?.[0]?.image
+                        trek.image,
                       );
                       e.target.src = north;
                     }}

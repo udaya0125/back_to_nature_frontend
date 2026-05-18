@@ -1,61 +1,724 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../Images/logo.png';
-import data from '../Data/Data.json'; // Import once
-import { Link, useLocation } from 'react-router-dom';
+// import React, { useState, useEffect } from 'react';
+// import logo from '../Images/logo.png';
+// import data from '../Data/Data.json'; // Import once
+// import { Link, useLocation } from 'react-router-dom';
+
+// const Navbar = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [hasScrolled, setHasScrolled] = useState(false);
+//   const [activeDropdown, setActiveDropdown] = useState(null);
+//   const location = useLocation();
+
+//   // Scroll effect for navbar background
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setHasScrolled(window.scrollY > 10);
+//     };
+//     window.addEventListener('scroll', handleScroll);
+//     return () => window.removeEventListener('scroll', handleScroll);
+//   }, []);
+
+//   // Close menu when clicking outside
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       const menuContainer = document.querySelector('.mobile-menu-container');
+//       if (isMenuOpen && menuContainer && !menuContainer.contains(event.target)) {
+//         setIsMenuOpen(false);
+//         setActiveDropdown(null);
+//       }
+//     };
+//     document.addEventListener('mousedown', handleClickOutside);
+//     return () => document.removeEventListener('mousedown', handleClickOutside);
+//   }, [isMenuOpen]);
+
+//   // Lock body scroll when mobile menu is open
+//   useEffect(() => {
+//     if (isMenuOpen) {
+//       document.body.style.overflow = 'hidden';
+//     } else {
+//       document.body.style.overflow = 'unset';
+//     }
+//     return () => {
+//       document.body.style.overflow = 'unset';
+//     };
+//   }, [isMenuOpen]);
+
+//   const toggleDropdown = (dropdown) => {
+//     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+//   };
+
+//   // Extract grouped data
+//   const trekkings = data.filter((item) => item.category === 'trekking');
+//   const activities = data.filter((item) => item.category === 'activity');
+//   const tours = data.filter((item) => item.category === 'tour');
+
+//   const groupBySubCategory = (items, fallback) =>
+//     Object.entries(
+//       items.reduce((acc, item) => {
+//         const key = item.sub_category || fallback;
+//         if (!acc[key]) acc[key] = [];
+//         acc[key].push(item);
+//         return acc;
+//       }, {})
+//     );
+
+//   const isActivePath = (path) => location.pathname === path;
+//   const isSectionActive = (paths) => paths.some((path) => location.pathname.startsWith(path));
+
+//   const navLinkClass = (isActive) =>
+//     `transition ${isActive ? 'text-blue-300' : 'text-white hover:text-blue-300'}`;
+
+//   const mobileNavLinkClass = (isActive) =>
+//     `block py-2 px-4 rounded-lg transition ${
+//       isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+//     }`;
+
+//   const mobileDropdownButtonClass = (isActive) =>
+//     `w-full text-left py-2 px-4 rounded-lg transition flex justify-between items-center ${
+//       isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+//     }`;
+
+//   const desktopDropdownLinkClass = (isActive) =>
+//     `block px-4 py-2 transition ${
+//       isActive ? 'text-blue-300 bg-blue-50' : 'text-gray-700 hover:bg-blue-50'
+//     }`;
+
+//   const mobileDropdownLinkClass = (isActive) =>
+//     `block px-4 py-1.5 text-sm rounded transition ${
+//       isActive ? 'text-blue-300 bg-white/10' : 'text-white/70 hover:bg-white/10'
+//     }`;
+
+//   return (
+//     <>
+//       {/* Desktop & Base Navbar */}
+//       <nav
+//         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+//           hasScrolled ? 'backdrop-blur-sm bg-[#00304a]/80 shadow-md' : 'bg-transparent'
+//         }`}
+//       >
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//           <div className="flex justify-between items-center h-16">
+//             {/* Logo */}
+//             <div className="flex-shrink-0">
+//               <Link
+//                 to="/"
+//                 onClick={() => {
+//                   setIsMenuOpen(false);
+//                   setActiveDropdown(null);
+//                   window.scrollTo(0, 0);
+//                 }}
+//                 className="block"
+//               >
+//                 <img
+//                   src={logo}
+//                   alt="Company Logo"
+//                   className="h-12 w-auto rounded-4xl p-2 bg-white/90"
+//                 />
+//               </Link>
+//             </div>
+
+//             {/* Desktop Menu */}
+//             <div className="hidden md:flex space-x-8">
+//               <ul className="flex space-x-8 font-semibold text-lg">
+//                 <li>
+//                   <Link
+//                     to="/"
+//                     onClick={() => window.scrollTo(0, 0)}
+//                     className={navLinkClass(isActivePath('/'))}
+//                   >
+//                     Home
+//                   </Link>
+//                 </li>
+//                 <li>
+//                   <Link
+//                     to="/about"
+//                     onClick={() => window.scrollTo(0, 0)}
+//                     className={navLinkClass(isActivePath('/about'))}
+//                   >
+//                     About Us
+//                   </Link>
+//                 </li>
+
+//                 {/* Trekkings Dropdown */}
+//                 <li
+//                   className="relative"
+//                   onMouseEnter={() => setActiveDropdown('trekkings')}
+//                   onMouseLeave={() => setActiveDropdown(null)}
+//                 >
+//                   <button
+//                     className={`flex items-center transition ${
+//                       isSectionActive(['/trekking', '/trekkings'])
+//                         ? 'text-blue-300'
+//                         : 'text-white hover:text-blue-300'
+//                     }`}
+//                     aria-expanded={activeDropdown === 'trekkings'}
+//                   >
+//                     <Link to="/trekking" onClick={() => window.scrollTo(0, 0)} className="block">
+//                       Trekkings
+//                     </Link>
+//                     <svg
+//                       className="w-4 h-4 ml-1"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth="2"
+//                         d="M19 9l-7 7-7-7"
+//                       />
+//                     </svg>
+//                   </button>
+//                   {activeDropdown === 'trekkings' && (
+//                     <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+//                       <div className="py-1">
+//                         {groupBySubCategory(trekkings, 'Annapurna Region').map(([region, treks]) => (
+//                           <div key={region}>
+//                             <div className="px-4 py-2 text-gray-800 font-medium border-b">
+//                               {region}
+//                             </div>
+//                             {treks.map((trek) => (
+//                               <Link
+//                                 key={trek.id}
+//                                 to={`/trekkings/${trek.slug}`}
+//                                 className={desktopDropdownLinkClass(
+//                                   isActivePath(`/trekkings/${trek.slug}`)
+//                                 )}
+//                                 onClick={() => {
+//                                   setIsMenuOpen(false);
+//                                   setActiveDropdown(null);
+//                                   window.scrollTo(0, 0);
+//                                 }}
+//                               >
+//                                 {trek.title}
+//                               </Link>
+//                             ))}
+//                           </div>
+//                         ))}
+//                       </div>
+//                     </div>
+//                   )}
+//                 </li>
+
+//                 {/* Activities Dropdown */}
+//                 <li
+//                   className="relative"
+//                   onMouseEnter={() => setActiveDropdown('activities')}
+//                   onMouseLeave={() => setActiveDropdown(null)}
+//                 >
+//                   <button
+//                     className={`flex items-center transition ${
+//                       isSectionActive(['/activity', '/activities'])
+//                         ? 'text-blue-300'
+//                         : 'text-white hover:text-blue-300'
+//                     }`}
+//                     aria-expanded={activeDropdown === 'activities'}
+//                   >
+//                     <Link to="/activity" onClick={() => window.scrollTo(0, 0)} className="block">
+//                       Activities
+//                     </Link>
+//                     <svg
+//                       className="w-4 h-4 ml-1"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth="2"
+//                         d="M19 9l-7 7-7-7"
+//                       />
+//                     </svg>
+//                   </button>
+//                   {activeDropdown === 'activities' && (
+//                     <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+//                       <div className="py-1">
+//                         {groupBySubCategory(activities, 'Adventure Activities').map(
+//                           ([type, list]) => (
+//                             <div key={type}>
+//                               <div className="px-4 py-2 text-gray-800 font-medium border-b">
+//                                 {type}
+//                               </div>
+//                               {list.map((activity) => (
+//                                 <Link
+//                                   key={activity.id}
+//                                   to={`/activities/${activity.slug}`}
+//                                   className={desktopDropdownLinkClass(
+//                                     isActivePath(`/activities/${activity.slug}`)
+//                                   )}
+//                                   onClick={() => {
+//                                     setIsMenuOpen(false);
+//                                     setActiveDropdown(null);
+//                                     window.scrollTo(0, 0);
+//                                   }}
+//                                 >
+//                                   {activity.title}
+//                                 </Link>
+//                               ))}
+//                             </div>
+//                           )
+//                         )}
+//                       </div>
+//                     </div>
+//                   )}
+//                 </li>
+
+//                 {/* Tours Dropdown */}
+//                 <li
+//                   className="relative"
+//                   onMouseEnter={() => setActiveDropdown('tours')}
+//                   onMouseLeave={() => setActiveDropdown(null)}
+//                 >
+//                   <button
+//                     className={`flex items-center transition ${
+//                       isSectionActive(['/tours']) ? 'text-blue-300' : 'text-white hover:text-blue-300'
+//                     }`}
+//                     aria-expanded={activeDropdown === 'tours'}
+//                   >
+//                     <Link to="/tours" onClick={() => window.scrollTo(0, 0)} className="block">
+//                       Tours
+//                     </Link>
+//                     <svg
+//                       className="w-4 h-4 ml-1"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth="2"
+//                         d="M19 9l-7 7-7-7"
+//                       />
+//                     </svg>
+//                   </button>
+//                   {activeDropdown === 'tours' && (
+//                     <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+//                       <div className="py-1">
+//                         {groupBySubCategory(tours, 'Tour Packages').map(([type, list]) => (
+//                           <div key={type}>
+//                             <div className="px-4 py-2 text-gray-800 font-medium border-b">
+//                               {type}
+//                             </div>
+//                             {list.map((tour) => (
+//                               <Link
+//                                 key={tour.id}
+//                                 to={`/tours/${tour.slug}`}
+//                                 className={desktopDropdownLinkClass(
+//                                   isActivePath(`/tours/${tour.slug}`)
+//                                 )}
+//                                 onClick={() => {
+//                                   setIsMenuOpen(false);
+//                                   setActiveDropdown(null);
+//                                   window.scrollTo(0, 0);
+//                                 }}
+//                               >
+//                                 {tour.title}
+//                               </Link>
+//                             ))}
+//                           </div>
+//                         ))}
+//                       </div>
+//                     </div>
+//                   )}
+//                 </li>
+
+//                 <li>
+//                   <Link
+//                     to="/contact"
+//                     onClick={() => window.scrollTo(0, 0)}
+//                     className={navLinkClass(isActivePath('/contact'))}
+//                   >
+//                     Contact Us
+//                   </Link>
+//                 </li>
+//               </ul>
+//             </div>
+
+//             {/* Mobile Menu Button */}
+//             <div className="md:hidden">
+//               <button
+//                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+//                 className="text-white focus:outline-none"
+//                 aria-label="Toggle menu"
+//                 aria-expanded={isMenuOpen}
+//               >
+//                 <svg
+//                   className="w-8 h-8"
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   {isMenuOpen ? (
+//                     <path
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                       strokeWidth="2"
+//                       d="M6 18L18 6M6 6l12 12"
+//                     />
+//                   ) : (
+//                     <path
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                       strokeWidth="2"
+//                       d="M4 6h16M4 12h16M4 18h16"
+//                     />
+//                   )}
+//                 </svg>
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </nav>
+
+//       {/* Mobile Off-Canvas Menu */}
+//       <div
+//         className={`mobile-menu-container md:hidden fixed inset-0 z-[999] transition-transform duration-300 ease-in-out transform ${
+//           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+//         }`}
+//       >
+//         <div
+//           className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+//           onClick={() => {
+//             setIsMenuOpen(false);
+//             setActiveDropdown(null);
+//           }}
+//         ></div>
+//         <div className="relative bg-[#003049] h-full w-4/5 max-w-xs ml-auto shadow-xl overflow-y-auto">
+//           <div className="p-4 flex justify-between items-center border-b border-white/10">
+//             <Link
+//               to="/"
+//               onClick={() => {
+//                 setIsMenuOpen(false);
+//                 setActiveDropdown(null);
+//                 window.scrollTo(0, 0);
+//               }}
+//               className="block"
+//             >
+//               <img
+//                 src={logo}
+//                 alt="Company Logo"
+//                 className="h-10 w-auto rounded-xl p-1 bg-white/90"
+//               />
+//             </Link>
+//             <button
+//               onClick={() => {
+//                 setIsMenuOpen(false);
+//                 setActiveDropdown(null);
+//               }}
+//               className="text-white hover:text-blue-300 p-2"
+//               aria-label="Close menu"
+//             >
+//               <svg
+//                 className="w-6 h-6"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 viewBox="0 0 24 24"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   strokeWidth="2"
+//                   d="M6 18L18 6M6 6l12 12"
+//                 />
+//               </svg>
+//             </button>
+//           </div>
+
+//           {/* Mobile Nav Links */}
+//           <ul className="p-2 space-y-1 font-medium text-sm">
+//             <li>
+//               <Link
+//                 to="/"
+//                 className={mobileNavLinkClass(isActivePath('/'))}
+//                 onClick={() => {
+//                   setIsMenuOpen(false);
+//                   setActiveDropdown(null);
+//                   window.scrollTo(0, 0);
+//                 }}
+//               >
+//                 Home
+//               </Link>
+//             </li>
+//             <li>
+//               <Link
+//                 to="/about"
+//                 className={mobileNavLinkClass(isActivePath('/about'))}
+//                 onClick={() => {
+//                   setIsMenuOpen(false);
+//                   setActiveDropdown(null);
+//                   window.scrollTo(0, 0);
+//                 }}
+//               >
+//                 About Us
+//               </Link>
+//             </li>
+
+//             {/* Mobile Trekkings Dropdown */}
+//             <li>
+//               <button
+//                 type="button"
+//                 className={mobileDropdownButtonClass(isSectionActive(['/trekking', '/trekkings']))}
+//                 onClick={() => toggleDropdown('mobile-trekkings')}
+//               >
+//                 <span>Trekkings</span>
+//                 <svg
+//                   className={`w-4 h-4 transform transition-transform ${
+//                     activeDropdown === 'mobile-trekkings' ? 'rotate-180' : ''
+//                   }`}
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M19 9l-7 7-7-7"
+//                   />
+//                 </svg>
+//               </button>
+//               {activeDropdown === 'mobile-trekkings' && (
+//                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
+//                   {groupBySubCategory(trekkings, 'Annapurna Region').map(([region, treks]) => (
+//                     <div key={region}>
+//                       <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
+//                         {region}
+//                       </div>
+//                       {treks.map((trek) => (
+//                         <Link
+//                           key={trek.id}
+//                           to={`/trekkings/${trek.slug}`}
+//                           className={mobileDropdownLinkClass(
+//                             isActivePath(`/trekkings/${trek.slug}`)
+//                           )}
+//                           onClick={() => {
+//                             setIsMenuOpen(false);
+//                             setActiveDropdown(null);
+//                             window.scrollTo(0, 0);
+//                           }}
+//                         >
+//                           {trek.title}
+//                         </Link>
+//                       ))}
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </li>
+
+//             {/* Mobile Activities Dropdown */}
+//             <li>
+//               <button
+//                 type="button"
+//                 className={mobileDropdownButtonClass(isSectionActive(['/activity', '/activities']))}
+//                 onClick={() => toggleDropdown('mobile-activities')}
+//               >
+//                 <span>Activities</span>
+//                 <svg
+//                   className={`w-4 h-4 transform transition-transform ${
+//                     activeDropdown === 'mobile-activities' ? 'rotate-180' : ''
+//                   }`}
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M19 9l-7 7-7-7"
+//                   />
+//                 </svg>
+//               </button>
+//               {activeDropdown === 'mobile-activities' && (
+//                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
+//                   {groupBySubCategory(activities, 'Adventure Activities').map(([type, list]) => (
+//                     <div key={type}>
+//                       <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
+//                         {type}
+//                       </div>
+//                       {list.map((activity) => (
+//                         <Link
+//                           key={activity.id}
+//                           to={`/activities/${activity.slug}`}
+//                           className={mobileDropdownLinkClass(
+//                             isActivePath(`/activities/${activity.slug}`)
+//                           )}
+//                           onClick={() => {
+//                             setIsMenuOpen(false);
+//                             setActiveDropdown(null);
+//                             window.scrollTo(0, 0);
+//                           }}
+//                         >
+//                           {activity.title}
+//                         </Link>
+//                       ))}
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </li>
+
+//             {/* Mobile Tours Dropdown */}
+//             <li>
+//               <button
+//                 type="button"
+//                 className={mobileDropdownButtonClass(isSectionActive(['/tours']))}
+//                 onClick={() => toggleDropdown('mobile-tours')}
+//               >
+//                 <span>Tours</span>
+//                 <svg
+//                   className={`w-4 h-4 transform transition-transform ${
+//                     activeDropdown === 'mobile-tours' ? 'rotate-180' : ''
+//                   }`}
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M19 9l-7 7-7-7"
+//                   />
+//                 </svg>
+//               </button>
+//               {activeDropdown === 'mobile-tours' && (
+//                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
+//                   {groupBySubCategory(tours, 'Tour Packages').map(([type, list]) => (
+//                     <div key={type}>
+//                       <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
+//                         {type}
+//                       </div>
+//                       {list.map((tour) => (
+//                         <Link
+//                           key={tour.id}
+//                           to={`/tours/${tour.slug}`}
+//                           className={mobileDropdownLinkClass(
+//                             isActivePath(`/tours/${tour.slug}`)
+//                           )}
+//                           onClick={() => {
+//                             setIsMenuOpen(false);
+//                             setActiveDropdown(null);
+//                             window.scrollTo(0, 0);
+//                           }}
+//                         >
+//                           {tour.title}
+//                         </Link>
+//                       ))}
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </li>
+
+//             <li>
+//               <Link
+//                 to="/contact"
+//                 className={mobileNavLinkClass(isActivePath('/contact'))}
+//                 onClick={() => {
+//                   setIsMenuOpen(false);
+//                   setActiveDropdown(null);
+//                   window.scrollTo(0, 0);
+//                 }}
+//               >
+//                 Contact Us
+//               </Link>
+//             </li>
+//           </ul>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Navbar;
+
+
+
+import React, { useState, useEffect } from "react";
+import logo from "../Images/logo.png";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+  const [tourss, setTours] = useState([]);
+  const [activitiess, setActivities] = useState([]);
+  const [trekkingss, setTrekking] = useState([]);
 
-  // Scroll effect for navbar background
   useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 10);
+    const fetchTrekking = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/navbartrekkings");
+        setTrekking(response.data.data);
+      } catch (error) {
+        console.error("fetching error", error);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/navbartours");
+        setTours(response.data.data);
+      } catch (error) {
+        console.error("fetching error", error);
+      }
+    };
+
+    const fetchActivities = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/navbaractivities");
+        setActivities(response.data.data);
+      } catch (error) {
+        console.error("fetching error", error);
+      }
+    };
+
+    fetchTrekking();
+    fetchTours();
+    fetchActivities();
   }, []);
 
-  // Close menu when clicking outside
+  useEffect(() => {
+    const handleScroll = () => setHasScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const menuContainer = document.querySelector('.mobile-menu-container');
+      const menuContainer = document.querySelector(".mobile-menu-container");
       if (isMenuOpen && menuContainer && !menuContainer.contains(event.target)) {
         setIsMenuOpen(false);
         setActiveDropdown(null);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isMenuOpen]);
 
   const toggleDropdown = (dropdown) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
-  // Extract grouped data
-  const trekkings = data.filter((item) => item.category === 'trekking');
-  const activities = data.filter((item) => item.category === 'activity');
-  const tours = data.filter((item) => item.category === 'tour');
-
+  // ✅ Updated: sub_category is now an object from backend, use .name
   const groupBySubCategory = (items, fallback) =>
     Object.entries(
       items.reduce((acc, item) => {
-        const key = item.sub_category || fallback;
+        // sub_category can be an object {name, id, ...} or null/undefined
+        const key = item.sub_category?.name || fallback;
         if (!acc[key]) acc[key] = [];
         acc[key].push(item);
         return acc;
@@ -63,29 +726,30 @@ const Navbar = () => {
     );
 
   const isActivePath = (path) => location.pathname === path;
-  const isSectionActive = (paths) => paths.some((path) => location.pathname.startsWith(path));
+  const isSectionActive = (paths) =>
+    paths.some((path) => location.pathname.startsWith(path));
 
   const navLinkClass = (isActive) =>
-    `transition ${isActive ? 'text-blue-300' : 'text-white hover:text-blue-300'}`;
+    `transition ${isActive ? "text-blue-300" : "text-white hover:text-blue-300"}`;
 
   const mobileNavLinkClass = (isActive) =>
     `block py-2 px-4 rounded-lg transition ${
-      isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+      isActive ? "text-blue-300 bg-white/10" : "text-white hover:bg-white/10"
     }`;
 
   const mobileDropdownButtonClass = (isActive) =>
     `w-full text-left py-2 px-4 rounded-lg transition flex justify-between items-center ${
-      isActive ? 'text-blue-300 bg-white/10' : 'text-white hover:bg-white/10'
+      isActive ? "text-blue-300 bg-white/10" : "text-white hover:bg-white/10"
     }`;
 
   const desktopDropdownLinkClass = (isActive) =>
     `block px-4 py-2 transition ${
-      isActive ? 'text-blue-300 bg-blue-50' : 'text-gray-700 hover:bg-blue-50'
+      isActive ? "text-blue-300 bg-blue-50" : "text-gray-700 hover:bg-blue-50"
     }`;
 
   const mobileDropdownLinkClass = (isActive) =>
     `block px-4 py-1.5 text-sm rounded transition ${
-      isActive ? 'text-blue-300 bg-white/10' : 'text-white/70 hover:bg-white/10'
+      isActive ? "text-blue-300 bg-white/10" : "text-white/70 hover:bg-white/10"
     }`;
 
   return (
@@ -93,27 +757,19 @@ const Navbar = () => {
       {/* Desktop & Base Navbar */}
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          hasScrolled ? 'backdrop-blur-sm bg-[#00304a]/80 shadow-md' : 'bg-transparent'
-        }`}
-      >
+          hasScrolled
+            ? "backdrop-blur-sm bg-[#00304a]/80 shadow-md"
+            : "bg-transparent"
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link
                 to="/"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setActiveDropdown(null);
-                  window.scrollTo(0, 0);
-                }}
-                className="block"
-              >
-                <img
-                  src={logo}
-                  alt="Company Logo"
-                  className="h-12 w-auto rounded-4xl p-2 bg-white/90"
-                />
+                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}
+                className="block">
+                <img src={logo} alt="Company Logo" className="h-12 w-auto rounded-4xl p-2 bg-white/90" />
               </Link>
             </div>
 
@@ -121,76 +777,45 @@ const Navbar = () => {
             <div className="hidden md:flex space-x-8">
               <ul className="flex space-x-8 font-semibold text-lg">
                 <li>
-                  <Link
-                    to="/"
-                    onClick={() => window.scrollTo(0, 0)}
-                    className={navLinkClass(isActivePath('/'))}
-                  >
+                  <Link to="/" onClick={() => window.scrollTo(0, 0)} className={navLinkClass(isActivePath("/"))}>
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/about"
-                    onClick={() => window.scrollTo(0, 0)}
-                    className={navLinkClass(isActivePath('/about'))}
-                  >
+                  <Link to="/about" onClick={() => window.scrollTo(0, 0)} className={navLinkClass(isActivePath("/about"))}>
                     About Us
                   </Link>
                 </li>
 
-                {/* Trekkings Dropdown */}
+                {/* ✅ Trekkings Dropdown — uses backend trekkingss */}
                 <li
                   className="relative"
-                  onMouseEnter={() => setActiveDropdown('trekkings')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
+                  onMouseEnter={() => setActiveDropdown("trekkings")}
+                  onMouseLeave={() => setActiveDropdown(null)}>
                   <button
                     className={`flex items-center transition ${
-                      isSectionActive(['/trekking', '/trekkings'])
-                        ? 'text-blue-300'
-                        : 'text-white hover:text-blue-300'
+                      isSectionActive(["/trekking", "/trekkings"]) ? "text-blue-300" : "text-white hover:text-blue-300"
                     }`}
-                    aria-expanded={activeDropdown === 'trekkings'}
-                  >
+                    aria-expanded={activeDropdown === "trekkings"}>
                     <Link to="/trekking" onClick={() => window.scrollTo(0, 0)} className="block">
                       Trekkings
                     </Link>
-                    <svg
-                      className="w-4 h-4 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {activeDropdown === 'trekkings' && (
-                    <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+                  {activeDropdown === "trekkings" && (
+                    <div className="absolute left-0 w-64 bg-white rounded-md shadow-lg z-50">
                       <div className="py-1">
-                        {groupBySubCategory(trekkings, 'Annapurna Region').map(([region, treks]) => (
+                        {groupBySubCategory(trekkingss, "Annapurna Region").map(([region, treks]) => (
                           <div key={region}>
-                            <div className="px-4 py-2 text-gray-800 font-medium border-b">
-                              {region}
-                            </div>
+                            <div className="px-4 py-2 text-gray-800 font-medium border-b">{region}</div>
                             {treks.map((trek) => (
                               <Link
                                 key={trek.id}
                                 to={`/trekkings/${trek.slug}`}
-                                className={desktopDropdownLinkClass(
-                                  isActivePath(`/trekkings/${trek.slug}`)
-                                )}
-                                onClick={() => {
-                                  setIsMenuOpen(false);
-                                  setActiveDropdown(null);
-                                  window.scrollTo(0, 0);
-                                }}
-                              >
+                                className={desktopDropdownLinkClass(isActivePath(`/trekkings/${trek.slug}`))}
+                                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                                 {trek.title}
                               </Link>
                             ))}
@@ -201,120 +826,74 @@ const Navbar = () => {
                   )}
                 </li>
 
-                {/* Activities Dropdown */}
+                {/* ✅ Activities Dropdown — uses backend activitiess */}
                 <li
                   className="relative"
-                  onMouseEnter={() => setActiveDropdown('activities')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
+                  onMouseEnter={() => setActiveDropdown("activities")}
+                  onMouseLeave={() => setActiveDropdown(null)}>
                   <button
                     className={`flex items-center transition ${
-                      isSectionActive(['/activity', '/activities'])
-                        ? 'text-blue-300'
-                        : 'text-white hover:text-blue-300'
+                      isSectionActive(["/activity", "/activities"]) ? "text-blue-300" : "text-white hover:text-blue-300"
                     }`}
-                    aria-expanded={activeDropdown === 'activities'}
-                  >
+                    aria-expanded={activeDropdown === "activities"}>
                     <Link to="/activity" onClick={() => window.scrollTo(0, 0)} className="block">
                       Activities
                     </Link>
-                    <svg
-                      className="w-4 h-4 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {activeDropdown === 'activities' && (
-                    <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+                  {activeDropdown === "activities" && (
+                    <div className="absolute left-0 w-64 bg-white rounded-md shadow-lg z-50">
                       <div className="py-1">
-                        {groupBySubCategory(activities, 'Adventure Activities').map(
-                          ([type, list]) => (
-                            <div key={type}>
-                              <div className="px-4 py-2 text-gray-800 font-medium border-b">
-                                {type}
-                              </div>
-                              {list.map((activity) => (
-                                <Link
-                                  key={activity.id}
-                                  to={`/activities/${activity.slug}`}
-                                  className={desktopDropdownLinkClass(
-                                    isActivePath(`/activities/${activity.slug}`)
-                                  )}
-                                  onClick={() => {
-                                    setIsMenuOpen(false);
-                                    setActiveDropdown(null);
-                                    window.scrollTo(0, 0);
-                                  }}
-                                >
-                                  {activity.title}
-                                </Link>
-                              ))}
-                            </div>
-                          )
-                        )}
+                        {groupBySubCategory(activitiess, "Adventure Activities").map(([type, list]) => (
+                          <div key={type}>
+                            <div className="px-4 py-2 text-gray-800 font-medium border-b">{type}</div>
+                            {list.map((activity) => (
+                              <Link
+                                key={activity.id}
+                                to={`/activities/${activity.slug}`}
+                                className={desktopDropdownLinkClass(isActivePath(`/activities/${activity.slug}`))}
+                                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
+                                {activity.title}
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
                 </li>
 
-                {/* Tours Dropdown */}
+                {/* ✅ Tours Dropdown — uses backend tourss (no sub_category, flat list) */}
                 <li
                   className="relative"
-                  onMouseEnter={() => setActiveDropdown('tours')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
+                  onMouseEnter={() => setActiveDropdown("tours")}
+                  onMouseLeave={() => setActiveDropdown(null)}>
                   <button
                     className={`flex items-center transition ${
-                      isSectionActive(['/tours']) ? 'text-blue-300' : 'text-white hover:text-blue-300'
+                      isSectionActive(["/tours"]) ? "text-blue-300" : "text-white hover:text-blue-300"
                     }`}
-                    aria-expanded={activeDropdown === 'tours'}
-                  >
+                    aria-expanded={activeDropdown === "tours"}>
                     <Link to="/tours" onClick={() => window.scrollTo(0, 0)} className="block">
                       Tours
                     </Link>
-                    <svg
-                      className="w-4 h-4 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {activeDropdown === 'tours' && (
-                    <div className="absolute left-0  w-64 bg-white rounded-md shadow-lg z-50">
+                  {activeDropdown === "tours" && (
+                    <div className="absolute left-0 w-64 bg-white rounded-md shadow-lg z-50">
                       <div className="py-1">
-                        {groupBySubCategory(tours, 'Tour Packages').map(([type, list]) => (
+                        {groupBySubCategory(tourss, "Tour Packages").map(([type, list]) => (
                           <div key={type}>
-                            <div className="px-4 py-2 text-gray-800 font-medium border-b">
-                              {type}
-                            </div>
+                            <div className="px-4 py-2 text-gray-800 font-medium border-b">{type}</div>
                             {list.map((tour) => (
                               <Link
                                 key={tour.id}
                                 to={`/tours/${tour.slug}`}
-                                className={desktopDropdownLinkClass(
-                                  isActivePath(`/tours/${tour.slug}`)
-                                )}
-                                onClick={() => {
-                                  setIsMenuOpen(false);
-                                  setActiveDropdown(null);
-                                  window.scrollTo(0, 0);
-                                }}
-                              >
+                                className={desktopDropdownLinkClass(isActivePath(`/tours/${tour.slug}`))}
+                                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                                 {tour.title}
                               </Link>
                             ))}
@@ -326,11 +905,7 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <Link
-                    to="/contact"
-                    onClick={() => window.scrollTo(0, 0)}
-                    className={navLinkClass(isActivePath('/contact'))}
-                  >
+                  <Link to="/contact" onClick={() => window.scrollTo(0, 0)} className={navLinkClass(isActivePath("/contact"))}>
                     Contact Us
                   </Link>
                 </li>
@@ -343,28 +918,12 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white focus:outline-none"
                 aria-label="Toggle menu"
-                aria-expanded={isMenuOpen}
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                aria-expanded={isMenuOpen}>
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                   ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                   )}
                 </svg>
               </button>
@@ -376,130 +935,71 @@ const Navbar = () => {
       {/* Mobile Off-Canvas Menu */}
       <div
         className={`mobile-menu-container md:hidden fixed inset-0 z-[999] transition-transform duration-300 ease-in-out transform ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}>
         <div
           className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => {
-            setIsMenuOpen(false);
-            setActiveDropdown(null);
-          }}
-        ></div>
+          onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}></div>
         <div className="relative bg-[#003049] h-full w-4/5 max-w-xs ml-auto shadow-xl overflow-y-auto">
           <div className="p-4 flex justify-between items-center border-b border-white/10">
             <Link
               to="/"
-              onClick={() => {
-                setIsMenuOpen(false);
-                setActiveDropdown(null);
-                window.scrollTo(0, 0);
-              }}
-              className="block"
-            >
-              <img
-                src={logo}
-                alt="Company Logo"
-                className="h-10 w-auto rounded-xl p-1 bg-white/90"
-              />
+              onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}
+              className="block">
+              <img src={logo} alt="Company Logo" className="h-10 w-auto rounded-xl p-1 bg-white/90" />
             </Link>
             <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                setActiveDropdown(null);
-              }}
+              onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}
               className="text-white hover:text-blue-300 p-2"
-              aria-label="Close menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              aria-label="Close menu">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          {/* Mobile Nav Links */}
           <ul className="p-2 space-y-1 font-medium text-sm">
             <li>
               <Link
                 to="/"
-                className={mobileNavLinkClass(isActivePath('/'))}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setActiveDropdown(null);
-                  window.scrollTo(0, 0);
-                }}
-              >
+                className={mobileNavLinkClass(isActivePath("/"))}
+                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                 Home
               </Link>
             </li>
             <li>
               <Link
                 to="/about"
-                className={mobileNavLinkClass(isActivePath('/about'))}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setActiveDropdown(null);
-                  window.scrollTo(0, 0);
-                }}
-              >
+                className={mobileNavLinkClass(isActivePath("/about"))}
+                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                 About Us
               </Link>
             </li>
 
-            {/* Mobile Trekkings Dropdown */}
+            {/* ✅ Mobile Trekkings Dropdown */}
             <li>
               <button
                 type="button"
-                className={mobileDropdownButtonClass(isSectionActive(['/trekking', '/trekkings']))}
-                onClick={() => toggleDropdown('mobile-trekkings')}
-              >
+                className={mobileDropdownButtonClass(isSectionActive(["/trekking", "/trekkings"]))}
+                onClick={() => toggleDropdown("mobile-trekkings")}>
                 <span>Trekkings</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform ${
-                    activeDropdown === 'mobile-trekkings' ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  className={`w-4 h-4 transform transition-transform ${activeDropdown === "mobile-trekkings" ? "rotate-180" : ""}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {activeDropdown === 'mobile-trekkings' && (
+              {activeDropdown === "mobile-trekkings" && (
                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
-                  {groupBySubCategory(trekkings, 'Annapurna Region').map(([region, treks]) => (
+                  {groupBySubCategory(trekkingss, "Annapurna Region").map(([region, treks]) => (
                     <div key={region}>
-                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
-                        {region}
-                      </div>
+                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">{region}</div>
                       {treks.map((trek) => (
                         <Link
                           key={trek.id}
                           to={`/trekkings/${trek.slug}`}
-                          className={mobileDropdownLinkClass(
-                            isActivePath(`/trekkings/${trek.slug}`)
-                          )}
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setActiveDropdown(null);
-                            window.scrollTo(0, 0);
-                          }}
-                        >
+                          className={mobileDropdownLinkClass(isActivePath(`/trekkings/${trek.slug}`))}
+                          onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                           {trek.title}
                         </Link>
                       ))}
@@ -509,50 +1009,30 @@ const Navbar = () => {
               )}
             </li>
 
-            {/* Mobile Activities Dropdown */}
+            {/* ✅ Mobile Activities Dropdown */}
             <li>
               <button
                 type="button"
-                className={mobileDropdownButtonClass(isSectionActive(['/activity', '/activities']))}
-                onClick={() => toggleDropdown('mobile-activities')}
-              >
+                className={mobileDropdownButtonClass(isSectionActive(["/activity", "/activities"]))}
+                onClick={() => toggleDropdown("mobile-activities")}>
                 <span>Activities</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform ${
-                    activeDropdown === 'mobile-activities' ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  className={`w-4 h-4 transform transition-transform ${activeDropdown === "mobile-activities" ? "rotate-180" : ""}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {activeDropdown === 'mobile-activities' && (
+              {activeDropdown === "mobile-activities" && (
                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
-                  {groupBySubCategory(activities, 'Adventure Activities').map(([type, list]) => (
+                  {groupBySubCategory(activitiess, "Adventure Activities").map(([type, list]) => (
                     <div key={type}>
-                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
-                        {type}
-                      </div>
+                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">{type}</div>
                       {list.map((activity) => (
                         <Link
                           key={activity.id}
                           to={`/activities/${activity.slug}`}
-                          className={mobileDropdownLinkClass(
-                            isActivePath(`/activities/${activity.slug}`)
-                          )}
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setActiveDropdown(null);
-                            window.scrollTo(0, 0);
-                          }}
-                        >
+                          className={mobileDropdownLinkClass(isActivePath(`/activities/${activity.slug}`))}
+                          onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                           {activity.title}
                         </Link>
                       ))}
@@ -562,50 +1042,30 @@ const Navbar = () => {
               )}
             </li>
 
-            {/* Mobile Tours Dropdown */}
+            {/* ✅ Mobile Tours Dropdown */}
             <li>
               <button
                 type="button"
-                className={mobileDropdownButtonClass(isSectionActive(['/tours']))}
-                onClick={() => toggleDropdown('mobile-tours')}
-              >
+                className={mobileDropdownButtonClass(isSectionActive(["/tours"]))}
+                onClick={() => toggleDropdown("mobile-tours")}>
                 <span>Tours</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform ${
-                    activeDropdown === 'mobile-tours' ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  className={`w-4 h-4 transform transition-transform ${activeDropdown === "mobile-tours" ? "rotate-180" : ""}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {activeDropdown === 'mobile-tours' && (
+              {activeDropdown === "mobile-tours" && (
                 <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-500">
-                  {groupBySubCategory(tours, 'Tour Packages').map(([type, list]) => (
+                  {groupBySubCategory(tourss, "Tour Packages").map(([type, list]) => (
                     <div key={type}>
-                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">
-                        {type}
-                      </div>
+                      <div className="px-2 py-1 text-white/80 text-xs font-medium border-b border-white/10">{type}</div>
                       {list.map((tour) => (
                         <Link
                           key={tour.id}
                           to={`/tours/${tour.slug}`}
-                          className={mobileDropdownLinkClass(
-                            isActivePath(`/tours/${tour.slug}`)
-                          )}
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setActiveDropdown(null);
-                            window.scrollTo(0, 0);
-                          }}
-                        >
+                          className={mobileDropdownLinkClass(isActivePath(`/tours/${tour.slug}`))}
+                          onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                           {tour.title}
                         </Link>
                       ))}
@@ -618,13 +1078,8 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className={mobileNavLinkClass(isActivePath('/contact'))}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setActiveDropdown(null);
-                  window.scrollTo(0, 0);
-                }}
-              >
+                className={mobileNavLinkClass(isActivePath("/contact"))}
+                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); window.scrollTo(0, 0); }}>
                 Contact Us
               </Link>
             </li>
