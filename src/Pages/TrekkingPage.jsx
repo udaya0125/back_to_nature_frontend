@@ -337,6 +337,9 @@ const TrekkingPage = () => {
   const [treks, setTreks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+       const imgurl = import.meta.env.VITE_IMAGE_PATH;
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Function to get image URL from API or fallback to local images
   // const getImageUrl = (imageObject) => {
@@ -378,7 +381,7 @@ const TrekkingPage = () => {
   const getImageUrl = (trek) => {
     if (!trek || !trek.image) return north;
     if (trek.image.startsWith("trekkings/")) {
-      return `http://127.0.0.1:8000/storage/${trek.image}`;
+      return `${imgurl}/${trek.image}`;
     }
     const filename = trek.image.split("/").pop();
     const localImageMap = {
@@ -392,7 +395,7 @@ const TrekkingPage = () => {
     const fetchTreks = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://127.0.0.1:8000/api/trekkings");
+        const response = await axios.get(`${API_BASE_URL}/trekkings`);
         const trekkingData = response.data.data;
         setTreks(trekkingData);
         setLoading(false);

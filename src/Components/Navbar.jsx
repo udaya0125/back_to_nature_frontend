@@ -652,11 +652,14 @@ const Navbar = () => {
   const [tourss, setTours] = useState([]);
   const [activitiess, setActivities] = useState([]);
   const [trekkingss, setTrekking] = useState([]);
+         const imgurl = import.meta.env.VITE_IMAGE_PATH;
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchTrekking = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/navbartrekkings");
+        const response = await axios.get(`${API_BASE_URL}/navbartrekkings`);
         setTrekking(response.data.data);
       } catch (error) {
         console.error("fetching error", error);
@@ -665,7 +668,7 @@ const Navbar = () => {
 
     const fetchTours = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/navbartours");
+        const response = await axios.get(`${API_BASE_URL}/navbartours`);
         setTours(response.data.data);
       } catch (error) {
         console.error("fetching error", error);
@@ -674,7 +677,7 @@ const Navbar = () => {
 
     const fetchActivities = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/navbaractivities");
+        const response = await axios.get(`${API_BASE_URL}/navbaractivities`);
         setActivities(response.data.data);
       } catch (error) {
         console.error("fetching error", error);

@@ -15,11 +15,11 @@ const Destination = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   const destinations = [
-    { name: "Poon Hill", duration: "3-4 Days", image: poonhill, slug: "ghorepani-poonhills-trek" },
-    { name: "Khumai Dada", duration: "3-4 Days", image: khumai, slug: "khumai-dada" },
-    { name: "Everest Base Camp", duration: "3-4 Days", image: everest, slug: "everest-base-camp" },
-    { name: "Kori Trek", duration: "5-7 Days", image: kori, slug: "kori-trek" },
-    { name: "North Circuit", duration: "10-14 Days", image: north, slug: "north-abc-trek" },
+    { name: "Poon Hill", duration: "3-4 Days", image: poonhill, slug: "ghorepani-poonhills-trek-98332" },
+    { name: "Khumai Dada", duration: "3-4 Days", image: khumai, slug: "khumai-dada-17897" },
+    { name: "Everest Base Camp", duration: "3-4 Days", image: everest, slug: "everest-base-camp-32396" },
+    { name: "Kori Trek", duration: "5-7 Days", image: kori, slug: "kori-trek-28038" },
+    { name: "North Circuit", duration: "10-14 Days", image: north, slug: "north-abc-trek-20222" },
     { name: "Hidden Lake", duration: "2-3 Days", image: hiddenlake, slug: "hidden-lake" },
   ]
 

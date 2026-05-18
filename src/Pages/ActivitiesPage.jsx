@@ -188,16 +188,19 @@ const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+       const imgurl = import.meta.env.VITE_IMAGE_PATH;
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Helper to get full image URL from backend storage
   const getImageUrl = (imageData) => {
     // API returns a plain string path like "activities/filename.jpg"
     if (typeof imageData === "string") {
-      return `http://127.0.0.1:8000/storage/${imageData}`;
+      return `${imgurl}/${imageData}`;
     }
     // Legacy object format fallback
     if (imageData?.image) {
-      return `http://127.0.0.1:8000/storage/${imageData.image}`;
+      return `${imgurl}/${imageData.image}`;
     }
     return everest;
   };
@@ -207,7 +210,7 @@ const ActivitiesPage = () => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://127.0.0.1:8000/api/activities");
+        const response = await axios.get(`${API_BASE_URL}/activities`);
         const activitiesData = response.data.data;
         setActivities(activitiesData);
         setError(null);

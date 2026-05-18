@@ -693,13 +693,16 @@ const Trekking = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+       const imgurl = import.meta.env.VITE_IMAGE_PATH;
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch single trek from API
   useEffect(() => {
     const fetchTrek = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://127.0.0.1:8000/api/trekkings/${slug}`);
+        const response = await axios.get(`${API_BASE_URL}/trekkings/${slug}`);
         const trekData = response.data.data;
 
         // Parse itineraries
@@ -720,7 +723,7 @@ const Trekking = () => {
 
         // Fetch FAQs for this trek
         try {
-          const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
+          const faqResponse = await axios.get(`${API_BASE_URL}/faqs`);
           const allFaqs = faqResponse.data.data;
           const trekFaqs = allFaqs.filter(
             (faq) => faq.trekking_id === trekData.id
@@ -759,13 +762,13 @@ const Trekking = () => {
     if (!imageData) return bg5;
 
     if (typeof imageData === 'object' && imageData.image) {
-      return `http://127.0.0.1:8000/storage/${imageData.image}`;
+      return `${imgurl}/${imageData.image}`;
     }
     if (typeof imageData === 'string') {
       if (imageData.startsWith('http')) return imageData;
-      if (imageData.startsWith('/storage')) return `http://127.0.0.1:8000${imageData}`;
-      if (imageData.startsWith('trekkings/')) return `http://127.0.0.1:8000/storage/${imageData}`;
-      return `http://127.0.0.1:8000/storage/${imageData}`;
+      if (imageData.startsWith('/storage')) return `${imgurl}${imageData}`;
+      if (imageData.startsWith('trekkings/')) return `${imgurl}/${imageData}`;
+      return `${imgurl}/storage/${imageData}`;
     }
     return bg5;
   };

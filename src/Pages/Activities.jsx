@@ -649,13 +649,16 @@ const Activities = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+       const imgurl = import.meta.env.VITE_IMAGE_PATH;
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch single activity from API
   useEffect(() => {
     const fetchActivity = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://127.0.0.1:8000/api/activities/${slug}`);
+        const response = await axios.get(`${API_BASE_URL}/activities/${slug}`);
         const activityData = response.data.data;
         
         // Keep includes and excludes as raw HTML for rich text rendering
@@ -680,7 +683,7 @@ const Activities = () => {
         
         // Fetch FAQs for this activity
         try {
-          const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
+          const faqResponse = await axios.get(`${API_BASE_URL}/faqs`);
           const allFaqs = faqResponse.data.data;
           // Filter FAQs for this activity (assuming activity_id mapping)
           const activityFaqs = allFaqs.filter(
@@ -720,14 +723,14 @@ const Activities = () => {
     
     // If imageData is an object with image property (API format)
     if (typeof imageData === 'object' && imageData.image) {
-      return `http://127.0.0.1:8000/storage/${imageData.image}`;
+      return `${imgurl}/${imageData.image}`;
     }
     // If imageData is a string
     if (typeof imageData === 'string') {
       if (imageData.startsWith('http')) return imageData;
-      if (imageData.startsWith('/storage')) return `http://127.0.0.1:8000${imageData}`;
-      if (imageData.startsWith('activities/')) return `http://127.0.0.1:8000/storage/${imageData}`;
-      return `http://127.0.0.1:8000/storage/${imageData}`;
+      if (imageData.startsWith('/storage')) return `${imgurl}${imageData}`;
+      if (imageData.startsWith('activities/')) return `${imgurl}/${imageData}`;
+      return `${imgurl}/${imageData}`;
     }
     return bg5;
   };

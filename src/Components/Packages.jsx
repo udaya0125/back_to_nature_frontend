@@ -10,21 +10,21 @@ const packages = [
     name: 'Chitwan National Park',
     duration: '4 Days / 3 Nights',
     image: chitwan2,
-    link: '/tours/chitwan-national-park',
+    link: '/tours/chitwan-national-park-3n-4d-44144',
   },
 
   {
     name: 'Bardia National Park',
     duration: '3 Days / 2 Nights',
     image: bardia2,
-    link: '/tours/bardia-national-park',
+    link: '/tours/bardia-national-park-2n-3d-28947',
   },
   
   {
     name: 'Pokhara Tour Packages',
     duration: '3 Days / 2 Nights',
     image: pokhara,
-    link: '/tours/pokhara-tour-package',
+    link: '/tours/pokhara-tour-package-90093',
   },
 ];
 
