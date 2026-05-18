@@ -467,62 +467,11 @@ import zone from '../Images/zone.png';
 import hourglass from '../Images/hourglass.png';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import balloon from '../Images/ballon.webp';
-import paraglading from '../Images/paraglading.jpg';
-import paraglading2 from '../Images/paraglading2.jpg';
-import rafting from '../Images/rafting.png';
-import ultralight from '../Images/ultralight.webp';
-import cycling from '../Images/cycling.jpg';
-import kayaking from '../Images/kayaking.jpg';
-import kayaking1 from '../Images/kayaking1.jpg';
-import kayaking2 from '../Images/kayaking2.jpg';
-import kayaking3 from '../Images/kayaking3.jpg';
-import kayaking4 from '../Images/kayaking4.jpg';
-import zipline from '../Images/zipline.jpg';
-import jump from '../Images/jump.jpg';
-import bird from '../Images/bird.jpeg';
-import north from '../Images/north.jpg';
 import { Fancybox } from '@fancyapps/ui';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
-import parse from 'html-react-parser';
-
-// Create an image mapping object for static imports
-const imageMap = {
-  'ballon.webp': balloon,
-  'paraglading.jpg': paraglading,
-  'paraglading2.jpg': paraglading2,
-  'rafting.png': rafting,
-  'ultralight.webp': ultralight,
-  'cycling.jpg': cycling,
-  'kayaking.jpg': kayaking,
-  'kayaking1.jpg': kayaking1,
-  'kayaking2.jpg': kayaking2,
-  'kayaking3.jpg': kayaking3,
-  'kayaking4.jpg': kayaking4,
-  'zipline.jpg': zipline,
-  'jump.jpg': jump,
-  'bird.jpeg': bird,
-  'north.jpg': north,
-  'bg2.png': bg5
-};
-
-// Helper function to clean HTML
-const cleanHtml = (html) => {
-  if (!html) return '';
-  // Remove HTML tags
-  return html.replace(/<[^>]*>/g, '');
-};
-
-// Helper function to parse HTML list items
-const parseListItems = (html) => {
-  if (!html) return [];
-  const clean = html.replace(/<p>|<\/p>/g, '');
-  const items = clean.split(',').map((item) => item.trim().replace(/["]/g, ''));
-  return items.filter((item) => item);
-};
 
 const BookNowPopup = ({ 
-  packageName = "Tour Package", 
+  packageName = "Activity Package", 
   isOpen, 
   onClose 
 }) => {
@@ -540,7 +489,7 @@ const BookNowPopup = ({
       return;
     }
     
-    const message = `New Tour Booking Request\n\nPackage: ${packageName}\nName: ${formData.name}\nDate: ${formData.date}\nNumber of People: ${formData.people}\n\nPlease confirm availability.`;
+    const message = `New Activity Booking Request\n\nPackage: ${packageName}\nName: ${formData.name}\nDate: ${formData.date}\nNumber of People: ${formData.people}\n\nPlease confirm availability.`;
     const encodedMessage = encodeURIComponent(message);
     const webUrl = `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
     const appUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
@@ -611,7 +560,7 @@ const BookNowPopup = ({
         </button>
 
         <div className="p-6">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">Book Your Tour</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-2">Book Your Activity</h3>
           <p className="text-[#00304a] font-semibold mb-6">{packageName}</p>
 
           <div className="space-y-4">
@@ -689,6 +638,14 @@ const BookNowPopup = ({
   );
 };
 
+// Helper function to parse HTML list items
+const parseListItems = (html) => {
+  if (!html) return [];
+  const clean = html.replace(/<p>|<\/p>/g, '');
+  const items = clean.split(',').map((item) => item.trim().replace(/["]/g, ''));
+  return items.filter((item) => item);
+};
+
 const Activities = () => {
   const [activeDay, setActiveDay] = useState(null);
   const [isBookingPopupOpen, setIsBookingPopupOpen] = useState(false);
@@ -698,74 +655,93 @@ const Activities = () => {
   const [error, setError] = useState(null);
   const { slug } = useParams();
 
+  // Fetch single activity from API
   useEffect(() => {
-    const fetchActivityData = async () => {
+    const fetchActivity = async () => {
       try {
         setLoading(true);
-        // Fetch activities
-        const activityResponse = await axios.get(`http://127.0.0.1:8000/api/activities`);
-        const activities = activityResponse.data.data;
-        const foundActivity = activities.find((item) => item.slug === slug);
-
-        if (!foundActivity) {
-          setError("Activity not found");
-          setLoading(false);
-          return;
-        }
-
-        // Fetch FAQs for this activity (category_id might be different for activities)
-        const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
-        const allFaqs = faqResponse.data.data;
+        const response = await axios.get(`http://127.0.0.1:8000/api/activities/${slug}`);
+        const activityData = response.data.data;
         
-        // Filter FAQs for this activity (assuming category_id for activities is something like 6 or based on your data)
-        const activityFaqs = allFaqs.filter(
-          (faq) => faq.activity_id === foundActivity.id || faq.category_id === 6
-        );
-
         // Parse includes and excludes from HTML
-        const includes = parseListItems(foundActivity.includes);
-        const excludes = parseListItems(foundActivity.excludes);
-
-        // Parse itineraries from the itineraries array in the response
+        const includes = parseListItems(activityData.includes);
+        const excludes = parseListItems(activityData.excludes);
+        
+        // Parse itineraries
         let itineraries = [];
-        if (foundActivity.itineraries && foundActivity.itineraries.length > 0) {
-          itineraries = foundActivity.itineraries.map((item) => ({
-            day: `Day ${item.day}`,
+        if (activityData.itineraries && activityData.itineraries.length > 0) {
+          itineraries = activityData.itineraries.map((item) => ({
+            id: item.id,
+            day: item.day,
             title: item.title,
-            description: cleanHtml(item.description),
+            description: item.description, // Keep HTML for rendering
           }));
         }
-
-        // Get images - extract just the image paths
-        const images = foundActivity.images
-          ? foundActivity.images.map((img) => img.image)
+        
+        // Get images
+        const images = activityData.images
+          ? activityData.images.map((img) => img.image)
           : [];
-
+        
+        // Fetch FAQs for this activity
+        try {
+          const faqResponse = await axios.get(`http://127.0.0.1:8000/api/faqs`);
+          const allFaqs = faqResponse.data.data;
+          // Filter FAQs for this activity (assuming activity_id mapping)
+          const activityFaqs = allFaqs.filter(
+            (faq) => faq.activity_id === activityData.id
+          );
+          setFaqs(activityFaqs);
+        } catch (faqErr) {
+          console.error("Error loading FAQs:", faqErr);
+          setFaqs([]);
+        }
+        
         setActivity({
-          ...foundActivity,
+          ...activityData,
           includes,
           excludes,
-          itinerary: itineraries,
-          images: images,
-          description: cleanHtml(foundActivity.description),
+          itineraries,
+          images,
+          description: activityData.description, // Keep HTML for rendering
         });
-
-        setFaqs(activityFaqs);
-        setLoading(false);
+        setError(null);
       } catch (err) {
-        console.error("Error fetching activity data:", err);
+        console.error("Error loading activity:", err);
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchActivityData();
+    if (slug) {
+      fetchActivity();
+    }
   }, [slug]);
 
-  console.log("Fetched Activity:", activity);
+  // Helper to get full image URL from API response
+  const getImageUrl = (imageData) => {
+    if (!imageData) return bg5;
+    
+    // If imageData is an object with image property (API format)
+    if (typeof imageData === 'object' && imageData.image) {
+      return `http://127.0.0.1:8000/storage/${imageData.image}`;
+    }
+    // If imageData is a string
+    if (typeof imageData === 'string') {
+      if (imageData.startsWith('http')) return imageData;
+      if (imageData.startsWith('/storage')) return `http://127.0.0.1:8000${imageData}`;
+      if (imageData.startsWith('activities/')) return `http://127.0.0.1:8000/storage/${imageData}`;
+      return `http://127.0.0.1:8000/storage/${imageData}`;
+    }
+    return bg5;
+  };
 
+  console.log("Activity data:", activity);
+
+  // Initialize Fancybox
   useEffect(() => {
-    if (activity) {
+    if (activity && activity.images && activity.images.length > 0) {
       Fancybox.bind('[data-fancybox="gallery"]', {
         Toolbar: {
           display: {
@@ -789,9 +765,21 @@ const Activities = () => {
     };
   }, [activity]);
 
+  const toggleDay = (dayId) => {
+    setActiveDay(activeDay === dayId ? null : dayId);
+  };
+
+  const openBookingPopup = () => {
+    setIsBookingPopupOpen(true);
+  };
+
+  const closeBookingPopup = () => {
+    setIsBookingPopupOpen(false);
+  };
+
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
@@ -805,39 +793,13 @@ const Activities = () => {
     );
   }
 
-  // Function to get image by filename or API path
-  const getImage = (imagePath) => {
-    if (!imagePath) return north;
-
-    // If it's an API image path (starts with activities/)
-    if (imagePath.startsWith("activities/")) {
-      return `http://127.0.0.1:8000/storage/${imagePath}`;
-    }
-
-    // Extract filename from local path
-    const filename = imagePath.split("/").pop();
-    return imageMap[filename] || north;
-  };
-
-  const toggleDay = (day) => {
-    setActiveDay(activeDay === day ? null : day);
-  };
-
-  const openBookingPopup = () => {
-    setIsBookingPopupOpen(true);
-  };
-
-  const closeBookingPopup = () => {
-    setIsBookingPopupOpen(false);
-  };
-
   return (
     <>
       <div
         className="bg-cover bg-center"
         style={{ backgroundImage: `url(${bg5})` }}>
         <img
-          src={getImage(activity.images[0])}
+          src={activity.images && activity.images[0] ? getImageUrl(activity.images[0]) : bg5}
           alt={activity.title}
           className="w-full h-[50vh] md:h-[80vh] object-cover"
         />
@@ -848,7 +810,7 @@ const Activities = () => {
             <h1 className="text-3xl md:text-5xl font-bold text-[#003769] md:col-span-2">
               {activity.title}
             </h1>
-            <div className="flex flex-col sm:flex-row md:justify-center items-start sm:items-center gap-4 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:justify-center items-start sm:items-center gap-4 md:gap-8">
               <div className="flex items-center gap-2 md:gap-4">
                 <img
                   src={hourglass}
@@ -858,7 +820,7 @@ const Activities = () => {
                 <div>
                   <h2 className="text-sm md:text-lg font-medium">Duration</h2>
                   <p className="text-gray-500 text-sm md:text-base">
-                    {activity.itinerary.length} Days
+                    {activity.itineraries?.length || 0} Days
                   </p>
                 </div>
               </div>
@@ -869,9 +831,9 @@ const Activities = () => {
                   className="w-8 h-8 md:w-12 md:h-12"
                 />
                 <div>
-                  <h2 className="text-sm md:text-lg font-medium">Zone</h2>
+                  <h2 className="text-sm md:text-lg font-medium">Category</h2>
                   <p className="text-gray-500 text-sm md:text-base">
-                    {activity.sub_category || "Adventure Activity"}
+                    {activity.sub_category || activity.category?.name || "Adventure Activity"}
                   </p>
                 </div>
               </div>
@@ -881,23 +843,24 @@ const Activities = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-24">
             {/* Left Column: Info & Itinerary */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
-              {/* Description */}
-              <p className="text-gray-800 text-sm md:text-base mt-6 md:mt-8">
-                {activity.description}
-              </p>
+              {/* Description - Using dangerouslySetInnerHTML for HTML content */}
+              <div 
+                className="text-gray-800 text-sm md:text-base mt-6 md:mt-8 prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: activity.description }}
+              />
 
               {/* Itinerary Accordion */}
               <div className="space-y-2">
-                {activity.itinerary.map((item) => (
+                {activity.itineraries?.map((item) => (
                   <div
-                    key={item.day}
+                    key={item.id}
                     className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                     <button
                       className="w-full flex justify-between items-center p-3 sm:p-4 md:p-6 text-left focus:outline-none"
-                      onClick={() => toggleDay(item.day)}>
+                      onClick={() => toggleDay(item.id)}>
                       <div className="flex flex-col sm:flex-row sm:items-center">
                         <span className="text-blue-800 font-semibold text-base md:text-lg mr-0 sm:mr-4 mb-1 sm:mb-0">
-                          {item.day}
+                          Day {item.day}
                         </span>
                         <span className="text-gray-700 text-sm sm:text-base">
                           {item.title}
@@ -905,7 +868,7 @@ const Activities = () => {
                       </div>
                       <svg
                         className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 transform transition-transform ${
-                          activeDay === item.day ? "rotate-180" : ""
+                          activeDay === item.id ? "rotate-180" : ""
                         }`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -919,45 +882,46 @@ const Activities = () => {
                       </svg>
                     </button>
 
-                    {activeDay === item.day && (
-                      <div className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50">
-                        <div className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none">
-                          {parse(item.description || "")}
-                        </div>
-                      </div>
+                    {activeDay === item.id && (
+                      <div 
+                        className="px-3 sm:px-4 md:px-6 pb-3 md:pb-4 pt-1 md:pt-2 bg-gray-50 prose prose-sm max-w-none"
+                        dangerouslySetInnerHTML={{ __html: item.description }}
+                      />
                     )}
                   </div>
                 ))}
               </div>
 
               {/* Gallery */}
-              <div className="mt-6 md:mt-8">
-                <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
-                  Gallery
-                </h2>
-                <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">
-                  Each image tells a unique story
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-                  {activity.images.map((image, index) => (
-                    <a
-                      key={index}
-                      href={getImage(image)}
-                      data-fancybox="gallery"
-                      data-caption={`${activity.title} - Image ${index + 1}`}
-                      className="block overflow-hidden rounded cursor-zoom-in group">
-                      <img
-                        src={getImage(image)}
-                        alt={`Gallery ${index + 1}`}
-                        className="w-full h-28 sm:h-32 md:h-40 object-cover rounded transition-transform duration-300 group-hover:scale-105"
-                        onError={(e) => {
-                          e.target.src = north;
-                        }}
-                      />
-                    </a>
-                  ))}
+              {activity.images && activity.images.length > 0 && (
+                <div className="mt-6 md:mt-8">
+                  <h2 className="text-xl md:text-2xl font-medium mb-2 md:mb-4">
+                    Gallery
+                  </h2>
+                  <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">
+                    Each image tells a unique story
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+                    {activity.images.map((image, index) => (
+                      <a
+                        key={index}
+                        href={getImageUrl(image)}
+                        data-fancybox="gallery"
+                        data-caption={`${activity.title} - Image ${index + 1}`}
+                        className="block overflow-hidden rounded cursor-zoom-in group">
+                        <img
+                          src={getImageUrl(image)}
+                          alt={`Gallery ${index + 1}`}
+                          className="w-full h-28 sm:h-32 md:h-40 object-cover rounded transition-transform duration-300 group-hover:scale-105"
+                          onError={(e) => {
+                            e.target.src = bg5;
+                          }}
+                        />
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* FAQ Section - Dynamic from API */}
               {faqs.length > 0 && (
@@ -1003,7 +967,7 @@ const Activities = () => {
                         {activeDay === `faq-${index}` && (
                           <div className="px-4 md:px-5 pb-4 pt-1 bg-gray-50">
                             <div
-                              className="text-gray-600 text-sm md:text-base"
+                              className="text-gray-600 text-sm md:text-base prose prose-sm max-w-none"
                               dangerouslySetInnerHTML={{ __html: faq.answer }}
                             />
                           </div>
@@ -1017,44 +981,49 @@ const Activities = () => {
 
             {/* Right Column: Sticky Include/Exclude Section */}
             <div className="lg:col-span-1 mt-8 md:mt-12">
-              <div className="">
-                <div className="border-2 border-gray-700 p-4 sm:p-6 bg-white shadow-md">
-                  <h2 className="text-xl md:text-2xl font-medium mb-3 md:mb-4">
-                    Include / Exclude
-                  </h2>
-                  <p className="text-gray-700 text-sm md:text-base mb-4 md:mb-6">
-                    To help you plan your trip, we have put together a list of
-                    what's included and what's not included in your tour
-                    package.
-                  </p>
-                  <div className="mb-4 md:mb-6">
-                    <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                      Included
-                    </h3>
-                    <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                      {activity.includes.map((item, index) => (
+              <div className="border-2 border-gray-700 p-4 sm:p-6 bg-white shadow-md sticky top-4">
+                <h2 className="text-xl md:text-2xl font-medium mb-3 md:mb-4">
+                  Include / Exclude
+                </h2>
+                <p className="text-gray-700 text-sm md:text-base mb-4 md:mb-6">
+                  To help you plan your activity, we have put together a list of
+                  what's included and what's not included.
+                </p>
+                <div className="mb-4 md:mb-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
+                    Included
+                  </h3>
+                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
+                    {activity.includes && activity.includes.length > 0 ? (
+                      activity.includes.map((item, index) => (
                         <li key={`included-${index}`}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mb-4 md:mb-6">
-                    <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
-                      Excluded
-                    </h3>
-                    <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
-                      {activity.excludes.map((item, index) => (
-                        <li key={`excluded-${index}`}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <button
-                    onClick={openBookingPopup}
-                    className="w-full border border-gray-700 py-2 px-4 bg-[#00304a] text-white font-medium rounded cursor-pointer hover:bg-[#004060] transition text-sm md:text-base">
-                    Book Now
-                  </button>
+                      ))
+                    ) : (
+                      <li>No specific inclusions listed</li>
+                    )}
+                  </ul>
                 </div>
+
+                <div className="mb-4 md:mb-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
+                    Excluded
+                  </h3>
+                  <ul className="text-gray-500 space-y-1 md:space-y-2 list-disc pl-4 md:pl-5 text-sm md:text-base">
+                    {activity.excludes && activity.excludes.length > 0 ? (
+                      activity.excludes.map((item, index) => (
+                        <li key={`excluded-${index}`}>{item}</li>
+                      ))
+                    ) : (
+                      <li>No specific exclusions listed</li>
+                    )}
+                  </ul>
+                </div>
+
+                <button
+                  onClick={openBookingPopup}
+                  className="w-full border border-gray-700 py-2 px-4 bg-[#00304a] text-white font-medium rounded cursor-pointer hover:bg-[#004060] transition text-sm md:text-base">
+                  Book Now
+                </button>
               </div>
             </div>
           </div>
